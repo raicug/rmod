@@ -19,15 +19,9 @@
 #include <nlohmann/json.h>
 #include <ext/imgui/custom/imgui_notify.h>
 
-#include <fonts/tahoma.h>
-#include <fonts/IconFontAwesome6.h>
-#include <fonts/fa-regular-400.h>
-#include <fonts/fa-solid-900.h>
-
 #include <vector>
 #include <string>
 #include <globals/configManager.h>
-//#include <globals/global_funcs.h>
 #include <ext/imgui/custom/TextEditor.h>
 #include <mutex>
 #include <cheats/Drawing/Drawing.h>
@@ -130,7 +124,6 @@ bool raicu::gui::loginRequest(const std::string &email, const std::string &passw
 	}
 
 	const char *contentType = "Content-Type: application/json\r\n";
-	DWORD bytesWritten = 0;
 
 	if (!HttpSendRequestA(hConnect, contentType, strlen(contentType), (LPVOID) jsonString.c_str(),
 	                      jsonString.length())) {
@@ -238,13 +231,13 @@ bool raicu::gui::SetupWindowClass(const char *windowClassName) noexcept {
 	windowClass.lpfnWndProc = DefWindowProc;
 	windowClass.cbClsExtra = 0;
 	windowClass.cbWndExtra = 0;
-	windowClass.hInstance = GetModuleHandle(NULL);
-	windowClass.hIcon = NULL;
-	windowClass.hCursor = NULL;
-	windowClass.hbrBackground = NULL;
-	windowClass.lpszMenuName = NULL;
+	windowClass.hInstance = GetModuleHandle(nullptr);
+	windowClass.hIcon = nullptr;
+	windowClass.hCursor = nullptr;
+	windowClass.hbrBackground = nullptr;
+	windowClass.lpszMenuName = nullptr;
 	windowClass.lpszClassName = windowClassName;
-	windowClass.hIconSm = NULL;
+	windowClass.hIconSm = nullptr;
 
 	if (!RegisterClassEx(&windowClass)) {
 		logger::Log(3, "Failed to create window class");
@@ -263,8 +256,8 @@ void raicu::gui::DestroyWindowClass() noexcept {
 bool raicu::gui::SetupWindow(const char *windowName) noexcept {
 	logger::Log(1, "Creating window");
 
-	window = CreateWindow(windowClass.lpszClassName, windowName, WS_OVERLAPPEDWINDOW, 0, 0, 100, 100, 0, 0,
-	                      windowClass.hInstance, 0);
+	window = CreateWindow(windowClass.lpszClassName, windowName, WS_OVERLAPPEDWINDOW, 0, 0, 100, 100, nullptr, nullptr,
+	                      windowClass.hInstance, nullptr);
 
 	if (!window) {
 		logger::Log(3, "Failed to create window");
@@ -333,12 +326,12 @@ bool raicu::gui::SetupDirectX() noexcept {
 void raicu::gui::DestroyDirectX() noexcept {
 	if (device) {
 		device->Release();
-		device = NULL;
+		device = nullptr;
 	}
 
 	if (d3d9) {
 		d3d9->Release();
-		d3d9 = NULL;
+		d3d9 = nullptr;
 	}
 }
 
@@ -576,12 +569,12 @@ void raicu::gui::Render() noexcept {
 
 		if (!editorInited) {
 			editor.SetLanguageDefinition(TextEditor::LanguageDefinition::Lua());
-			editor.SetText(raicu::globals::settings::lua::ScriptInput.c_str());
+			editor.SetText(raicu::globals::settings::lua::ScriptInput);
 			editorInited = true;
 		}
 
 		if (configLoading) {
-			editor.SetText(raicu::globals::settings::lua::ScriptInput.c_str());
+			editor.SetText(raicu::globals::settings::lua::ScriptInput);
 			configLoading = false;
 		}
 
@@ -876,22 +869,9 @@ void raicu::gui::Render() noexcept {
 	}
 }
 
-bool containsBlacklistedWords(const std::string &message) {
+bool containsBlacklistedWords(const std::string &message) { // TO HIDE CERTAIN LOGGING FROM IN-GAME LOG CONSOLE
 	std::vector<std::string> blacklistedWords = {
-		"Past origin get and eye position get",
-		"Past weapon check",
-		"Gotten health and distance",
-		"Getting hit position...",
-		"Gotten model of renderable",
-		"Gotten HDR of model",
-		"Gotten hitbox of HDR",
-		"Invalidated bone cache",
-		"Got past bone_to_world",
-		"Gotten hitbox and hitbox group",
-		"gotten shoot pos",
-		"gotten angle",
-		"gotten shoot angle",
-		"Past target check"
+
 	};
 
 	for (const auto &word: blacklistedWords) {

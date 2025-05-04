@@ -69,7 +69,7 @@ void UninjectSelf(HMODULE instance) {
 
 void SetupInternal(const HMODULE instance) {
     if (!logger::Initialize()) {
-        MessageBoxA(NULL, "Logger initialization failed!", "Error", MB_OK);
+        MessageBoxA(nullptr, "Logger initialization failed!", "Error", MB_OK);
         UninjectSelf(instance);
     }
 
@@ -82,7 +82,7 @@ void SetupInternal(const HMODULE instance) {
     } catch (const std::exception& e) {
         logger::Log(logger::LOGGER_LEVEL_FATAL, e.what());
         MessageBeep(MB_ICONERROR);
-        MessageBoxA(0, e.what(), "raicu - Error", MB_OK | MB_ICONEXCLAMATION);
+        MessageBoxA(nullptr, e.what(), "raicu - Error", MB_OK | MB_ICONEXCLAMATION);
         UninjectSelf(instance);
     }
 
@@ -97,8 +97,8 @@ DWORD WINAPI Setup(LPVOID instance) {
 }
 
 extern "C" {
-    DLLEXPORT BOOL APIENTRY DllMain(HINSTANCE hModule, DWORD reason, LPVOID reserved) {
-        switch (reason) {
+DLLEXPORT BOOL APIENTRY DllMain(HINSTANCE hModule, const DWORD reason, LPVOID reserved) {
+    switch (reason) {
             case DLL_PROCESS_ATTACH: {
                 DisableThreadLibraryCalls(hModule);
                 // Remove logger::Initialize() from here
@@ -109,7 +109,7 @@ extern "C" {
                     hModule, 0, nullptr);
 
                 if (!mainThread) {
-                    MessageBoxA(0, "Failed to create main thread", "raicu - Error", MB_OK | MB_ICONEXCLAMATION);
+                    MessageBoxA(nullptr, "Failed to create main thread", "raicu - Error", MB_OK | MB_ICONEXCLAMATION);
                     return FALSE;
                 }
                 break;

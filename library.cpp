@@ -18,6 +18,37 @@
  * TODO:
   * Bug fixes
  *
+ * -------------
+ * Aimbot
+ * -> Silent
+ * -> Lock
+ * -> Backtrack (???)
+ * -> Automatic fire
+ * -> Line to shoot pos
+ * -> Smoothing
+ * -> Ignore friends (TODO)
+ * -> Ignore team (TODO)
+ * -> Predict Spread
+ * -> Hitbox type (Head, Chest, Stomach, Hitscan)
+ * -> Priority (FOV, Distance, Health)
+ *
+ * ESP
+ * -> Name
+ * -> Origin
+ * -> Chams (disabled, doesn't work)
+ * -> Box
+ * -> Health
+ * -> Skeleton (TODO)
+ * -> Distance
+ * -> Snapline (Top, Center, Bottom of screen)
+ * -> Render Distance (def: 15000)
+ *
+ * Crosshair
+ * FOV
+ *
+ * LUA
+ * -> LUA State (Client, Menu)
+ *
  */
 HANDLE mainThread = nullptr;
 bool running = true;

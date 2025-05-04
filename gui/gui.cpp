@@ -361,14 +361,12 @@ void raicu::gui::SetupMenu(LPDIRECT3DDEVICE9 device) noexcept {
 		return;
 	}
 
-	// Get the window handle
 	D3DDEVICE_CREATION_PARAMETERS parms;
 	if (FAILED(device->GetCreationParameters(&parms))) {
 		return;
 	}
 	window = parms.hFocusWindow;
 
-	// Set up window procedure hook
 	originalWindowProcess = reinterpret_cast<WNDPROC>(
 		SetWindowLongPtrA(window, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(WindowProcess))
 	);
@@ -377,14 +375,12 @@ void raicu::gui::SetupMenu(LPDIRECT3DDEVICE9 device) noexcept {
 		return;
 	}
 
-	// Initialize ImGui
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGui::StyleColorsDark();
 
 	ImGuiIO &io = ImGui::GetIO();
 
-	// Font setup
 	logger::Log(logger::LOGGER_LEVEL_INFO, "Setting up fonts");
 
 	io.Fonts->AddFontDefault();
@@ -392,10 +388,10 @@ void raicu::gui::SetupMenu(LPDIRECT3DDEVICE9 device) noexcept {
 	ImFontConfig cfg;
 	cfg.FontDataOwnedByAtlas = false;
 	if (ImFont *newDefault = io.Fonts->AddFontFromMemoryTTF(
-		(void *) inter, // Your font data
-		inter_len, // Font data size
-		16.0f, // Font size
-		&cfg // Font config
+		(void *) inter,
+		inter_len,
+		16.0f,
+		&cfg
 	)) {
 		io.FontDefault = newDefault;
 		logger::Log(logger::LOGGER_LEVEL_INFO, "Custom font loaded successfully");
@@ -403,7 +399,6 @@ void raicu::gui::SetupMenu(LPDIRECT3DDEVICE9 device) noexcept {
 		logger::Log(logger::LOGGER_LEVEL_WARNING, "Failed to load custom font, using default");
 	}
 
-	// Initialize platform/renderer backends
 	if (!ImGui_ImplWin32_Init(window)) {
 		logger::Log(logger::LOGGER_LEVEL_ERROR, "Failed to initialize ImGui Win32 backend");
 		return;
@@ -472,6 +467,7 @@ void ShowLogin() {
 		std::string responseBody;
 
 		try {
+			// USES LOCALHOST FOR NOW
 			bool loginSuccess = raicu::gui::loginRequest(email, password, responseBody);
 
 			if (loginSuccess) {

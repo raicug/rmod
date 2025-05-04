@@ -32,14 +32,14 @@ CONFIGURATION = Debug
 #############################################
 # Include rules file.
 
-include CMakeFiles/rules.ninja
+include CMakeFiles\rules.ninja
 
 # =============================================================================
 
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/Users/prest/Desktop/projects/c++/rmod/cmake-build-debug/
+cmake_ninja_workdir = C$:\Users\prest\Desktop\projects\c++\rmod\cmake-build-debug\
 # =============================================================================
 # Object build statements for SHARED_LIBRARY target rmod
 
@@ -49,14 +49,392 @@ cmake_ninja_workdir = C$:/Users/prest/Desktop/projects/c++/rmod/cmake-build-debu
 
 build cmake_object_order_depends_target_rmod: phony || .
 
-build CMakeFiles/rmod.dir/library.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:/Users/prest/Desktop/projects/c++/rmod/library.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -Drmod_EXPORTS
-  DEP_FILE = CMakeFiles\rmod.dir\library.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+build CMakeFiles\rmod.dir\library.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\library.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir
   TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
-  TARGET_PDB = librmod.pdb
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\logging\logger.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\logging\logger.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\logging
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\globals\configManager.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\globals\configManager.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\globals
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\themes.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\themes.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\minhooks\buffer.c.obj: C_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\minhooks\buffer.c || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\minhooks
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\minhooks\minhook.c.obj: C_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\minhooks\minhook.c || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\minhooks
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\minhooks\trampoline.c.obj: C_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\minhooks\trampoline.c || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\minhooks
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\minhooks\hde\hde32.c.obj: C_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\minhooks\hde\hde32.c || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\minhooks\hde
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\minhooks\hde\hde64.c.obj: C_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\minhooks\hde\hde64.c || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\minhooks\hde
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\imgui\imgui.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\imgui.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\imgui\imgui_demo.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\imgui_demo.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\imgui\imgui_draw.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\imgui_draw.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\imgui\imgui_tables.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\imgui_tables.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\imgui\imgui_widgets.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\imgui_widgets.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\imgui\implot.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\implot.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\imgui\implot_demo.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\implot_demo.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\imgui\implot_items.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\implot_items.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\imgui\custom\TextEditor.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\custom\TextEditor.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui\custom
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\imgui\backends\imgui_impl_dx9.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\backends\imgui_impl_dx9.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui\backends
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\ext\imgui\backends\imgui_impl_win32.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\backends\imgui_impl_win32.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui\backends
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\encoding\randstr.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\encoding\randstr.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\encoding
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\encoding\sha256.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\encoding\sha256.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\encoding
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\sdk\Interface.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\Interface.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\sdk\source-sdk\math\radian_euler.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\source-sdk\math\radian_euler.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\source-sdk\math
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\sdk\source-sdk\math\quaternion.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\source-sdk\math\quaternion.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\source-sdk\math
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\sdk\source-sdk\math\vector.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\source-sdk\math\vector.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\source-sdk\math
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\sdk\source-sdk\math\math.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\source-sdk\math\math.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\source-sdk\math
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\sdk\memory\memory.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\memory\memory.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\memory
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\sdk\utils\lua_utilities.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\utils\lua_utilities.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\utils
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\sdk\utils\utilities.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\utils\utilities.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\utils
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\cheats\Visuals.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\Visuals.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack\history.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\aimbot\backtrack\history.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack\lag_compensation.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\aimbot\backtrack\lag_compensation.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\cheats\aimbot\helpers\engine_prediction.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\aimbot\helpers\engine_prediction.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\aimbot\helpers
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\cheats\aimbot\helpers\predict_spread.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\aimbot\helpers\predict_spread.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\aimbot\helpers
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\cheats\aimbot\aimbot.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\aimbot\aimbot.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\aimbot
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\cheats\aimbot\penetrate_walls.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\aimbot\penetrate_walls.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\aimbot
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\cheats\Drawing\Drawing.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\Drawing\Drawing.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\Drawing
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\cheats\lua\lua.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\lua\lua.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\lua
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\cheats\misc\movement.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\misc\movement.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\misc
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\include\cheats\misc\misc.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\misc\misc.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\misc
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\hooks\hooks.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\hooks\hooks.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\hooks
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\gui\gui.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\gui
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 
 # =============================================================================
@@ -64,47 +442,51 @@ build CMakeFiles/rmod.dir/library.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$
 
 
 #############################################
-# Link the shared library librmod.dll
+# Link the shared library C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.dll
 
-build librmod.dll librmod.dll.a: CXX_SHARED_LIBRARY_LINKER__rmod_Debug CMakeFiles/rmod.dir/library.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = -g
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+build C$:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.dll C$:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.lib: CXX_SHARED_LIBRARY_LINKER__rmod_Debug CMakeFiles\rmod.dir\library.cpp.obj CMakeFiles\rmod.dir\include\logging\logger.cpp.obj CMakeFiles\rmod.dir\include\globals\configManager.cpp.obj CMakeFiles\rmod.dir\include\themes.cpp.obj CMakeFiles\rmod.dir\include\ext\minhooks\buffer.c.obj CMakeFiles\rmod.dir\include\ext\minhooks\minhook.c.obj CMakeFiles\rmod.dir\include\ext\minhooks\trampoline.c.obj CMakeFiles\rmod.dir\include\ext\minhooks\hde\hde32.c.obj CMakeFiles\rmod.dir\include\ext\minhooks\hde\hde64.c.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui_demo.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui_draw.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui_tables.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui_widgets.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\implot.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\implot_demo.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\implot_items.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\custom\TextEditor.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\backends\imgui_impl_dx9.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\backends\imgui_impl_win32.cpp.obj CMakeFiles\rmod.dir\include\encoding\randstr.cpp.obj CMakeFiles\rmod.dir\include\encoding\sha256.cpp.obj CMakeFiles\rmod.dir\include\sdk\Interface.cpp.obj CMakeFiles\rmod.dir\include\sdk\source-sdk\math\radian_euler.cpp.obj CMakeFiles\rmod.dir\include\sdk\source-sdk\math\quaternion.cpp.obj CMakeFiles\rmod.dir\include\sdk\source-sdk\math\vector.cpp.obj CMakeFiles\rmod.dir\include\sdk\source-sdk\math\math.cpp.obj CMakeFiles\rmod.dir\include\sdk\memory\memory.cpp.obj CMakeFiles\rmod.dir\include\sdk\utils\lua_utilities.cpp.obj CMakeFiles\rmod.dir\include\sdk\utils\utilities.cpp.obj CMakeFiles\rmod.dir\include\cheats\Visuals.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack\history.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack\lag_compensation.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\helpers\engine_prediction.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\helpers\predict_spread.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\aimbot.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\penetrate_walls.cpp.obj CMakeFiles\rmod.dir\include\cheats\Drawing\Drawing.cpp.obj CMakeFiles\rmod.dir\include\cheats\lua\lua.cpp.obj CMakeFiles\rmod.dir\include\cheats\misc\movement.cpp.obj CMakeFiles\rmod.dir\include\cheats\misc\misc.cpp.obj CMakeFiles\rmod.dir\hooks\hooks.cpp.obj CMakeFiles\rmod.dir\gui\gui.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  LINK_FLAGS = /machine:x64 /debug /INCREMENTAL
+  LINK_LIBRARIES = winmm.lib  d3d9.lib  d3dx9.lib  dwmapi.lib  wininet.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_PATH = -LIBPATH:C:\PROGRA~2\MI5E29~1\Lib\x64
   OBJECT_DIR = CMakeFiles\rmod.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
   RESTAT = 1
   TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
-  TARGET_FILE = librmod.dll
-  TARGET_IMPLIB = librmod.dll.a
-  TARGET_PDB = librmod.pdb
+  TARGET_FILE = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.dll
+  TARGET_IMPLIB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.lib
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 
 #############################################
 # Utility command for edit_cache
 
-build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\prest\Desktop\projects\c++\rmod\cmake-build-debug && "D:\Program Files\JetBrains\CLion 2025.1\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build edit_cache: phony CMakeFiles/edit_cache.util
+build edit_cache: phony CMakeFiles\edit_cache.util
 
 
 #############################################
 # Utility command for rebuild_cache
 
-build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\prest\Desktop\projects\c++\rmod\cmake-build-debug && "D:\Program Files\JetBrains\CLion 2025.1\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\Users\prest\Desktop\projects\c++\rmod -BC:\Users\prest\Desktop\projects\c++\rmod\cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 
 # =============================================================================
 # Target aliases.
 
-build rmod: phony librmod.dll
+build libcheat.dll: phony C$:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.dll
+
+build rmod: phony C$:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.dll
 
 # =============================================================================
 # Folder targets.
@@ -114,14 +496,7 @@ build rmod: phony librmod.dll
 #############################################
 # Folder: C:/Users/prest/Desktop/projects/c++/rmod/cmake-build-debug
 
-build codegen: phony
-
-# =============================================================================
-
-#############################################
-# Folder: C:/Users/prest/Desktop/projects/c++/rmod/cmake-build-debug
-
-build all: phony librmod.dll
+build all: phony C$:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.dll
 
 # =============================================================================
 # Built-in targets
@@ -130,14 +505,14 @@ build all: phony librmod.dll
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Users/prest/Desktop/projects/c++/rmod/CMakeLists.txt CMakeCache.txt CMakeFiles/3.31.6/CMakeCCompiler.cmake CMakeFiles/3.31.6/CMakeCXXCompiler.cmake CMakeFiles/3.31.6/CMakeRCCompiler.cmake CMakeFiles/3.31.6/CMakeSystem.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCCompiler.cmake.in D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCCompilerABI.c D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCXXCompiler.cmake.in D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCXXCompilerABI.cpp D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCXXInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCommonLanguageInclude.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCompilerIdDetection.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineCompilerSupport.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineRCCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeFindBinUtils.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeGenericSystem.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeInitializeConfigs.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeLanguageInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeParseImplicitIncludeInfo.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeParseImplicitLinkInfo.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeParseLibraryArchitecture.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeRCCompiler.cmake.in D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeRCInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeSystem.cmake.in D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeSystemSpecificInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeSystemSpecificInitialize.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeTestCompilerCommon.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeTestRCCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/ADSP-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/ARMCC-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/ARMClang-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/AppleClang-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Borland-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Bruce-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Clang-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Clang-DetermineCompilerInternal.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Compaq-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Cray-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/CrayClang-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Embarcadero-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Fujitsu-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GHS-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU-C.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU-CXX.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU-FindBinUtils.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/HP-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/HP-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/IAR-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Intel-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/LCC-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/MSVC-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/NVHPC-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/NVIDIA-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/OrangeC-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/PGI-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/PathScale-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/SCO-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/SDCC-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/SunPro-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/TI-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/TIClang-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Tasking-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Watcom-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/XL-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/XL-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/XLClang-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/zOS-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/CMakeCLinkerInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/CMakeCXXLinkerInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/CMakeCommonLinkerInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/FeatureTesting.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Linker/GNU-C.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Linker/GNU-CXX.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Linker/GNU.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Linker/GNU.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU-C.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU-CXX.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-Determine-CXX.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU-C.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU-CXX.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-Initialize.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-windres.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/WindowsPaths.cmake
+build build.ninja: RERUN_CMAKE | C$:\Users\prest\Desktop\projects\c++\rmod\CMakeLists.txt CMakeCache.txt CMakeFiles\3.31.6\CMakeCCompiler.cmake CMakeFiles\3.31.6\CMakeCXXCompiler.cmake CMakeFiles\3.31.6\CMakeRCCompiler.cmake CMakeFiles\3.31.6\CMakeSystem.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeCInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeCXXInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeGenericSystem.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeRCInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Compiler\MSVC.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Internal\CMakeCLinkerInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Internal\CMakeCXXLinkerInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Internal\CMakeCommonLinkerInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-C.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-CXX.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Windows-Initialize.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Windows.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\WindowsPaths.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Users/prest/Desktop/projects/c++/rmod/CMakeLists.txt CMakeCache.txt CMakeFiles/3.31.6/CMakeCCompiler.cmake CMakeFiles/3.31.6/CMakeCXXCompiler.cmake CMakeFiles/3.31.6/CMakeRCCompiler.cmake CMakeFiles/3.31.6/CMakeSystem.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCCompiler.cmake.in D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCCompilerABI.c D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCXXCompiler.cmake.in D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCXXCompilerABI.cpp D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCXXInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCommonLanguageInclude.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeCompilerIdDetection.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineCCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineCXXCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineCompilerABI.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineCompilerId.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineCompilerSupport.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineRCCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeFindBinUtils.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeGenericSystem.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeInitializeConfigs.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeLanguageInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeParseImplicitIncludeInfo.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeParseImplicitLinkInfo.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeParseLibraryArchitecture.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeRCCompiler.cmake.in D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeRCInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeSystem.cmake.in D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeSystemSpecificInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeSystemSpecificInitialize.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeTestCCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeTestCompilerCommon.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/CMakeTestRCCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/ADSP-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/ARMCC-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/ARMClang-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/AppleClang-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Borland-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Bruce-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Clang-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Clang-DetermineCompilerInternal.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Compaq-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Cray-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/CrayClang-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Embarcadero-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Fujitsu-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GHS-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU-C.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU-CXX.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU-FindBinUtils.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/GNU.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/HP-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/HP-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/IAR-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Intel-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/LCC-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/MSVC-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/NVHPC-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/NVIDIA-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/OrangeC-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/PGI-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/PathScale-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/SCO-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/SDCC-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/SunPro-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/TI-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/TIClang-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Tasking-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/Watcom-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/XL-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/XL-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/XLClang-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/zOS-C-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/CMakeCLinkerInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/CMakeCXXLinkerInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/CMakeCommonLinkerInformation.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/CMakeDetermineLinkerId.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Internal/FeatureTesting.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Linker/GNU-C.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Linker/GNU-CXX.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Linker/GNU.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Linker/GNU.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU-C.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU-CXX.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Linker/Windows-GNU.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-Determine-CXX.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU-C.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU-CXX.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-GNU.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-Initialize.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows-windres.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/Windows.cmake D$:/Program$ Files/JetBrains/CLion$ 2025.1/bin/cmake/win/x64/share/cmake-3.31/Modules/Platform/WindowsPaths.cmake: phony
+build C$:\Users\prest\Desktop\projects\c++\rmod\CMakeLists.txt CMakeCache.txt CMakeFiles\3.31.6\CMakeCCompiler.cmake CMakeFiles\3.31.6\CMakeCXXCompiler.cmake CMakeFiles\3.31.6\CMakeRCCompiler.cmake CMakeFiles\3.31.6\CMakeSystem.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeCInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeCXXInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeGenericSystem.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeRCInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Compiler\MSVC.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Internal\CMakeCLinkerInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Internal\CMakeCXXLinkerInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Internal\CMakeCommonLinkerInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-C.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC-CXX.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Linker\Windows-MSVC.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Windows-Initialize.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\Windows.cmake D$:\Program$ Files\JetBrains\CLion$ 2025.1\bin\cmake\win\x64\share\cmake-3.31\Modules\Platform\WindowsPaths.cmake: phony
 
 
 #############################################

@@ -229,7 +229,7 @@ bool raicu::gui::SetupWindowClass(const char *windowClassName) noexcept {
 	static char className[256];
 	strcpy_s(className, windowClassName);
 
-	windowClass = { 0 };
+	windowClass = {0};
 	windowClass.cbSize = sizeof(WNDCLASSEX);
 	windowClass.style = CS_HREDRAW | CS_VREDRAW | CS_CLASSDC;
 	windowClass.lpfnWndProc = DefWindowProc;
@@ -262,65 +262,65 @@ void raicu::gui::DestroyWindowClass() noexcept {
 	UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
 }
 
-bool raicu::gui::SetupWindow(const char* windowName) noexcept {
-    logger::Log(logger::LOGGER_LEVEL_INFO, "Creating window class");
+bool raicu::gui::SetupWindow(const char *windowName) noexcept {
+	logger::Log(logger::LOGGER_LEVEL_INFO, "Creating window class");
 
-    // Store class name to ensure it remains valid
-    static char className[256];
-    strncpy_s(className, windowName, sizeof(className) - 1);
+	// Store class name to ensure it remains valid
+	static char className[256];
+	strncpy_s(className, windowName, sizeof(className) - 1);
 
-    // Zero initialize the structure
-    ZeroMemory(&windowClass, sizeof(WNDCLASSEX));
+	// Zero initialize the structure
+	ZeroMemory(&windowClass, sizeof(WNDCLASSEX));
 
-    windowClass.cbSize = sizeof(WNDCLASSEX);
-    windowClass.style = CS_HREDRAW | CS_VREDRAW | CS_CLASSDC;  // Added CS_CLASSDC for DirectX
-    windowClass.lpfnWndProc = DefWindowProc;
-    windowClass.cbClsExtra = 0;
-    windowClass.cbWndExtra = 0;
-    windowClass.hInstance = GetModuleHandle(NULL);
-    windowClass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-    windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
-    windowClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-    windowClass.lpszMenuName = NULL;
-    windowClass.lpszClassName = className;
-    windowClass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+	windowClass.cbSize = sizeof(WNDCLASSEX);
+	windowClass.style = CS_HREDRAW | CS_VREDRAW | CS_CLASSDC; // Added CS_CLASSDC for DirectX
+	windowClass.lpfnWndProc = DefWindowProc;
+	windowClass.cbClsExtra = 0;
+	windowClass.cbWndExtra = 0;
+	windowClass.hInstance = GetModuleHandle(NULL);
+	windowClass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+	windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	windowClass.hbrBackground = (HBRUSH) GetStockObject(BLACK_BRUSH);
+	windowClass.lpszMenuName = NULL;
+	windowClass.lpszClassName = className;
+	windowClass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 
-    // Try to unregister any existing class first
-    UnregisterClass(className, windowClass.hInstance);
+	// Try to unregister any existing class first
+	UnregisterClass(className, windowClass.hInstance);
 
-    if (!RegisterClassEx(&windowClass)) {
-        DWORD error = GetLastError();
-        logger::Log(logger::LOGGER_LEVEL_FATAL, "Failed to register window class. Error:");
-    	logger::Log(logger::LOGGER_LEVEL_FATAL, reinterpret_cast<const char *>(error));
-        return false;
-    }
+	if (!RegisterClassEx(&windowClass)) {
+		DWORD error = GetLastError();
+		logger::Log(logger::LOGGER_LEVEL_FATAL, "Failed to register window class. Error:");
+		logger::Log(logger::LOGGER_LEVEL_FATAL, reinterpret_cast<const char *>(error));
+		return false;
+	}
 
-    logger::Log(logger::LOGGER_LEVEL_INFO, "Creating window");
+	logger::Log(logger::LOGGER_LEVEL_INFO, "Creating window");
 
-    // Create window with explicit size and center it on screen
-    int screenWidth = GetSystemMetrics(SM_CXSCREEN);
-    int screenHeight = GetSystemMetrics(SM_CYSCREEN);
-    int windowWidth = 800;  // You can adjust these values
-    int windowHeight = 600;
-    int posX = (screenWidth - windowWidth) / 2;
-    int posY = (screenHeight - windowHeight) / 2;
+	// Create window with explicit size and center it on screen
+	int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+	int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+	int windowWidth = 800; // You can adjust these values
+	int windowHeight = 600;
+	int posX = (screenWidth - windowWidth) / 2;
+	int posY = (screenHeight - windowHeight) / 2;
 
-    window = CreateWindowEx(
-        0,                              // Extended style
-        className,                      // Class name
-        windowName,                     // Window name
-        WS_OVERLAPPEDWINDOW,           // Style
-        posX, posY,                    // Position
-        windowWidth, windowHeight,      // Size
-        NULL,                          // Parent window
-        NULL,                          // Menu
-        windowClass.hInstance,         // Instance
-        NULL                           // Additional data
-    );
+	window = CreateWindowEx(
+		0, // Extended style
+		className, // Class name
+		windowName, // Window name
+		WS_OVERLAPPEDWINDOW, // Style
+		posX, posY, // Position
+		windowWidth, windowHeight, // Size
+		NULL, // Parent window
+		NULL, // Menu
+		windowClass.hInstance, // Instance
+		NULL // Additional data
+	);
 
-    if (!window) {
-        DWORD error = GetLastError();
-    	logger::Log(logger::LOGGER_LEVEL_FATAL, "Failed to create window. Error:");
+	if (!window) {
+		DWORD error = GetLastError();
+		logger::Log(logger::LOGGER_LEVEL_FATAL, "Failed to create window. Error:");
     	logger::Log(logger::LOGGER_LEVEL_FATAL, reinterpret_cast<const char *>(error));
         UnregisterClass(className, windowClass.hInstance);
         return false;
@@ -330,7 +330,7 @@ bool raicu::gui::SetupWindow(const char* windowName) noexcept {
     UpdateWindow(window);
 
     logger::Log(logger::LOGGER_LEVEL_SUCCESS, "Created window");
-    return true;
+	return true;
 }
 
 void raicu::gui::DestroyWindow() noexcept {
@@ -338,81 +338,81 @@ void raicu::gui::DestroyWindow() noexcept {
 }
 
 bool raicu::gui::SetupDirectX() noexcept {
-    logger::Log(1, "Creating DirectX");
+	logger::Log(1, "Creating DirectX");
 
-    // Try Direct3D9Ex first
-    using Direct3DCreate9ExFn = HRESULT(WINAPI*)(UINT, IDirect3D9Ex**);
-    HMODULE d3d9Module = GetModuleHandleA("d3d9.dll");
+	// Try Direct3D9Ex first
+	using Direct3DCreate9ExFn = HRESULT(WINAPI*)(UINT, IDirect3D9Ex **);
+	HMODULE d3d9Module = GetModuleHandleA("d3d9.dll");
 
-    if (!d3d9Module) {
-        logger::Log(3, "Failed to get d3d9.dll module");
+	if (!d3d9Module) {
+		logger::Log(3, "Failed to get d3d9.dll module");
         return false;
     }
 
     Direct3DCreate9ExFn createEx = reinterpret_cast<Direct3DCreate9ExFn>(
         GetProcAddress(d3d9Module, "Direct3DCreate9Ex"));
 
-    IDirect3D9Ex* d3d9ex = nullptr;
-    if (createEx && SUCCEEDED(createEx(D3D_SDK_VERSION, &d3d9ex))) {
-        d3d9 = d3d9ex; // Store in base interface pointer
-    } else {
-        // Fallback to regular D3D9
-        using Direct3DCreate9Fn = IDirect3D9*(WINAPI*)(UINT);
-        auto create9 = reinterpret_cast<Direct3DCreate9Fn>(
-            GetProcAddress(d3d9Module, "Direct3DCreate9"));
+	IDirect3D9Ex *d3d9ex = nullptr;
+	if (createEx && SUCCEEDED(createEx(D3D_SDK_VERSION, &d3d9ex))) {
+		d3d9 = d3d9ex; // Store in base interface pointer
+	} else {
+		// Fallback to regular D3D9
+		using Direct3DCreate9Fn = IDirect3D9*(WINAPI*)(UINT);
+		auto create9 = reinterpret_cast<Direct3DCreate9Fn>(
+			GetProcAddress(d3d9Module, "Direct3DCreate9"));
 
-        if (!create9) {
-            logger::Log(3, "Failed to get Direct3DCreate9 function");
-            return false;
-        }
+		if (!create9) {
+			logger::Log(3, "Failed to get Direct3DCreate9 function");
+			return false;
+		}
 
-        d3d9 = create9(D3D_SDK_VERSION);
-    }
+		d3d9 = create9(D3D_SDK_VERSION);
+	}
 
-    if (!d3d9) {
-        logger::Log(3, "Failed to create D3D9 interface");
-        return false;
-    }
+	if (!d3d9) {
+		logger::Log(3, "Failed to create D3D9 interface");
+		return false;
+	}
 
-    // Simplified presentation parameters
-    D3DPRESENT_PARAMETERS params = { 0 };
-    params.Windowed = TRUE;
-    params.SwapEffect = D3DSWAPEFFECT_DISCARD;
-    params.hDeviceWindow = window;
+	// Simplified presentation parameters
+	D3DPRESENT_PARAMETERS params = {0};
+	params.Windowed = TRUE;
+	params.SwapEffect = D3DSWAPEFFECT_DISCARD;
+	params.hDeviceWindow = window;
     params.BackBufferFormat = D3DFMT_UNKNOWN; // Let D3D choose based on desktop
-    params.PresentationInterval = D3DPRESENT_INTERVAL_ONE;
-    params.BackBufferCount = 1;
+	params.PresentationInterval = D3DPRESENT_INTERVAL_ONE;
+	params.BackBufferCount = 1;
 
-    // Try to create device with various settings
-    const D3DDEVTYPE devTypes[] = { D3DDEVTYPE_HAL, D3DDEVTYPE_REF };
-    const DWORD behaviors[] = {
-        D3DCREATE_HARDWARE_VERTEXPROCESSING | D3DCREATE_NOWINDOWCHANGES,
-        D3DCREATE_SOFTWARE_VERTEXPROCESSING | D3DCREATE_NOWINDOWCHANGES,
-        D3DCREATE_MIXED_VERTEXPROCESSING | D3DCREATE_NOWINDOWCHANGES
-    };
+	// Try to create device with various settings
+	const D3DDEVTYPE devTypes[] = {D3DDEVTYPE_HAL, D3DDEVTYPE_REF};
+	const DWORD behaviors[] = {
+		D3DCREATE_HARDWARE_VERTEXPROCESSING | D3DCREATE_NOWINDOWCHANGES,
+		D3DCREATE_SOFTWARE_VERTEXPROCESSING | D3DCREATE_NOWINDOWCHANGES,
+		D3DCREATE_MIXED_VERTEXPROCESSING | D3DCREATE_NOWINDOWCHANGES
+	};
 
-    HRESULT hr = E_FAIL;
-    for (auto devType : devTypes) {
-        for (auto behavior : behaviors) {
-            hr = d3d9->CreateDevice(
-                D3DADAPTER_DEFAULT,
+	HRESULT hr = E_FAIL;
+	for (auto devType: devTypes) {
+		for (auto behavior: behaviors) {
+			hr = d3d9->CreateDevice(
+				D3DADAPTER_DEFAULT,
                 devType,
-                window,
-                behavior,
-                &params,
-                &device
-            );
+				window,
+				behavior,
+				&params,
+				&device
+			);
 
-            if (SUCCEEDED(hr)) {
-                logger::Log(5, "Created DirectX device");
-                return true;
-            }
-        }
-    }
+			if (SUCCEEDED(hr)) {
+				logger::Log(5, "Created DirectX device");
+				return true;
+			}
+		}
+	}
 
-    // If we get here, all creation attempts failed
-    logger::Log(3, "Failed to create DirectX device.");
-    return false;
+	// If we get here, all creation attempts failed
+	logger::Log(3, "Failed to create DirectX device.");
+	return false;
 }
 
 void raicu::gui::DestroyDirectX() noexcept {
@@ -648,7 +648,7 @@ void ShowPlayers() {
     	ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_FirstUseEver);
 
         ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoDecoration |
-                                      ImGuiWindowFlags_NoSavedSettings |
+                                        ImGuiWindowFlags_NoSavedSettings |
                                       ImGuiWindowFlags_NoFocusOnAppearing |
                                       ImGuiWindowFlags_NoNav |
                                       ImGuiWindowFlags_NoMove;
@@ -662,50 +662,49 @@ void ShowPlayers() {
             const float TABLE_HEIGHT = ROW_HEIGHT * 6; // 5 rows + header
 
             if (ImGui::BeginTable("tPlayers", 3,
-                                ImGuiTableFlags_Borders |
-                                ImGuiTableFlags_RowBg |
-                                ImGuiTableFlags_ScrollY,
-                                ImVec2(windowWidth, TABLE_HEIGHT))) {
+                                  ImGuiTableFlags_Borders |
+                                  ImGuiTableFlags_RowBg |
+                                  ImGuiTableFlags_ScrollY,
+                                  ImVec2(windowWidth, TABLE_HEIGHT))) {
+	            ImGui::TableSetupScrollFreeze(0, 1);
 
-                ImGui::TableSetupScrollFreeze(0, 1);
+	            // Adjust column widths to fill the window
+	            float nameWidth = windowWidth * 0.4f; // 40% of width
+	            float healthWidth = windowWidth * 0.2f; // 20% of width
+	            float posWidth = windowWidth * 0.4f; // 40% of width
 
-                // Adjust column widths to fill the window
-                float nameWidth = windowWidth * 0.4f;     // 40% of width
-                float healthWidth = windowWidth * 0.2f;   // 20% of width
-                float posWidth = windowWidth * 0.4f;      // 40% of width
+	            ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch, nameWidth);
+	            ImGui::TableSetupColumn("Health", ImGuiTableColumnFlags_WidthFixed, healthWidth);
+	            ImGui::TableSetupColumn("Position", ImGuiTableColumnFlags_WidthFixed, posWidth);
+	            ImGui::TableHeadersRow();
 
-                ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch, nameWidth);
-                ImGui::TableSetupColumn("Health", ImGuiTableColumnFlags_WidthFixed, healthWidth);
-                ImGui::TableSetupColumn("Position", ImGuiTableColumnFlags_WidthFixed, posWidth);
-                ImGui::TableHeadersRow();
+	            for (int i = 0; i <= interfaces::engine->get_max_clients(); i++) {
+		            c_base_entity *currentEntity = interfaces::entity_list->get_entity(i);
 
-                for (int i = 0; i <= interfaces::engine->get_max_clients(); i++) {
-                    c_base_entity* currentEntity = interfaces::entity_list->get_entity(i);
+		            if (!currentEntity) {
+			            continue;
+		            }
 
-                    if (!currentEntity) {
-                        continue;
-                    }
+		            if (!currentEntity->is_player()) {
+			            continue;
+		            }
 
-                    if (!currentEntity->is_player()) {
-                        continue;
-                    }
+		            player_info_t pinfo;
+		            if (!interfaces::engine->get_player_info(i, &pinfo)) {
+			            continue;
+		            }
 
-                    player_info_t pinfo;
-                    if (!interfaces::engine->get_player_info(i, &pinfo)) {
-                        continue;
-                    }
+		            c_vector pos = currentEntity->get_abs_origin();
 
-                    c_vector pos = currentEntity->get_abs_origin();
-
-                    ImGui::TableNextRow();
-                    ImGui::TableNextColumn();
-                    ImGui::Text("%s", pinfo.name);
-                    ImGui::TableNextColumn();
-                    ImGui::Text("%d", currentEntity->get_health());
-                    ImGui::TableNextColumn();
-                    ImGui::Text("%.1f, %.1f, %.1f", pos.x, pos.y, pos.z);
-                }
-                ImGui::EndTable();
+		            ImGui::TableNextRow();
+		            ImGui::TableNextColumn();
+		            ImGui::Text("%s", pinfo.name);
+		            ImGui::TableNextColumn();
+		            ImGui::Text("%d", currentEntity->get_health());
+		            ImGui::TableNextColumn();
+		            ImGui::Text("%.1f, %.1f, %.1f", pos.x, pos.y, pos.z);
+	            }
+	            ImGui::EndTable();
             }
         }
         ImGui::End();
@@ -1052,7 +1051,8 @@ void raicu::gui::Render() noexcept {
 	}
 }
 
-bool containsBlacklistedWords(const std::string &message) { // TO HIDE CERTAIN LOGGING FROM IN-GAME LOG CONSOLE
+bool containsBlacklistedWords(const std::string &message) {
+	// TO HIDE CERTAIN LOGGING FROM IN-GAME LOG CONSOLE
 	std::vector<std::string> blacklistedWords = {
 
 	};

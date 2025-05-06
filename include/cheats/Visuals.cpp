@@ -75,7 +75,8 @@ void Visuals::Render() {
 
 			ImGui::PushStyleVar(ImGuiStyleVar_Alpha, alpha);
 
-			if (espValues::snapline) Visuals::DrawSnapline(static_cast<int>(i), Drawing::ToColor(&espValues::snapLineColor));
+			if (espValues::snapline) Visuals::DrawSnapline(static_cast<int>(i),
+			                                               Drawing::ToColor(&espValues::snapLineColor));
 			if (espValues::origin) Visuals::DrawOrigin(static_cast<int>(i), Drawing::ToColor(&espValues::originColor));
 			//if (espValues::weapon) Visuals::DrawWeapon(static_cast<int>(i), offset);
 			if (espValues::name) Visuals::DrawName(static_cast<int>(i), offset);
@@ -92,7 +93,7 @@ void Visuals::Render() {
 }
 
 void Visuals::DrawCrosshair(float width, float length, float offset, ImU32 color, float rounding, bool outline,
-							ImU32 outlineColor, float outlineThickness) {
+                            ImU32 outlineColor, float outlineThickness) {
 	ImGuiIO &io = ImGui::GetIO();
 	float w = io.DisplaySize.x;
 	float h = io.DisplaySize.y;
@@ -101,13 +102,13 @@ void Visuals::DrawCrosshair(float width, float length, float offset, ImU32 color
 
 	if (crosshairValues::outlineEnabled) {
 		Drawing::OutlineFilledBox(x - width / 2.f, y - offset - length, width, length, color, outlineColor,
-								  outlineThickness, rounding);
+		                          outlineThickness, rounding);
 		Drawing::OutlineFilledBox(x + offset, y - width / 2.f, length, width, color, outlineColor, outlineThickness,
-								  rounding);
+		                          rounding);
 		Drawing::OutlineFilledBox(x - width / 2.f, y + offset, width, length, color, outlineColor, outlineThickness,
-								  rounding);
+		                          rounding);
 		Drawing::OutlineFilledBox(x - offset - length, y - width / 2.f, length, width, color, outlineColor,
-								  outlineThickness, rounding);
+		                          outlineThickness, rounding);
 	} else {
 		Drawing::BoxFilled(x - width / 2.f, y - offset - length, width, length, color, rounding);
 		Drawing::BoxFilled(x + offset, y - width / 2.f, length, width, color, rounding);
@@ -185,17 +186,17 @@ void Visuals::DrawDistance(int CurrentEnt, float &offset, float distance) {
 }
 
 void Visuals::DrawSkeleton(int entityIndex) {
-    c_base_entity* entity = interfaces::entity_list->get_entity(entityIndex);
-    if (!entity || !entity->is_alive())
-        return;
+	c_base_entity *entity = interfaces::entity_list->get_entity(entityIndex);
+	if (!entity || !entity->is_alive())
+		return;
 
-    void* model = entity->get_client_renderable()->get_model();
-    if (!model)
-        return;
+	void *model = entity->get_client_renderable()->get_model();
+	if (!model)
+		return;
 
-    studiohdr_t* studio_hdr = interfaces::model_info->get_studio_model(model);
-    if (!studio_hdr)
-        return;
+	studiohdr_t *studio_hdr = interfaces::model_info->get_studio_model(model);
+	if (!studio_hdr)
+		return;
 
 	static std::unordered_map<int, float> lastJoinTime;
 	float currentTime = interfaces::global_vars->curtime;
@@ -209,17 +210,18 @@ void Visuals::DrawSkeleton(int entityIndex) {
 		return;
 	}
 
-    matrix3x4 bone_matrix[128];
-    memset(bone_matrix, 0, sizeof(bone_matrix));
+	matrix3x4 bone_matrix[128];
+	memset(bone_matrix, 0, sizeof(bone_matrix));
 
-	if (!entity->get_client_renderable()->setup_bones(bone_matrix, 128, BONE_USED_BY_ANYTHING, interfaces::global_vars->curtime)) {
+	if (!entity->get_client_renderable()->setup_bones(bone_matrix, 128, BONE_USED_BY_ANYTHING,
+	                                                  interfaces::global_vars->curtime)) {
 		lastJoinTime[entityIndex] = currentTime;
 		return;
 	}
 
 	constexpr size_t allBoneNamesSize = sizeof(boneArray) / sizeof(boneArray[0]);
 
-	auto GetBoneIndexByName = [&](const char* boneName) -> int {
+	auto GetBoneIndexByName = [&](const char *boneName) -> int {
 		if (!boneName)
 			return -1;
 
@@ -228,8 +230,8 @@ void Visuals::DrawSkeleton(int entityIndex) {
 				if (i >= 128) return -1;
 
 				if (bone_matrix[i][0][3] == 0.0f &&
-					bone_matrix[i][1][3] == 0.0f &&
-					bone_matrix[i][2][3] == 0.0f)
+				    bone_matrix[i][1][3] == 0.0f &&
+				    bone_matrix[i][2][3] == 0.0f)
 					return -1;
 
 				return static_cast<int>(i);
@@ -239,55 +241,55 @@ void Visuals::DrawSkeleton(int entityIndex) {
 	};
 
 
-    for (const auto& connection : bone_connections_named) {
-    	if (!connection.parent || !connection.child)
-    		continue;
+	for (const auto &connection: bone_connections_named) {
+		if (!connection.parent || !connection.child)
+			continue;
 
-        int child_index = GetBoneIndexByName(connection.child);
-        int parent_index = GetBoneIndexByName(connection.parent);
+		int child_index = GetBoneIndexByName(connection.child);
+		int parent_index = GetBoneIndexByName(connection.parent);
 
-        // Extra safety check
-        if (parent_index == -1 || child_index == -1 ||
-            parent_index >= 128 || child_index >= 128)
-            continue;
+		// Extra safety check
+		if (parent_index == -1 || child_index == -1 ||
+		    parent_index >= 128 || child_index >= 128)
+			continue;
 
-    	if (std::isnan(bone_matrix[parent_index][0][3]) ||
-		   std::isnan(bone_matrix[parent_index][1][3]) ||
-		   std::isnan(bone_matrix[parent_index][2][3]) ||
-		   std::isnan(bone_matrix[child_index][0][3]) ||
-		   std::isnan(bone_matrix[child_index][1][3]) ||
-		   std::isnan(bone_matrix[child_index][2][3]))
-    		continue;
+		if (std::isnan(bone_matrix[parent_index][0][3]) ||
+		    std::isnan(bone_matrix[parent_index][1][3]) ||
+		    std::isnan(bone_matrix[parent_index][2][3]) ||
+		    std::isnan(bone_matrix[child_index][0][3]) ||
+		    std::isnan(bone_matrix[child_index][1][3]) ||
+		    std::isnan(bone_matrix[child_index][2][3]))
+			continue;
 
-        c_vector start, end;
-        c_vector start_screen, end_screen;
+		c_vector start, end;
+		c_vector start_screen, end_screen;
 
-        start = c_vector(
-            bone_matrix[parent_index][0][3],
-            bone_matrix[parent_index][1][3],
-            bone_matrix[parent_index][2][3]
-        );
+		start = c_vector(
+			bone_matrix[parent_index][0][3],
+			bone_matrix[parent_index][1][3],
+			bone_matrix[parent_index][2][3]
+		);
 
-        end = c_vector(
-            bone_matrix[child_index][0][3],
-            bone_matrix[child_index][1][3],
-            bone_matrix[child_index][2][3]
-        );
+		end = c_vector(
+			bone_matrix[child_index][0][3],
+			bone_matrix[child_index][1][3],
+			bone_matrix[child_index][2][3]
+		);
 
-    	if (start.length() > 5000.0f || end.length() > 5000.0f)
-    		continue;
+		if (start.length() > 5000.0f || end.length() > 5000.0f)
+			continue;
 
-        if (utilities::world_to_screen(start, &start_screen) &&
-            utilities::world_to_screen(end, &end_screen)) {
-        	if (std::isnan(start_screen.x) || std::isnan(start_screen.y) ||
-			   std::isnan(end_screen.x) || std::isnan(end_screen.y))
-        		continue;
+		if (utilities::world_to_screen(start, &start_screen) &&
+		    utilities::world_to_screen(end, &end_screen)) {
+			if (std::isnan(start_screen.x) || std::isnan(start_screen.y) ||
+			    std::isnan(end_screen.x) || std::isnan(end_screen.y))
+				continue;
 
-            ImColor color = Drawing::ToColor(&espValues::skeletonColor);
+			ImColor color = Drawing::ToColor(&espValues::skeletonColor);
 
-            Drawing::Line(
-                start_screen.x, start_screen.y,
-                end_screen.x, end_screen.y,
+			Drawing::Line(
+				start_screen.x, start_screen.y,
+				end_screen.x, end_screen.y,
                 color,
                 espValues::skeletonThickness
             );
@@ -391,126 +393,129 @@ void Visuals::DrawOrigin(int CurrentEnt, ImU32 color) {
 }
 
 void Visuals::DrawBacktrack(int entityIndex) {
-	logger::Log(logger::LOGGER_LEVEL_INFO, ("Drawing backtrack for entity " + std::to_string(entityIndex) + "at " + reinterpret_cast<char*>(entityIndex)).c_str());
+	logger::Log(logger::LOGGER_LEVEL_INFO,
+	            ("Drawing backtrack for entity " + std::to_string(entityIndex) + "at " + reinterpret_cast<char *>(
+		             entityIndex)).c_str());
 
-    c_base_entity* entity = interfaces::entity_list->get_entity(entityIndex);
-    if (!entity || !entity->is_player() || !entity->is_alive())
-        return;
+	c_base_entity *entity = interfaces::entity_list->get_entity(entityIndex);
+	if (!entity || !entity->is_player() || !entity->is_alive())
+		return;
 
-    void* model = entity->get_client_renderable()->get_model();
-    if (!model)
-        return;
+	void *model = entity->get_client_renderable()->get_model();
+	if (!model)
+		return;
 
-    studiohdr_t* studio_hdr = interfaces::model_info->get_studio_model(model);
-    if (!studio_hdr)
-        return;
+	studiohdr_t *studio_hdr = interfaces::model_info->get_studio_model(model);
+	if (!studio_hdr)
+		return;
 
-    auto& track = history::records[entityIndex - 1];
-    if (track.empty())
-    {
-    	logger::Log(logger::LOGGER_LEVEL_INFO, ("No records for entity" + std::to_string(entityIndex)).c_str());
-    	return;
-    }
-	logger::Log(logger::LOGGER_LEVEL_INFO, ("Found" + std::to_string(track.size()) + " records for entity " + std::to_string(entityIndex)).c_str());
+	auto &track = history::records[entityIndex - 1];
+	if (track.empty()) {
+		logger::Log(logger::LOGGER_LEVEL_INFO, ("No records for entity" + std::to_string(entityIndex)).c_str());
+		return;
+	}
+	logger::Log(logger::LOGGER_LEVEL_INFO,
+	            ("Found" + std::to_string(track.size()) + " records for entity " + std::to_string(
+		             entityIndex)).c_str());
 
 	float current_time = utilities::ticks_to_time(interfaces::global_vars->tick_count);
 
-    for (const auto& record : track) {
-        float time_difference = current_time - record.arrive_time;
-        if (time_difference > globals::settings::aimbot::backtrack)
-            continue;
+	for (const auto &record: track) {
+		float time_difference = current_time - record.arrive_time;
+		if (time_difference > globals::settings::aimbot::backtrack)
+			continue;
 
-        if (!history::can_restore_to_simulation_time(record.simulation_time))
-            continue;
+		if (!history::can_restore_to_simulation_time(record.simulation_time))
+			continue;
 
-        c_vector screen_pos;
-        if (utilities::world_to_screen(record.origin, &screen_pos)) {
-            float alpha = 1.0f - (time_difference / globals::settings::aimbot::backtrack);
-            alpha = std::clamp(alpha, 0.2f, 1.0f);
+		c_vector screen_pos;
+		if (utilities::world_to_screen(record.origin, &screen_pos)) {
+			float alpha = 1.0f - (time_difference / globals::settings::aimbot::backtrack);
+			alpha = std::clamp(alpha, 0.2f, 1.0f);
 
-            ImColor color = Drawing::ToColor(&globals::settings::aimbot::backtrackColor);
-            color.Value.w = alpha;
+			ImColor color = Drawing::ToColor(&globals::settings::aimbot::backtrackColor);
+			color.Value.w = alpha;
 
-            Drawing::Circle(screen_pos.x, screen_pos.y, 3.0f, color);
-        }
+			Drawing::Circle(screen_pos.x, screen_pos.y, 3.0f, color);
+		}
 
-        if (record.bone_to_world) {
-            auto GetBoneIndexByName = [&](const char* boneName) -> int {
+		if (record.bone_to_world) {
+			auto GetBoneIndexByName = [&](const char* boneName) -> int {
                 if (!boneName)
                     return -1;
 
                 for (size_t i = 0; i < sizeof(boneArray) / sizeof(boneArray[0]); ++i) {
-                    if (boneArray[i] && strcmp(boneArray[i], boneName) == 0) {
-                        if (i >= 128) return -1;
+	                if (boneArray[i] && strcmp(boneArray[i], boneName) == 0) {
+		                if (i >= 128) return -1;
 
-                        if (record.bone_to_world[i][0][3] == 0.0f &&
-                            record.bone_to_world[i][1][3] == 0.0f &&
-                            record.bone_to_world[i][2][3] == 0.0f)
-                            return -1;
+		                if (record.bone_to_world[i][0][3] == 0.0f &&
+		                    record.bone_to_world[i][1][3] == 0.0f &&
+		                    record.bone_to_world[i][2][3] == 0.0f)
+			                return -1;
 
-                        return static_cast<int>(i);
-                    }
+		                return static_cast<int>(i);
+	                }
                 }
                 return -1;
-            };
+			};
 
-            for (const auto& connection : bone_connections_named) {
-                if (!connection.parent || !connection.child)
-                    continue;
+			for (const auto &connection: bone_connections_named) {
+				if (!connection.parent || !connection.child)
+					continue;
 
-                int child_index = GetBoneIndexByName(connection.child);
-                int parent_index = GetBoneIndexByName(connection.parent);
+				int child_index = GetBoneIndexByName(connection.child);
+				int parent_index = GetBoneIndexByName(connection.parent);
 
-                if (parent_index == -1 || child_index == -1 ||
-                    parent_index >= 128 || child_index >= 128)
-                    continue;
+				if (parent_index == -1 || child_index == -1 ||
+				    parent_index >= 128 || child_index >= 128)
+					continue;
 
-                if (std::isnan(record.bone_to_world[parent_index][0][3]) ||
-                    std::isnan(record.bone_to_world[parent_index][1][3]) ||
-                    std::isnan(record.bone_to_world[parent_index][2][3]) ||
-                    std::isnan(record.bone_to_world[child_index][0][3]) ||
-                    std::isnan(record.bone_to_world[child_index][1][3]) ||
-                    std::isnan(record.bone_to_world[child_index][2][3]))
-                    continue;
+				if (std::isnan(record.bone_to_world[parent_index][0][3]) ||
+				    std::isnan(record.bone_to_world[parent_index][1][3]) ||
+				    std::isnan(record.bone_to_world[parent_index][2][3]) ||
+				    std::isnan(record.bone_to_world[child_index][0][3]) ||
+				    std::isnan(record.bone_to_world[child_index][1][3]) ||
+				    std::isnan(record.bone_to_world[child_index][2][3]))
+					continue;
 
-                c_vector start(
-                    record.bone_to_world[parent_index][0][3],
-                    record.bone_to_world[parent_index][1][3],
-                    record.bone_to_world[parent_index][2][3]
-                );
+				c_vector start(
+					record.bone_to_world[parent_index][0][3],
+					record.bone_to_world[parent_index][1][3],
+					record.bone_to_world[parent_index][2][3]
+				);
 
-                c_vector end(
-                    record.bone_to_world[child_index][0][3],
-                    record.bone_to_world[child_index][1][3],
-                    record.bone_to_world[child_index][2][3]
-                );
+				c_vector end(
+					record.bone_to_world[child_index][0][3],
+					record.bone_to_world[child_index][1][3],
+					record.bone_to_world[child_index][2][3]
+				);
 
-                if (start.length() > 5000.0f || end.length() > 5000.0f)
-                    continue;
+				if (start.length() > 5000.0f || end.length() > 5000.0f)
+					continue;
 
-                c_vector start_screen, end_screen;
-                if (utilities::world_to_screen(start, &start_screen) &&
-                    utilities::world_to_screen(end, &end_screen)) {
-                    if (std::isnan(start_screen.x) || std::isnan(start_screen.y) ||
-                        std::isnan(end_screen.x) || std::isnan(end_screen.y))
-                        continue;
+				c_vector start_screen, end_screen;
+				if (utilities::world_to_screen(start, &start_screen) &&
+				    utilities::world_to_screen(end, &end_screen)) {
+					if (std::isnan(start_screen.x) || std::isnan(start_screen.y) ||
+					    std::isnan(end_screen.x) || std::isnan(end_screen.y))
+						continue;
 
-                    float alpha = 1.0f - (time_difference / globals::settings::aimbot::backtrack);
-                    alpha = std::clamp(alpha, 0.2f, 1.0f);
+					float alpha = 1.0f - (time_difference / globals::settings::aimbot::backtrack);
+					alpha = std::clamp(alpha, 0.2f, 1.0f);
 
-                    ImColor color = Drawing::ToColor(&globals::settings::aimbot::backtrackColor);
-                    color.Value.w = alpha;
+					ImColor color = Drawing::ToColor(&globals::settings::aimbot::backtrackColor);
+					color.Value.w = alpha;
 
-                    Drawing::Line(
-                        start_screen.x, start_screen.y,
-                        end_screen.x, end_screen.y,
-                        color,
-                        espValues::skeletonThickness
-                    );
-                }
-            }
-        }
-    }
+					Drawing::Line(
+						start_screen.x, start_screen.y,
+						end_screen.x, end_screen.y,
+						color,
+						espValues::skeletonThickness
+					);
+				}
+			}
+		}
+	}
 }
 
 void Visuals::DrawAimbotFOV(float fovSize) {

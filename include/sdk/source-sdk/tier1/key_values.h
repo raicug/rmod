@@ -1,17 +1,38 @@
 #pragma once
+#include "logging/logger.h"
 
 namespace key_values
 {
     inline void *key_values()
-    {
-        using key_values_fn = void *(__fastcall *)(unsigned int);
+{
+    using key_values_fn = void *(__fastcall *)(unsigned int);
+    static void* cached_key_values = nullptr;
 
-        static key_values_fn key_values = (key_values_fn)memory::relative_to_absolute((uintptr_t)memory::pattern_scanner(xorstr("client.dll"), xorstr("E8 ? ? ? ? 4C 63 F7")), 1, 6);
-        if (!key_values)
-            throw std::runtime_error("Failed to get key values");
+    if (!cached_key_values) {
+        void* pattern_addr = memory::pattern_scanner(xorstr("client.dll"), xorstr("E8 ? ? ? ? 4C 63 F7"));
+        if (!pattern_addr) {
+            logger::Log(logger::LOGGER_LEVEL_ERROR, "Failed to get pattern");
+            return nullptr;
+        }
 
-        return key_values(0x48);
+        key_values_fn key_values = (key_values_fn)memory::relative_to_absolute((uintptr_t)pattern_addr, 1, 6);
+
+        if (!key_values) {
+            logger::Log(logger::LOGGER_LEVEL_ERROR, "Failed to get key_values");
+            return nullptr;
+        }
+
+        cached_key_values = key_values;
     }
+
+    static bool logged = false;
+    if (!logged && cached_key_values) {
+        logger::Log(logger::LOGGER_LEVEL_INFO, "Successfully gotten key value");
+        logged = true;
+    }
+
+    return cached_key_values ? ((key_values_fn)cached_key_values)(0x48) : nullptr;
+}
 
     inline void *initialize(void *kv, const char *name)
     {

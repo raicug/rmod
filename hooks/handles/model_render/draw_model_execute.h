@@ -3,6 +3,9 @@
 #include <globals/settings.h>
 #include <cheats/Visuals.h>
 #include <cheats/Drawing/Drawing.h>
+#include <cheats/aimbot/backtrack/history.h>
+
+#include "SDK/utils/utilities.h"
 
 using namespace raicu::cheats::Chams;
 using namespace raicu::globals;
@@ -17,23 +20,7 @@ void __fastcall raicu::hooks::handles::draw_model_execute(c_model_render* model_
 	if (!entity)
 		return originals::draw_model_execute(model_render, state, info, bone_to_world);
 
-	if (entity->is_player() && entity->is_alive()) {
-
-		/*if (raicu::globals::settings::espValues::chams) {
-			push_ignore_z(raicu::globals::settings::espValues::ignoreWalls);
-
-			push_material_override(Drawing::ToColor(&raicu::globals::settings::espValues::chamsColour), raicu::globals::settings::espValues::ChamsMaterialType);
-			
-			originals::draw_model_execute(model_render, state, info, bone_to_world);
-			
-			pop_material_override();
-
-			pop_ignore_z();
-
-			return;
-		}*/
-
-	}
+	/* empty for now */
 
 	originals::draw_model_execute(model_render, state, info, bone_to_world);
 }

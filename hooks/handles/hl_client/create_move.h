@@ -17,15 +17,16 @@ void __fastcall raicu::hooks::handles::create_move(c_hl_client* client, int sequ
 
 	if (!cmd || !cmd->command_number) return;
 
-	//movement::run(cmd);
+	movement::run(cmd);
 
 	c_user_cmd old_cmd = *cmd;
+
 	engine_prediction::start(cmd);
 	aimbot::run(cmd);
 	engine_prediction::end(cmd);
 	predict_spread::run(cmd);
 
-	//movement::fix(cmd, old_cmd);
+	movement::fix(cmd, old_cmd);
 
 	verified_cmd->set_user_cmd(cmd);
 

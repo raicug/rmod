@@ -18,7 +18,10 @@
  * TODO:
   * Bug fixes
  *
- * -------------
+ * ------------- MENU FEATURES:
+ * Undetectable visuals
+ *
+ * ------------- Cheats:
  * Aimbot
  * -> Silent
  * -> Lock

@@ -81,12 +81,12 @@ public:
 
 	int get_flags()
 	{
-		return *(int *)((uintptr_t)this + 0x40); // DT_GMOD_Player, Prop: m_fFlags
+		return *(int *)((uintptr_t)this + 0x440); // DT_GMOD_Player, Prop: m_fFlags
 	}
 
 	c_vector get_velocity()
 	{
-		return *(c_vector *)((uintptr_t)this + 0x40); // DT_GMOD_Player, Prop: m_vecVelocity
+		return *(c_vector *)((uintptr_t)this + 0x148); // DT_GMOD_Player, Prop: m_vecVelocity
 	}
 
 	float get_simulation_time()

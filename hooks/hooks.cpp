@@ -24,6 +24,9 @@
 #include "handles/net_channel/send_net_msg.h"
 #include <cheats/Visuals.h>
 
+#include "handles/d3d9/present.h"
+#include "handles/d3d9/reset.h"
+
 #if defined(__GNUC__)
 #define GET_RETURN_ADDRESS() __builtin_return_address(0)
 #elif defined(_MSC_VER)
@@ -39,24 +42,10 @@ void raicu::hooks::Setup() {
 
     logger::Log(logger::LOGGER_LEVEL_SUCCESS, "Minhook initialized");
 
-    if (MH_CreateHook(reinterpret_cast<void*>(VirtualFunction(raicu::gui::device, 42)),
-              &EndScene,
-              reinterpret_cast<void**>(&EndSceneOriginal)))
-    {
-        throw std::runtime_error("Unable to hook scene end");
-    }
-    if (MH_CreateHook(reinterpret_cast<void*>(VirtualFunction(raicu::gui::device, 16)),
-              &Reset,
-              reinterpret_cast<void**>(&ResetOriginal)))
-    {
-        throw std::runtime_error("Unable to hook reset");
-    }
-    /*if (MH_CreateHook(VirtualFunction(raicu::gui::device, 17),
-             &Present,
-             reinterpret_cast<void**>(&PresentOriginal)))
-     {
-         throw std::runtime_error("Unable to hook Present");
-     }*/
+	if (MH_CreateHook((LPVOID)memory::pattern_scanner(xorstr("gameoverlayrenderer64.dll"), xorstr("48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 54 41 56 41 57 48 81 EC ? ? ? ? 4C 8B A4 24 ? ? ? ?")), &handles::present, (LPVOID*)&handles::originals::present))
+		throw std::runtime_error("Unable to hook Present");
+	if (MH_CreateHook((LPVOID)memory::pattern_scanner(xorstr("gameoverlayrenderer64.dll"), xorstr("48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 50 48 8B F2 48 8B F9 48 8B D1")), &handles::reset, (LPVOID*)&handles::originals::reset))
+		throw std::runtime_error("Unable to hook Reset");
 
     try {
 		// create_move
@@ -143,49 +132,4 @@ void raicu::hooks::Destroy() noexcept {
     }
 
     MH_Uninitialize();
-}
-
-/* not used */
-HRESULT __stdcall raicu::hooks::Present(IDirect3DDevice9* device, const RECT* srcRect, const RECT* dstRect, HWND hwnd, const RGNDATA* dirtyRegion) {
-    if (!raicu::gui::setup) {
-        raicu::gui::SetupMenu(device);
-        return PresentOriginal(device, srcRect, dstRect, hwnd, dirtyRegion);
-    }
-
-    device->SetRenderState(D3DRS_SRGBWRITEENABLE, FALSE);
-
-    raicu::gui::Render();
-
-    device->SetRenderState(D3DRS_SRGBWRITEENABLE, TRUE);
-
-    return PresentOriginal(device, srcRect, dstRect, hwnd, dirtyRegion);
-}
-
-long __stdcall raicu::hooks::EndScene(IDirect3DDevice9* device) noexcept {
-    if (!raicu::gui::setup) {
-        raicu::gui::SetupMenu(device);
-        return EndSceneOriginal(device, device);
-    }
-
-    const auto result = EndSceneOriginal(device, device);
-
-    device->SetRenderState(D3DRS_SRGBWRITEENABLE, FALSE);
-
-    raicu::gui::Render();
-
-    device->SetRenderState(D3DRS_SRGBWRITEENABLE, TRUE);
-
-    return result;
-}
-
-HRESULT __stdcall raicu::hooks::Reset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* params) noexcept {
-    ImGui_ImplDX9_InvalidateDeviceObjects();
-
-    const auto result = ResetOriginal(device, device, params);
-
-    ImGui_ImplDX9_CreateDeviceObjects();
-
-    device->SetRenderState(D3DRS_SRGBWRITEENABLE, FALSE);
-
-    return result;
 }

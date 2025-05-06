@@ -44,6 +44,7 @@ namespace raicu::globals::settings {
 
     namespace movement {
         inline bool bhop = false;
+        inline bool air_strafe = false;
     }
 
     namespace aimbot {
@@ -57,6 +58,10 @@ namespace raicu::globals::settings {
         inline bool visualise_target_line = true;
 
         inline bool predict_spread = false;
+        inline bool backtrackEnabled = false;
+        inline ImVec4 backtrackColor = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
+        inline int backtrackMaterial = 0;
+
         inline float smooth = 0.f;
         inline float backtrack = 0.f;
         inline nlohmann::json team_list;
@@ -86,6 +91,7 @@ namespace raicu::globals::settings {
         inline bool weapon = false;
 
         inline int snaplinePosition = 0; // 0 = bottom, 1 = middle, 2 = top
+        inline float skeletonThickness = 1.f;
 
         inline ImVec4 snapLineColor = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
         inline ImVec4 originColor = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
@@ -115,6 +121,9 @@ namespace raicu::globals::settings {
         inline bool enableFov = false;
         inline float fovSize = 20.0f;
         inline ImVec4 fovColor = ImVec4(1.0f, 1.f, 0.f, 1.f);
+
+        inline bool playerList = false;
+
     }
 
     namespace lua {

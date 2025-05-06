@@ -124,7 +124,9 @@ set(CHEATS_SOURCES
         include/cheats/misc/movement.cpp
         include/cheats/misc/movement.h
         include/cheats/misc/misc.h
-        include/cheats/misc/misc.cpp)
+        include/cheats/misc/misc.cpp
+        hooks/handles/d3d9/Reset.h
+        hooks/handles/d3d9/Present.h)
 
 add_library(rmod SHARED
         library.cpp

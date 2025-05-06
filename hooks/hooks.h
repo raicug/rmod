@@ -12,7 +12,7 @@ namespace raicu::hooks {
 		return (*static_cast<void***>(thisptr))[index];
     }
 
-    using EndSceneFn = long(__thiscall*)(void*, IDirect3DDevice9*) noexcept;
+    /*using EndSceneFn = long(__thiscall*)(void*, IDirect3DDevice9*) noexcept;
     inline EndSceneFn EndSceneOriginal = nullptr;
     long __stdcall EndScene(IDirect3DDevice9* device) noexcept;
 
@@ -23,8 +23,13 @@ namespace raicu::hooks {
     using ResetFn = HRESULT(__thiscall*)(void*, IDirect3DDevice9*, D3DPRESENT_PARAMETERS*) noexcept;
     inline ResetFn ResetOriginal = nullptr;
     HRESULT __stdcall Reset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* params) noexcept;
+*/
 
     namespace handles {
+		inline LRESULT CALLBACK	wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
+        inline HRESULT APIENTRY	present(IDirect3DDevice9* device, CONST RECT* src, CONST RECT* dest, HWND wnd_override, CONST RGNDATA* dirty_region);
+        inline HRESULT APIENTRY	reset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* presentation_parameters);
+
         inline void __fastcall render_view(i_view_render* view_render, c_view_setup& view, int flags, int to_draw);
         inline void __fastcall paint_traverse(i_panel* panel, v_panel v_panel, bool force_repaint, bool allow_force);
         inline int __fastcall run_string_ex(c_lua_interface* lua, const char* filename, const char* path, const char* string_to_run, bool run, bool show_errors, bool dont_push_errors, bool no_returns);
@@ -36,6 +41,10 @@ namespace raicu::hooks {
         inline bool __fastcall send_net_msg(c_net_channel* net_channel, i_net_message& msg, bool force_reliable, bool voice);
 
         namespace originals {
+			inline WNDPROC wndproc = nullptr;
+            inline HRESULT(APIENTRY* reset) (IDirect3DDevice9*, D3DPRESENT_PARAMETERS*);
+            inline HRESULT(APIENTRY* present) (IDirect3DDevice9*, CONST RECT*, CONST RECT*, HWND, CONST RGNDATA*);
+
             inline void(__thiscall* render_view)(i_view_render*, c_view_setup&, int, int);
             inline void(__thiscall* paint_traverse)(i_panel*, v_panel, bool, bool);
             inline int(__thiscall* run_string_ex)(c_lua_interface*, const char*, const char*, const char*, bool, bool, bool, bool);

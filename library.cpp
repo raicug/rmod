@@ -12,7 +12,6 @@
     #define DLLEXPORT __declspec(dllimport)
 #endif
 
-
 /**
  *
  * TODO:
@@ -21,6 +20,7 @@
   * Fix skeleton ESP
  *
  */
+
 HANDLE mainThread = nullptr;
 bool running = true;
 

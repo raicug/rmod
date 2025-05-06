@@ -11,7 +11,7 @@ struct lag_record
 
 namespace history
 {
-	static std::unordered_map<int, std::vector<lag_record>> records;
+	extern std::unordered_map<int, std::vector<lag_record>> records;
 
 	float get_lerp_time();
 	int estimate_server_arrive_tick();

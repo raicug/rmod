@@ -3,6 +3,8 @@
 #include <SDK/utils/utilities.h>
 #include <globals/settings.h>
 
+std::unordered_map<int, std::vector<lag_record>> history::records;
+
 float history::get_lerp_time() {
 	static c_con_var* sv_minupdaterate = interfaces::cvar->find_var("sv_minupdaterate");
 	static c_con_var* sv_maxupdaterate = interfaces::cvar->find_var("sv_maxupdaterate");
@@ -129,54 +131,61 @@ bool history::get_latest_record(int index, lag_record& out_record)
 
 void history::update()
 {
-	if (interfaces::global_vars->max_clients <= 1)
-		return records.clear();
+    for (size_t i = 1; i <= interfaces::engine->get_max_clients(); i++)
+    {
+        c_base_entity* entity = interfaces::entity_list->get_entity(i);
 
-	for (size_t i = 1; i <= interfaces::engine->get_max_clients(); i++)
-	{
-		c_base_entity* entity = interfaces::entity_list->get_entity(i);
+        if (!entity || !entity->is_player()) {
+            continue;
+        }
 
-		if (!entity || !entity->is_player())
-			continue;
+        if (i == interfaces::engine->get_local_player()) {
+            continue;
+        }
 
-		if (i == interfaces::engine->get_local_player())
-			continue;
+        if (records.find(i) == records.end()) {
+            records[i] = std::vector<lag_record>();
+        }
 
-		auto& track = records[i - 1];
+    	auto& track = records[i];
 
-		if (!entity->is_alive())
-		{
-			if (!track.empty())
-				track.clear();
+    	if (!entity->is_alive()) {
+    		if (!track.empty())
+    			track.clear();
+    		continue;
+    	}
 
-			continue;
-		}
+    	float dead_time = utilities::ticks_to_time(interfaces::global_vars->tick_count) - 1.f;
 
-		float dead_time = utilities::ticks_to_time(interfaces::global_vars->tick_count) - 1.f;
-		while (!track.empty() && track.back().simulation_time < dead_time)
-		{
-			track.pop_back();
-		}
+    	size_t before_pop = track.size();
+    	while (!track.empty() && track.back().simulation_time < dead_time)
+    	{
+    		track.pop_back();
+    	}
 
-		lag_record record;
-		record.arrive_time = utilities::ticks_to_time(estimate_server_arrive_tick());
-		record.simulation_time = entity->get_simulation_time();
-		record.origin = entity->get_abs_origin();
+        void* model = entity->get_client_renderable()->get_model();
+        if (!model) {
+            continue;
+        }
 
-		void* model = entity->get_client_renderable()->get_model();
-		if (!model)
-			continue;
+        studiohdr_t* hdr = interfaces::model_info->get_studio_model(model);
+        if (!hdr) {
+            continue;
+        }
 
-		studiohdr_t* hdr = interfaces::model_info->get_studio_model(model);
-		if (!hdr)
-			continue;
+    	lag_record record;
+    	record.arrive_time = utilities::ticks_to_time(estimate_server_arrive_tick());
+    	record.simulation_time = entity->get_simulation_time();
 
-		record.bone_to_world = std::make_unique<matrix3x4[]>(hdr->num_bones);
+        record.origin = entity->get_abs_origin();
+        record.bone_to_world = std::make_unique<matrix3x4[]>(hdr->num_bones);
 
-		entity->invalidate_bone_cache();
-		if (!entity->get_client_renderable()->setup_bones(record.bone_to_world.get(), hdr->num_bones, BONE_USED_BY_ANYTHING, interfaces::global_vars->curtime))
-			continue;
+        entity->invalidate_bone_cache();
+        if (!entity->get_client_renderable()->setup_bones(record.bone_to_world.get(), hdr->num_bones, BONE_USED_BY_ANYTHING, interfaces::global_vars->curtime)) {
+			logger::Log(logger::LOGGER_LEVEL_ERROR, ("Failed to setup bones for entity " + std::to_string(i)).c_str());
+        	continue;
+        }
 
-		track.insert(track.begin(), record);
-	}
+        track.insert(track.begin(), record);
+    }
 }

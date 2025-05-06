@@ -30,6 +30,8 @@
 #include <globals/offsets.h>
 #include <cheats/lua/lua.h>
 
+#include "cheats/aimbot/backtrack/history.h"
+
 #pragma comment(lib, "wininet.lib")
 
 const float MAX_SIZE_FLOAT{50.f};
@@ -155,7 +157,6 @@ struct ConsoleLogEntry {
 
 struct ConsoleLog {
 	std::vector<ConsoleLogEntry> entries;
-	ImGuiTextFilter filter;
 
 	void Clear() {
 		entries.clear();
@@ -186,8 +187,6 @@ struct ConsoleLog {
 		}
 
 		bool clear = ImGui::Button("Clear");
-		ImGui::SameLine();
-		filter.Draw("Filter", -100.0f);
 		ImGui::Separator();
 
 		if (ImGui::BeginChild("scrolling", ImVec2(0, 0), ImGuiChildFlags_None, ImGuiWindowFlags_HorizontalScrollbar)) {
@@ -200,9 +199,6 @@ struct ConsoleLog {
 			while (clipper.Step()) {
 				for (int i = clipper.DisplayStart; i < clipper.DisplayEnd; ++i) {
 					const auto &entry = entries[i];
-
-					if (filter.IsActive() && !filter.PassFilter(entry.text.c_str()))
-						continue;
 
 					ImVec4 color = GetColorForLevel(entry.level);
 
@@ -321,8 +317,8 @@ bool raicu::gui::SetupWindow(const char *windowName) noexcept {
 	if (!window) {
 		DWORD error = GetLastError();
 		logger::Log(logger::LOGGER_LEVEL_FATAL, "Failed to create window. Error:");
-    	logger::Log(logger::LOGGER_LEVEL_FATAL, reinterpret_cast<const char *>(error));
-        UnregisterClass(className, windowClass.hInstance);
+		logger::Log(logger::LOGGER_LEVEL_FATAL, reinterpret_cast<const char *>(error));
+		UnregisterClass(className, windowClass.hInstance);
         return false;
     }
 
@@ -346,10 +342,10 @@ bool raicu::gui::SetupDirectX() noexcept {
 
 	if (!d3d9Module) {
 		logger::Log(3, "Failed to get d3d9.dll module");
-        return false;
-    }
+		return false;
+	}
 
-    Direct3DCreate9ExFn createEx = reinterpret_cast<Direct3DCreate9ExFn>(
+	Direct3DCreate9ExFn createEx = reinterpret_cast<Direct3DCreate9ExFn>(
         GetProcAddress(d3d9Module, "Direct3DCreate9Ex"));
 
 	IDirect3D9Ex *d3d9ex = nullptr;
@@ -379,7 +375,7 @@ bool raicu::gui::SetupDirectX() noexcept {
 	params.Windowed = TRUE;
 	params.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	params.hDeviceWindow = window;
-    params.BackBufferFormat = D3DFMT_UNKNOWN; // Let D3D choose based on desktop
+	params.BackBufferFormat = D3DFMT_UNKNOWN; // Let D3D choose based on desktop
 	params.PresentationInterval = D3DPRESENT_INTERVAL_ONE;
 	params.BackBufferCount = 1;
 
@@ -396,7 +392,7 @@ bool raicu::gui::SetupDirectX() noexcept {
 		for (auto behavior: behaviors) {
 			hr = d3d9->CreateDevice(
 				D3DADAPTER_DEFAULT,
-                devType,
+				devType,
 				window,
 				behavior,
 				&params,
@@ -649,8 +645,8 @@ void ShowPlayers() {
 
         ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoDecoration |
                                         ImGuiWindowFlags_NoSavedSettings |
-                                      ImGuiWindowFlags_NoFocusOnAppearing |
-                                      ImGuiWindowFlags_NoNav |
+                                        ImGuiWindowFlags_NoFocusOnAppearing |
+                                        ImGuiWindowFlags_NoNav |
                                       ImGuiWindowFlags_NoMove;
 
         if (ImGui::Begin("Players", nullptr, window_flags)) {
@@ -842,6 +838,9 @@ void raicu::gui::Render() noexcept {
 						ImGui::Checkbox("Name", &raicu::globals::settings::espValues::name);
 						ImGui::Checkbox("Snapline", &raicu::globals::settings::espValues::snapline);
 						ImGui::Checkbox("Skeleton", &globals::settings::espValues::skeleton);
+						if (ImGui::IsItemHovered()) {
+							ImGui::SetTooltip("PRONE TO CRASHING");
+						}
 
 						ImGui::Columns(1);
 
@@ -1001,7 +1000,8 @@ void raicu::gui::Render() noexcept {
 
 						ImGui::SeparatorText("Backtrack");
 						ImGui::Checkbox("Enable", &globals::settings::aimbot::backtrackEnabled);
-						ImGui::SliderFloat("Backtrack amount", &raicu::globals::settings::aimbot::backtrack, 0.f, 20.f, "%.1f", ImGuiSliderFlags_NoInput);
+						ImGui::SliderFloat("Backtrack", &raicu::globals::settings::aimbot::backtrack, 0.f, 1.f,
+						                   "%.3f ms", ImGuiSliderFlags_NoInput);
 						//ImGui::Combo("Material", &raicu::globals::settings::aimbot::backtrackMaterial, materialList, IM_ARRAYSIZE(materialList));
 						ImGui::ColorEdit4("Colour", reinterpret_cast<float *>(&raicu::globals::settings::aimbot::backtrackColor), ImGuiColorEditFlags_NoAlpha);
 
@@ -1019,6 +1019,33 @@ void raicu::gui::Render() noexcept {
 						ImGui::PushID("Player List");
 
 						ImGui::Checkbox("Player list", &raicu::globals::settings::other::playerList);
+
+						if (ImGui::BeginChild("History List", ImVec2(0, 200), true)) {
+							ImGui::Text("Backtrack Records");
+							ImGui::Separator();
+
+							for (const auto &[entityIndex, track]: history::records) {
+								std::string player_info = "Entity " + std::to_string(entityIndex);
+								if (!track.empty()) {
+									player_info += " (" + std::to_string(track.size()) + " records)";
+								}
+								ImGui::Text("%s", player_info.c_str());
+
+								if (ImGui::IsItemHovered() && !track.empty()) {
+									ImGui::BeginTooltip();
+									ImGui::Text("Record Details:");
+									for (const auto &record: track) {
+										ImGui::Text("Time: %.3f, Pos: (%.1f, %.1f, %.1f)",
+										            record.simulation_time,
+										            record.origin.x,
+										            record.origin.y,
+										            record.origin.z);
+									}
+									ImGui::EndTooltip();
+								}
+							}
+						}
+						ImGui::EndChild();
 
 						ImGui::PopID();
 					}

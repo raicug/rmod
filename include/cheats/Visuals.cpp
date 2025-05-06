@@ -278,23 +278,22 @@ void Visuals::DrawSkeleton(int entityIndex) {
 			    utilities::world_to_screen(end, &end_screen)) {
 				if (std::isnan(start_screen.x) || std::isnan(start_screen.y) ||
 				    std::isnan(end_screen.x) || std::isnan(end_screen.y))
-    				continue;
+					continue;
 
-    			Drawing::Line(
+				Drawing::Line(
 					start_screen.x, start_screen.y,
 					end_screen.x, end_screen.y,
 					Drawing::ToColor(&espValues::skeletonColor),
 					espValues::skeletonThickness
 				);
 			}
-    	}
-    }
-    catch (const std::exception& e) {
-        logger::Log(logger::LOGGER_LEVEL_ERROR, "Exception in DrawSkeleton");
-    }
-    catch (...) {
-        logger::Log(logger::LOGGER_LEVEL_ERROR, "Unknown exception in DrawSkeleton");
-    }
+		}
+	} catch (const std::exception &e) {
+		logger::Log(logger::LOGGER_LEVEL_ERROR, "Exception in DrawSkeleton");
+	}
+	catch (...) {
+		logger::Log(logger::LOGGER_LEVEL_ERROR, "Unknown exception in DrawSkeleton");
+	}
 }
 
 void Visuals::DrawRPJob(int CurrentEnt, float &offset) {

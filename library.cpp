@@ -13,12 +13,10 @@
 #endif
 
 /**
- *
  * TODO:
   * Bug fixes
   * Ignore friends/team
   * Fix skeleton ESP
- *
  */
 
 HANDLE mainThread = nullptr;

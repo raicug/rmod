@@ -29,6 +29,7 @@
 
 #include "handles/html_panel/paint.h"
 #include "handles/html_panel/load_url.h"
+#include "handles/client_mode_shared/override_view.h"
 
 #if defined(__GNUC__)
 #define GET_RETURN_ADDRESS() __builtin_return_address(0)
@@ -102,6 +103,12 @@ void raicu::hooks::Setup() {
 			reinterpret_cast<LPVOID*>(&handles::originals::draw_model_execute)) != MH_OK)
 			throw std::runtime_error("Unable to hook draw_model_execute from model_render");
 
+    	if (MH_CreateHook(
+			reinterpret_cast<LPVOID>(memory::get_virtual(reinterpret_cast<PVOID**>(interfaces::client_mode_shared), 16)),
+			reinterpret_cast<LPVOID>(&handles::override_view),
+			reinterpret_cast<LPVOID*>(&handles::originals::override_view)))
+    			throw std::runtime_error("Unable to hook draw_model_execute from model_render");
+
 		// send_net_msg
 		if (MH_CreateHook(
 			reinterpret_cast<LPVOID>(memory::pattern_scanner(
@@ -127,6 +134,7 @@ void raicu::hooks::Setup() {
 				                  1, 5
 			                  )), &handles::html_panel_load_url, (LPVOID *) &handles::originals::html_panel_load_url))
 			throw std::runtime_error("Unable to hook menu load url from menusystem");
+
     } catch (const std::exception &error) {
 	    logger::Log(logger::LOGGER_LEVEL_FATAL, error.what());
 		MessageBeep(MB_ICONERROR);

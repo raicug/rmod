@@ -636,7 +636,7 @@ const char *sidebarTabs[] = {"Visuals", "Appearance", "Lua", "Config", "World", 
 const char *topTabsVisuals[] = {"FOV", "Crosshair", "ESP", "Chams"};
 const char *topTabsAppearance[] = {"Main", "Console Colours"};
 const char *topTabsLua[] = {"Main"};
-const char *topTabsWorld[] = {"Aimbot", "Movement", "Players"};
+const char *topTabsWorld[] = {"Aimbot", "Movement", "Players", "Misc"};
 const char *topTabsConfig[] = {"Loading", "Saving"};
 const char *topTabsGame[] = {"Loading Screen"};
 
@@ -757,6 +757,49 @@ void ShowSpectators() {
 	ImGui::End();
 }
 
+void render_keybinds_window() {
+	ImGui::SetNextWindowSize(ImVec2(200.f, 200.f));
+	ImGui::SetNextWindowSize(ImVec2(200.f, 200.f));
+	ImGui::Begin("Keybinds window", nullptr,
+				 ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize |
+				 ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse |
+				 ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_AlwaysAutoResize); {
+
+		bool any_hotkeys = false;
+		for (const auto& hotkeyInfo : raicu::globals::settings::hotkeys::registered_hotkeys) {
+			if (hotkeyInfo.hotkey->check()) {
+				any_hotkeys = true;
+
+				const char* type_str;
+				switch (hotkeyInfo.hotkey->type) {
+					case hotkey_t::always_on:
+						type_str = "Always";
+						break;
+					case hotkey_t::hold:
+						type_str = "Hold";
+						break;
+					case hotkey_t::toggle:
+						type_str = "Toggle";
+						break;
+					case hotkey_t::force_disable:
+						continue;
+					default:
+						continue;
+				}
+
+				ImGui::Text("%s (%s)", hotkeyInfo.name, type_str);
+				ImGui::Spacing();
+			}
+		}
+
+		if (!any_hotkeys) {
+			ImGui::TextDisabled("No active hotkeys");
+		}
+				 }
+	ImGui::End();
+
+}
+
 void raicu::gui::Render() noexcept {
 	IDirect3DStateBlock9 *stateBlock = nullptr;
 
@@ -781,6 +824,7 @@ void raicu::gui::Render() noexcept {
 		ShowLogin();
 	} else {
 		ShowLog();
+		render_keybinds_window();
 
 		raicu::cheats::Visuals::Render();
 		ShowPlayers();
@@ -1056,7 +1100,7 @@ void raicu::gui::Render() noexcept {
 							ImGui::PushID("Aimbot");
 
 							ImGui::Checkbox("Enabled", &raicu::globals::settings::aimbot::enabled);
-							raicu::gui::other::hotkey("Aimbot key", &raicu::globals::settings::aimbot::hotkey);
+							raicu::gui::other::hotkey("Aimbot", &raicu::globals::settings::aimbot::hotkey);
 
 							ImGui::Columns(2, "AimbotGrid", false);
 
@@ -1083,9 +1127,9 @@ void raicu::gui::Render() noexcept {
 							ImGui::SliderFloat("Backtrack", &raicu::globals::settings::aimbot::backtrack, 0.f, 1.f,
 							                   "%.3f ms", ImGuiSliderFlags_NoInput);
 							//ImGui::Combo("Material", &raicu::globals::settings::aimbot::backtrackMaterial, materialList, IM_ARRAYSIZE(materialList));
-							ImGui::ColorEdit4("Colour", reinterpret_cast<float *>(&
-								                  raicu::globals::settings::aimbot::backtrackColor),
-							                  ImGuiColorEditFlags_NoAlpha);
+							ImGui::ColorEdit4("Colour", reinterpret_cast<float *>(&raicu::globals::settings::aimbot::backtrackColor),
+								ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoAlpha);
+
 
 							ImGui::PopID();
 						}
@@ -1126,15 +1170,18 @@ void raicu::gui::Render() noexcept {
 							ImGui::Checkbox("Show Targets Only", &show_targets_only);
 
 							if (ImGui::Button("Clear friends")) {
+								globals::settings::friend_list = {};
 							}
 							ImGui::SameLine();
 							if (ImGui::Button("Clear whitelist")) {
+								globals::settings::whitelist = {};
 							}
 							ImGui::SameLine();
 							if (ImGui::Button("Clear targets")) {
+								globals::settings::target_list = {};
 							}
 
-							ImGui::Checkbox("Spectator list", &raicu::globals::settings::other::spectatorList);
+							// ImGui::Checkbox("Spectator list", &raicu::globals::settings::other::spectatorList);
 
 							ImGui::InputTextWithHint("##SearchPlayer", "Search by name...", search_buffer,
 							                         IM_ARRAYSIZE(search_buffer));
@@ -1378,6 +1425,23 @@ void raicu::gui::Render() noexcept {
 							ImGui::EndChild();
 							ImGui::PopID();
 						}
+						if (strcmp(currentTab, "World") == 0 && strcmp(current2Tab, "Misc") == 0) {
+							ImGui::PushID("Misc");
+
+							ImGui::Checkbox("Third Person", &globals::settings::other::third_person);
+							other::hotkey("3rd Person", &globals::settings::other::third_person_hotkey);
+							ImGui::SliderInt("Distance", &globals::settings::other::third_person_distance, 10, 200);
+							ImGui::Separator();
+
+							ImGui::Checkbox("FOV", &globals::settings::other::custom_fov);
+							ImGui::SliderFloat("Value##1", &globals::settings::other::custom_fov_value, 50, 179, "%.1f", ImGuiSliderFlags_NoInput);
+							ImGui::Separator();
+
+							ImGui::Checkbox("Model FOV", &globals::settings::other::custom_view_model_fov);
+							ImGui::SliderFloat("Value##2", &globals::settings::other::custom_view_model_fov_value, 30, 150, "%.1f", ImGuiSliderFlags_NoInput);
+
+							ImGui::PopID();
+						}
 
 						/* --- GAME --- */
 						if (strcmp(currentTab, "Game") == 0 && strcmp(current2Tab, "Loading Screen") == 0) {
@@ -1471,6 +1535,17 @@ void raicu::gui::AddToLog(const int level, const std::string &message) {
 }
 
 void raicu::gui::other::hotkey(const char *label, hotkey_t *hotkey) {
+	auto it = std::find_if(globals::settings::hotkeys::registered_hotkeys.begin(),
+						  globals::settings::hotkeys::registered_hotkeys.end(),
+		[hotkey](const globals::settings::hotkeys::hotkey_info& info) {
+			return info.hotkey == hotkey;  // Keep the pointer comparison
+		});
+
+	if (it == globals::settings::hotkeys::registered_hotkeys.end()) {
+		globals::settings::hotkeys::registered_hotkeys.push_back({label, hotkey});  // Just pass the pointer directly
+	}
+
+
 	ImGuiWindow *window = ImGui::GetCurrentWindow();
 	/*if (window->SkipItems)
 		return;*/
@@ -1564,7 +1639,6 @@ void raicu::gui::other::hotkey(const char *label, hotkey_t *hotkey) {
 
 	ImGui::RenderText(total_bb.Min, text);
 
-	ImGui::PushStyleColor(ImGuiCol_PopupBg, ImVec4(0, 0, 0, 0));
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowMinSize, ImVec2(80, 65));
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(5, 5));
 
@@ -1586,7 +1660,6 @@ void raicu::gui::other::hotkey(const char *label, hotkey_t *hotkey) {
 		ImGui::End();
 	}
 
-	ImGui::PopStyleColor();
 	ImGui::PopStyleVar(2);
 }
 

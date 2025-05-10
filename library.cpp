@@ -209,7 +209,6 @@ LONG WINAPI CustomUnhandledExceptionFilter(PEXCEPTION_POINTERS pExceptionInfo) {
     return EXCEPTION_EXECUTE_HANDLER;
 }
 
-
 void SetupInternal(const HMODULE instance) {
     SetUnhandledExceptionFilter(CustomUnhandledExceptionFilter);
 

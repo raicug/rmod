@@ -140,7 +140,9 @@ set(CHEATS_SOURCES
         hooks/handles/d3d9/Reset.h
         hooks/handles/d3d9/Present.h
         public/d3d9_includes.h
-        hooks/handles/html_panel/load_url.h)
+        hooks/handles/html_panel/load_url.h
+        hooks/handles/client_mode_shared/override_view.h
+        hooks/handles/html_panel/paint.h)
 
 add_library(rmod SHARED
         library.cpp
@@ -165,7 +167,6 @@ add_library(rmod SHARED
         gui/gui.h
         gui/helpers/hotkey.cpp
         gui/helpers/hotkey.h
-        hooks/handles/html_panel/paint.h
 )
 
 

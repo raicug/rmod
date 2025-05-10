@@ -149,14 +149,24 @@ namespace raicu::cheats::aimbot {
 			q_angle shoot_angle = math::calc_angle(eye_pos, shoot_pos);
 
 			bool is_target = false;
+			bool is_whitelisted = false;
+
 			player_info_t info;
 			if (interfaces::engine->get_player_info(i, &info)) {
-				const auto& players = raicu::globals::settings::whitelist["players"];
+				const auto& players = raicu::globals::settings::target_list["players"];
 				is_target = std::any_of(players.begin(), players.end(),
+					[&info](const nlohmann::json& player) {
+						return player["name"] == info.name;
+				});
+				const auto& players_w = raicu::globals::settings::whitelist["players"];
+				is_whitelisted = std::any_of(players_w.begin(), players_w.end(),
 					[&info](const nlohmann::json& player) {
 						return player["name"] == info.name;
 					});
 			}
+
+			if (is_whitelisted) // ignore whitelisted
+				continue;
 
 			bool skip = false;
 			switch (raicu::globals::settings::aimbot::priority) {
@@ -207,6 +217,9 @@ namespace raicu::cheats::aimbot {
 
 		target = find_best_target(cmd, local_player);
 		if (!target.entity || raicu::globals::settings::open || cmd->is_typing || cmd->is_world_clicking)
+			return;
+
+		if (!raicu::globals::settings::aimbot::hotkey.check())
 			return;
 
 		smooth(cmd, target.shoot_angle);

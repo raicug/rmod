@@ -75,6 +75,26 @@ void Visuals::Render() {
 
 			ImGui::PushStyleVar(ImGuiStyleVar_Alpha, alpha);
 
+			player_info_t pinfo;
+			interfaces::engine->get_player_info(i, &pinfo);
+
+			if (strlen(pinfo.name) == 0) {
+				return;
+			}
+
+			bool is_whitelisted = false;
+			if (whitelist.contains("players")) {
+				const auto& players = whitelist["players"];
+				is_whitelisted = std::any_of(players.begin(), players.end(),
+					[&pinfo](const nlohmann::json& player) {
+						return player["name"] == pinfo.name;
+					});
+			}
+
+			if (is_whitelisted) {
+				return;
+			}
+
 			if (espValues::snapline)
 				Visuals::DrawSnapline(static_cast<int>(i),
 				                      Drawing::ToColor(&espValues::snapLineColor));
@@ -133,19 +153,6 @@ void Visuals::DrawName(int CurrentEnt, float &offset) {
             return;
         }
 
-        bool is_whitelisted = false;
-        if (raicu::globals::settings::whitelist.contains("players")) {
-            const auto& players = raicu::globals::settings::whitelist["players"];
-            is_whitelisted = std::any_of(players.begin(), players.end(),
-                [&pinfo](const nlohmann::json& player) {
-                    return player["name"] == pinfo.name;
-                });
-        }
-
-        if (is_whitelisted) {
-            return;
-        }
-
         bool is_friend = false;
         if (raicu::globals::settings::friend_list.contains("players")) {
             const auto& friends = raicu::globals::settings::friend_list["players"];
@@ -194,6 +201,8 @@ void Visuals::DrawLineToTarget() {
 	if (!aimbot::target.entity->is_alive()) {
 		return;
 	}
+	if (!raicu::globals::settings::aimbot::hotkey.check())
+		return;
 
 	const c_vector origin = aimbot::target.shoot_pos;
 	c_vector screen_pos;

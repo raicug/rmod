@@ -124,6 +124,28 @@ void interfaces::initialize()
     if (!random_stream)
         throw std::runtime_error("Failed to get random_stream");
 
+    try {
+        logger::Log(5, "Getting client_mode_shared (DEBUGGING)");
+        client_mode_shared = memory::get_vmt_from_instruction<c_client_mode_shared>(
+            (uintptr_t)memory::pattern_scanner(
+                xorstr("client.dll"), xorstr("48 8B 0D ? ? ? ? 48 8B 01 48 FF 60 50 CC CC 48 83 EC 28")
+            ));
+
+        if (!client_mode_shared)
+            throw std::runtime_error("Failed to get client_mode_shared from signature");
+    }
+    catch (const std::exception& e) {
+        // Log the specific error
+        std::cout << "Error while getting client_mode_shared: " << e.what() << std::endl;
+        // You might want to handle the error differently or rethrow
+        throw; // Re-throw if you want the error to propagate up
+    }
+    catch (...) {
+        // Catch any other unexpected errors
+        std::cout << "Unknown error occurred while getting client_mode_shared" << std::endl;
+        throw; // Re-throw if you want the error to propagate up
+    }
+
     window = FindWindowW(L"Valve001", NULL);
     if (!window)
         throw std::runtime_error("Window capture failed!");

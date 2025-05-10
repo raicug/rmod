@@ -31,6 +31,18 @@ namespace raicu::globals::settings {
     inline nlohmann::json whitelist;
     inline nlohmann::json friend_list;
 
+    namespace hotkeys {
+        struct hotkey_info {
+            std::string name;
+            hotkey_t* hotkey;
+
+            hotkey_info(const char* label_, hotkey_t* hotkey_)
+            : name(label_), hotkey(hotkey_) {}
+        };
+
+        inline std::vector<hotkey_info> registered_hotkeys;
+    }
+
     namespace loading_screen {
         inline bool enabled = false;
         inline char url[256] = "asset://garrysmod/html/menu.html";
@@ -135,6 +147,16 @@ namespace raicu::globals::settings {
 
         inline bool playerList = false;
         inline bool spectatorList = false;
+
+        inline bool third_person = false;
+        inline hotkey_t third_person_hotkey;
+        inline int third_person_distance = 100;
+
+        inline bool custom_fov = false;
+        inline float custom_fov_value = 90;
+
+        inline bool custom_view_model_fov = false;
+        inline float custom_view_model_fov_value = 80;
     }
 
     namespace lua {

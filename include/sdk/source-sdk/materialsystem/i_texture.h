@@ -1,4 +1,5 @@
 #pragma once
+#include "SDK/memory/memory.h"
 
 class i_texture
 {

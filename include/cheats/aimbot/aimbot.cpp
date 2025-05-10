@@ -148,12 +148,34 @@ namespace raicu::cheats::aimbot {
 
 			q_angle shoot_angle = math::calc_angle(eye_pos, shoot_pos);
 
+			bool is_target = false;
+			player_info_t info;
+			if (interfaces::engine->get_player_info(i, &info)) {
+				const auto& players = raicu::globals::settings::whitelist["players"];
+				is_target = std::any_of(players.begin(), players.end(),
+					[&info](const nlohmann::json& player) {
+						return player["name"] == info.name;
+					});
+			}
+
 			bool skip = false;
 			switch (raicu::globals::settings::aimbot::priority) {
-			case 0: skip = fov_radius > priority.fov; break;
-			case 1: skip = distance > priority.distance; break;
-			case 2: skip = health > priority.health; break;
+				case 0:
+					if (is_target) {
+						priority.fov = 0.0f;
+						skip = false;
+					} else {
+						skip = fov_radius > priority.fov;
+					}
+					break;
+				case 1:
+					skip = distance > priority.distance;
+					break;
+				case 2:
+					skip = health > priority.health;
+					break;
 			}
+
 			if (skip)
 				continue;
 

@@ -60,9 +60,7 @@ void ConfigManager::Save(const std::string& fileName) {
         {"visualise_target_line", aimbot::visualise_target_line},
         {"predict_spread", aimbot::predict_spread},
         {"smooth", aimbot::smooth},
-        {"backtrack", aimbot::backtrack},
-        {"team_list", aimbot::team_list},
-        {"friend_list", aimbot::friend_list}
+        {"backtrack", aimbot::backtrack}
     };
 
     j["espValues"] = {
@@ -175,8 +173,6 @@ void ConfigManager::Load(const std::string& fileName) {
         aimbot::predict_spread = a.value("predict_spread", aimbot::predict_spread);
         aimbot::smooth = a.value("smooth", aimbot::smooth);
         aimbot::backtrack = a.value("backtrack", aimbot::backtrack);
-        aimbot::team_list = a.value("team_list", aimbot::team_list);
-        aimbot::friend_list = a.value("friend_list", aimbot::friend_list);
     }
 
     if (j.contains("espValues")) {

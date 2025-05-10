@@ -50,8 +50,8 @@ cmake_ninja_workdir = C$:\Users\prest\Desktop\projects\c++\rmod\cmake-build-debu
 build cmake_object_order_depends_target_rmod: phony || .
 
 build CMakeFiles\rmod.dir\library.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\library.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir
@@ -59,8 +59,8 @@ build CMakeFiles\rmod.dir\library.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\logging\logger.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\logging\logger.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\logging
@@ -68,8 +68,8 @@ build CMakeFiles\rmod.dir\include\logging\logger.cpp.obj: CXX_COMPILER__rmod_uns
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\globals\configManager.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\globals\configManager.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\globals
@@ -77,8 +77,8 @@ build CMakeFiles\rmod.dir\include\globals\configManager.cpp.obj: CXX_COMPILER__r
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\themes.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\themes.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include
@@ -86,8 +86,8 @@ build CMakeFiles\rmod.dir\include\themes.cpp.obj: CXX_COMPILER__rmod_unscanned_D
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\minhooks\buffer.c.obj: C_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\minhooks\buffer.c || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\minhooks
@@ -95,8 +95,8 @@ build CMakeFiles\rmod.dir\include\ext\minhooks\buffer.c.obj: C_COMPILER__rmod_un
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\minhooks\minhook.c.obj: C_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\minhooks\minhook.c || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\minhooks
@@ -104,8 +104,8 @@ build CMakeFiles\rmod.dir\include\ext\minhooks\minhook.c.obj: C_COMPILER__rmod_u
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\minhooks\trampoline.c.obj: C_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\minhooks\trampoline.c || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\minhooks
@@ -113,8 +113,8 @@ build CMakeFiles\rmod.dir\include\ext\minhooks\trampoline.c.obj: C_COMPILER__rmo
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\minhooks\hde\hde32.c.obj: C_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\minhooks\hde\hde32.c || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\minhooks\hde
@@ -122,8 +122,8 @@ build CMakeFiles\rmod.dir\include\ext\minhooks\hde\hde32.c.obj: C_COMPILER__rmod
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\minhooks\hde\hde64.c.obj: C_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\minhooks\hde\hde64.c || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\minhooks\hde
@@ -131,8 +131,8 @@ build CMakeFiles\rmod.dir\include\ext\minhooks\hde\hde64.c.obj: C_COMPILER__rmod
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\imgui\imgui.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\imgui.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
@@ -140,8 +140,8 @@ build CMakeFiles\rmod.dir\include\ext\imgui\imgui.cpp.obj: CXX_COMPILER__rmod_un
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\imgui\imgui_demo.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\imgui_demo.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
@@ -149,8 +149,8 @@ build CMakeFiles\rmod.dir\include\ext\imgui\imgui_demo.cpp.obj: CXX_COMPILER__rm
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\imgui\imgui_draw.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\imgui_draw.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
@@ -158,8 +158,8 @@ build CMakeFiles\rmod.dir\include\ext\imgui\imgui_draw.cpp.obj: CXX_COMPILER__rm
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\imgui\imgui_tables.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\imgui_tables.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
@@ -167,8 +167,8 @@ build CMakeFiles\rmod.dir\include\ext\imgui\imgui_tables.cpp.obj: CXX_COMPILER__
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\imgui\imgui_widgets.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\imgui_widgets.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
@@ -176,8 +176,8 @@ build CMakeFiles\rmod.dir\include\ext\imgui\imgui_widgets.cpp.obj: CXX_COMPILER_
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\imgui\implot.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\implot.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
@@ -185,8 +185,8 @@ build CMakeFiles\rmod.dir\include\ext\imgui\implot.cpp.obj: CXX_COMPILER__rmod_u
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\imgui\implot_demo.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\implot_demo.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
@@ -194,8 +194,8 @@ build CMakeFiles\rmod.dir\include\ext\imgui\implot_demo.cpp.obj: CXX_COMPILER__r
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\imgui\implot_items.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\implot_items.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui
@@ -203,8 +203,8 @@ build CMakeFiles\rmod.dir\include\ext\imgui\implot_items.cpp.obj: CXX_COMPILER__
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\imgui\custom\TextEditor.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\custom\TextEditor.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui\custom
@@ -212,8 +212,8 @@ build CMakeFiles\rmod.dir\include\ext\imgui\custom\TextEditor.cpp.obj: CXX_COMPI
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\imgui\backends\imgui_impl_dx9.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\backends\imgui_impl_dx9.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui\backends
@@ -221,8 +221,8 @@ build CMakeFiles\rmod.dir\include\ext\imgui\backends\imgui_impl_dx9.cpp.obj: CXX
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\ext\imgui\backends\imgui_impl_win32.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\ext\imgui\backends\imgui_impl_win32.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\ext\imgui\backends
@@ -230,8 +230,8 @@ build CMakeFiles\rmod.dir\include\ext\imgui\backends\imgui_impl_win32.cpp.obj: C
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\encoding\randstr.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\encoding\randstr.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\encoding
@@ -239,8 +239,8 @@ build CMakeFiles\rmod.dir\include\encoding\randstr.cpp.obj: CXX_COMPILER__rmod_u
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\encoding\sha256.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\encoding\sha256.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\encoding
@@ -248,8 +248,8 @@ build CMakeFiles\rmod.dir\include\encoding\sha256.cpp.obj: CXX_COMPILER__rmod_un
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\sdk\Interface.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\Interface.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk
@@ -257,8 +257,8 @@ build CMakeFiles\rmod.dir\include\sdk\Interface.cpp.obj: CXX_COMPILER__rmod_unsc
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\sdk\source-sdk\math\radian_euler.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\source-sdk\math\radian_euler.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\source-sdk\math
@@ -266,8 +266,8 @@ build CMakeFiles\rmod.dir\include\sdk\source-sdk\math\radian_euler.cpp.obj: CXX_
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\sdk\source-sdk\math\quaternion.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\source-sdk\math\quaternion.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\source-sdk\math
@@ -275,8 +275,8 @@ build CMakeFiles\rmod.dir\include\sdk\source-sdk\math\quaternion.cpp.obj: CXX_CO
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\sdk\source-sdk\math\vector.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\source-sdk\math\vector.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\source-sdk\math
@@ -284,8 +284,8 @@ build CMakeFiles\rmod.dir\include\sdk\source-sdk\math\vector.cpp.obj: CXX_COMPIL
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\sdk\source-sdk\math\math.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\source-sdk\math\math.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\source-sdk\math
@@ -293,8 +293,8 @@ build CMakeFiles\rmod.dir\include\sdk\source-sdk\math\math.cpp.obj: CXX_COMPILER
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\sdk\memory\memory.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\memory\memory.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\memory
@@ -302,8 +302,8 @@ build CMakeFiles\rmod.dir\include\sdk\memory\memory.cpp.obj: CXX_COMPILER__rmod_
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\sdk\utils\lua_utilities.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\utils\lua_utilities.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\utils
@@ -311,8 +311,8 @@ build CMakeFiles\rmod.dir\include\sdk\utils\lua_utilities.cpp.obj: CXX_COMPILER_
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\sdk\utils\utilities.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\sdk\utils\utilities.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\sdk\utils
@@ -320,8 +320,8 @@ build CMakeFiles\rmod.dir\include\sdk\utils\utilities.cpp.obj: CXX_COMPILER__rmo
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\cheats\Visuals.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\Visuals.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats
@@ -329,8 +329,8 @@ build CMakeFiles\rmod.dir\include\cheats\Visuals.cpp.obj: CXX_COMPILER__rmod_uns
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack\history.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\aimbot\backtrack\history.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack
@@ -338,8 +338,8 @@ build CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack\history.cpp.obj: CXX_C
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack\lag_compensation.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\aimbot\backtrack\lag_compensation.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack
@@ -347,8 +347,8 @@ build CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack\lag_compensation.cpp.o
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\cheats\aimbot\helpers\engine_prediction.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\aimbot\helpers\engine_prediction.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\aimbot\helpers
@@ -356,8 +356,8 @@ build CMakeFiles\rmod.dir\include\cheats\aimbot\helpers\engine_prediction.cpp.ob
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\cheats\aimbot\helpers\predict_spread.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\aimbot\helpers\predict_spread.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\aimbot\helpers
@@ -365,8 +365,8 @@ build CMakeFiles\rmod.dir\include\cheats\aimbot\helpers\predict_spread.cpp.obj: 
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\cheats\aimbot\aimbot.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\aimbot\aimbot.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\aimbot
@@ -374,8 +374,8 @@ build CMakeFiles\rmod.dir\include\cheats\aimbot\aimbot.cpp.obj: CXX_COMPILER__rm
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\cheats\aimbot\penetrate_walls.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\aimbot\penetrate_walls.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\aimbot
@@ -383,8 +383,8 @@ build CMakeFiles\rmod.dir\include\cheats\aimbot\penetrate_walls.cpp.obj: CXX_COM
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\cheats\Drawing\Drawing.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\Drawing\Drawing.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\Drawing
@@ -392,8 +392,8 @@ build CMakeFiles\rmod.dir\include\cheats\Drawing\Drawing.cpp.obj: CXX_COMPILER__
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\cheats\lua\lua.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\lua\lua.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\lua
@@ -401,8 +401,8 @@ build CMakeFiles\rmod.dir\include\cheats\lua\lua.cpp.obj: CXX_COMPILER__rmod_uns
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\cheats\misc\movement.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\misc\movement.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\misc
@@ -410,8 +410,8 @@ build CMakeFiles\rmod.dir\include\cheats\misc\movement.cpp.obj: CXX_COMPILER__rm
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\include\cheats\misc\misc.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\include\cheats\misc\misc.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\include\cheats\misc
@@ -419,8 +419,8 @@ build CMakeFiles\rmod.dir\include\cheats\misc\misc.cpp.obj: CXX_COMPILER__rmod_u
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\hooks\hooks.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\hooks\hooks.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\hooks
@@ -428,11 +428,20 @@ build CMakeFiles\rmod.dir\hooks\hooks.cpp.obj: CXX_COMPILER__rmod_unscanned_Debu
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
 build CMakeFiles\rmod.dir\gui\gui.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp || cmake_object_order_depends_target_rmod
-  DEFINES = -DBUILDING_DLL -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_WIN64 -Drmod_EXPORTS
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /wd4244
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
   INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
   OBJECT_DIR = CMakeFiles\rmod.dir
   OBJECT_FILE_DIR = CMakeFiles\rmod.dir\gui
+  TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
+  TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
+
+build CMakeFiles\rmod.dir\gui\helpers\hotkey.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$:\Users\prest\Desktop\projects\c++\rmod\gui\helpers\hotkey.cpp || cmake_object_order_depends_target_rmod
+  DEFINES = -DBUILDING_DLL -DUNICODE -D_AMD64_ -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -D_WIN64 -Drmod_EXPORTS
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20 /WX- /wd4244
+  INCLUDES = -I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" -IC:\Users\prest\Desktop\projects\c++\rmod\include
+  OBJECT_DIR = CMakeFiles\rmod.dir
+  OBJECT_FILE_DIR = CMakeFiles\rmod.dir\gui\helpers
   TARGET_COMPILE_PDB = CMakeFiles\rmod.dir\
   TARGET_PDB = C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.pdb
 
@@ -444,7 +453,7 @@ build CMakeFiles\rmod.dir\gui\gui.cpp.obj: CXX_COMPILER__rmod_unscanned_Debug C$
 #############################################
 # Link the shared library C:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.dll
 
-build C$:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.dll C$:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.lib: CXX_SHARED_LIBRARY_LINKER__rmod_Debug CMakeFiles\rmod.dir\library.cpp.obj CMakeFiles\rmod.dir\include\logging\logger.cpp.obj CMakeFiles\rmod.dir\include\globals\configManager.cpp.obj CMakeFiles\rmod.dir\include\themes.cpp.obj CMakeFiles\rmod.dir\include\ext\minhooks\buffer.c.obj CMakeFiles\rmod.dir\include\ext\minhooks\minhook.c.obj CMakeFiles\rmod.dir\include\ext\minhooks\trampoline.c.obj CMakeFiles\rmod.dir\include\ext\minhooks\hde\hde32.c.obj CMakeFiles\rmod.dir\include\ext\minhooks\hde\hde64.c.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui_demo.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui_draw.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui_tables.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui_widgets.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\implot.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\implot_demo.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\implot_items.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\custom\TextEditor.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\backends\imgui_impl_dx9.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\backends\imgui_impl_win32.cpp.obj CMakeFiles\rmod.dir\include\encoding\randstr.cpp.obj CMakeFiles\rmod.dir\include\encoding\sha256.cpp.obj CMakeFiles\rmod.dir\include\sdk\Interface.cpp.obj CMakeFiles\rmod.dir\include\sdk\source-sdk\math\radian_euler.cpp.obj CMakeFiles\rmod.dir\include\sdk\source-sdk\math\quaternion.cpp.obj CMakeFiles\rmod.dir\include\sdk\source-sdk\math\vector.cpp.obj CMakeFiles\rmod.dir\include\sdk\source-sdk\math\math.cpp.obj CMakeFiles\rmod.dir\include\sdk\memory\memory.cpp.obj CMakeFiles\rmod.dir\include\sdk\utils\lua_utilities.cpp.obj CMakeFiles\rmod.dir\include\sdk\utils\utilities.cpp.obj CMakeFiles\rmod.dir\include\cheats\Visuals.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack\history.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack\lag_compensation.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\helpers\engine_prediction.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\helpers\predict_spread.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\aimbot.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\penetrate_walls.cpp.obj CMakeFiles\rmod.dir\include\cheats\Drawing\Drawing.cpp.obj CMakeFiles\rmod.dir\include\cheats\lua\lua.cpp.obj CMakeFiles\rmod.dir\include\cheats\misc\movement.cpp.obj CMakeFiles\rmod.dir\include\cheats\misc\misc.cpp.obj CMakeFiles\rmod.dir\hooks\hooks.cpp.obj CMakeFiles\rmod.dir\gui\gui.cpp.obj
+build C$:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.dll C$:\Users\prest\Desktop\projects\c++\rmod\bin\libcheat.lib: CXX_SHARED_LIBRARY_LINKER__rmod_Debug CMakeFiles\rmod.dir\library.cpp.obj CMakeFiles\rmod.dir\include\logging\logger.cpp.obj CMakeFiles\rmod.dir\include\globals\configManager.cpp.obj CMakeFiles\rmod.dir\include\themes.cpp.obj CMakeFiles\rmod.dir\include\ext\minhooks\buffer.c.obj CMakeFiles\rmod.dir\include\ext\minhooks\minhook.c.obj CMakeFiles\rmod.dir\include\ext\minhooks\trampoline.c.obj CMakeFiles\rmod.dir\include\ext\minhooks\hde\hde32.c.obj CMakeFiles\rmod.dir\include\ext\minhooks\hde\hde64.c.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui_demo.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui_draw.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui_tables.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\imgui_widgets.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\implot.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\implot_demo.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\implot_items.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\custom\TextEditor.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\backends\imgui_impl_dx9.cpp.obj CMakeFiles\rmod.dir\include\ext\imgui\backends\imgui_impl_win32.cpp.obj CMakeFiles\rmod.dir\include\encoding\randstr.cpp.obj CMakeFiles\rmod.dir\include\encoding\sha256.cpp.obj CMakeFiles\rmod.dir\include\sdk\Interface.cpp.obj CMakeFiles\rmod.dir\include\sdk\source-sdk\math\radian_euler.cpp.obj CMakeFiles\rmod.dir\include\sdk\source-sdk\math\quaternion.cpp.obj CMakeFiles\rmod.dir\include\sdk\source-sdk\math\vector.cpp.obj CMakeFiles\rmod.dir\include\sdk\source-sdk\math\math.cpp.obj CMakeFiles\rmod.dir\include\sdk\memory\memory.cpp.obj CMakeFiles\rmod.dir\include\sdk\utils\lua_utilities.cpp.obj CMakeFiles\rmod.dir\include\sdk\utils\utilities.cpp.obj CMakeFiles\rmod.dir\include\cheats\Visuals.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack\history.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\backtrack\lag_compensation.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\helpers\engine_prediction.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\helpers\predict_spread.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\aimbot.cpp.obj CMakeFiles\rmod.dir\include\cheats\aimbot\penetrate_walls.cpp.obj CMakeFiles\rmod.dir\include\cheats\Drawing\Drawing.cpp.obj CMakeFiles\rmod.dir\include\cheats\lua\lua.cpp.obj CMakeFiles\rmod.dir\include\cheats\misc\movement.cpp.obj CMakeFiles\rmod.dir\include\cheats\misc\misc.cpp.obj CMakeFiles\rmod.dir\hooks\hooks.cpp.obj CMakeFiles\rmod.dir\gui\gui.cpp.obj CMakeFiles\rmod.dir\gui\helpers\hotkey.cpp.obj
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL
   LINK_LIBRARIES = winmm.lib  d3d9.lib  d3dx9.lib  dwmapi.lib  wininet.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

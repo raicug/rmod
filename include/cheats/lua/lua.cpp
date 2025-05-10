@@ -30,12 +30,9 @@ namespace lua {
 
         c_lua_interface* lua = interfaces::lua_shared->get_interface(lua_type);
         if (!lua) {
-            logger::Log(logger::LOGGER_LEVEL_ERROR, "Failed to get lua interface");
             return;
         }
 
-        logger::Log(logger::LOGGER_LEVEL_INFO, "Executing lua script");
         lua->run_string("", "", scriptCopy.c_str());
-        logger::Log(logger::LOGGER_LEVEL_INFO, "Finished executing lua script");
     }
 }

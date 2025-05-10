@@ -1,8 +1,13 @@
 #pragma once
+#include <sdk/Interface.h>
+
 
 class c_base_entity
 {
 public:
+	virtual int GetObserverMode(void)const = 0;
+	virtual c_base_entity* GetObserverTarget(void)const = 0;
+
 	c_collideable *get_collidable()
 	{
 		return memory::call_v_function<c_collideable *(__thiscall *)(void *)>(this, 3)(this);

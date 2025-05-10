@@ -27,11 +27,11 @@ namespace memory
 		if (!create_interface)
 			throw std::runtime_error("Failed to create interface");
 
-		T *interface = static_cast<T *>(create_interface(interface_name, nullptr));
-		if (!interface)
+		T *interface_1 = static_cast<T *>(create_interface(interface_name, nullptr));
+		if (!interface_1)
 			throw std::runtime_error("Failed to get interface");
 
-		return interface;
+		return interface_1;
 	}
 
 	constexpr uintptr_t relative_to_absolute(uintptr_t address, int offset, int instruction_size = 7)

@@ -1,11 +1,10 @@
-#define WIN32_LEAN_AND_MEAN
-#define NOMINMAX
 #include <Windows.h>
 #include <d3d9.h>
 
 #include "Interface.h"
 #include "./memory/memory.h"
 #include <logging/logger.h>
+
 
 // Define the memory functions
 typedef void* (*interface_type)(const char* name, int* return_code);

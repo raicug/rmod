@@ -79,7 +79,7 @@ void Visuals::Render() {
 				Visuals::DrawSnapline(static_cast<int>(i),
 				                      Drawing::ToColor(&espValues::snapLineColor));
 			if (espValues::origin) Visuals::DrawOrigin(static_cast<int>(i), Drawing::ToColor(&espValues::originColor));
-			if (espValues::weapon) Visuals::DrawWeapon(static_cast<int>(i), offset);
+			//if (espValues::weapon) Visuals::DrawWeapon(static_cast<int>(i), offset);
 			if (espValues::name) Visuals::DrawName(static_cast<int>(i), offset);
 			if (espValues::distance) Visuals::DrawDistance(static_cast<int>(i), offset, distance);
 			if (espValues::box) Visuals::Drawbox(static_cast<int>(i));
@@ -119,25 +119,72 @@ void Visuals::DrawCrosshair(float width, float length, float offset, ImU32 color
 }
 
 void Visuals::DrawName(int CurrentEnt, float &offset) {
-	c_vector out;
-	player_info_t pinfo;
-	c_vector worldtoscreenent, currentOrg;
+    c_vector out;
+    player_info_t pinfo;
+    c_vector worldtoscreenent, currentOrg;
 
-	c_base_entity *current = interfaces::entity_list->get_entity(CurrentEnt);
-	currentOrg = current->get_abs_origin();
+    c_base_entity *current = interfaces::entity_list->get_entity(CurrentEnt);
+    currentOrg = current->get_abs_origin();
 
-	if (utilities::world_to_screen(currentOrg, &worldtoscreenent)) {
-		interfaces::engine->get_player_info(CurrentEnt, &pinfo);
+    if (utilities::world_to_screen(currentOrg, &worldtoscreenent)) {
+        interfaces::engine->get_player_info(CurrentEnt, &pinfo);
 
-		if (strlen(pinfo.name) == 0) {
-			return;
-		}
+        if (strlen(pinfo.name) == 0) {
+            return;
+        }
 
-		int length = strlen(pinfo.name);
-		float width = (length * 13) / 2.f;
-		Drawing::Text(pinfo.name, worldtoscreenent.x - (width / 2.f), worldtoscreenent.y,
-		              Drawing::ToColor(&raicu::globals::settings::espValues::nameColor), offset);
-	}
+        bool is_whitelisted = false;
+        if (raicu::globals::settings::whitelist.contains("players")) {
+            const auto& players = raicu::globals::settings::whitelist["players"];
+            is_whitelisted = std::any_of(players.begin(), players.end(),
+                [&pinfo](const nlohmann::json& player) {
+                    return player["name"] == pinfo.name;
+                });
+        }
+
+        if (is_whitelisted) {
+            return;
+        }
+
+        bool is_friend = false;
+        if (raicu::globals::settings::friend_list.contains("players")) {
+            const auto& friends = raicu::globals::settings::friend_list["players"];
+            is_friend = std::any_of(friends.begin(), friends.end(),
+                [&pinfo](const nlohmann::json& player) {
+                    return player["name"] == pinfo.name;
+                });
+        }
+
+    	bool is_target = false;
+    	if (target_list.contains("players")) {
+    		const auto& targets = target_list["players"];
+    		is_target = std::any_of(targets.begin(), targets.end(),
+    			[&pinfo](const nlohmann::json& player) {
+    				return player["name"] == pinfo.name;
+    			});
+    	}
+
+        char display_name[256];
+        if (is_friend) {
+	        snprintf(display_name, sizeof(display_name), "[FRIEND] %s", pinfo.name);
+        }else if (is_target) {
+	        snprintf(display_name, sizeof(display_name), "[TARGET] %s", pinfo.name);
+        }else {
+            strncpy(display_name, pinfo.name, sizeof(display_name) - 1);
+            display_name[sizeof(display_name) - 1] = '\0';  // Ensure null termination
+        }
+
+        int length = strlen(display_name);
+        float width = (length * 13) / 2.f;
+    	if (is_target) {
+    		ImVec4 redColor = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);
+    		Drawing::Text(display_name, worldtoscreenent.x - (width / 2.f), worldtoscreenent.y,
+						 Drawing::ToColor(&redColor), offset);
+    	} else {
+    		Drawing::Text(display_name, worldtoscreenent.x - (width / 2.f), worldtoscreenent.y,
+						 Drawing::ToColor(&raicu::globals::settings::espValues::nameColor), offset);
+    	}
+    }
 }
 
 void Visuals::DrawLineToTarget() {
@@ -188,8 +235,9 @@ void Visuals::DrawDistance(int CurrentEnt, float &offset, float distance) {
 
 void Visuals::DrawSkeleton(int entityIndex) {
 	try {
-		if (entityIndex < 0)
+		if (entityIndex < 0) {
 			return;
+		}
 
 		c_base_entity *entity = interfaces::entity_list->get_entity(entityIndex);
 		if (!entity || !entity->is_alive())
@@ -245,16 +293,18 @@ void Visuals::DrawSkeleton(int entityIndex) {
 
 			// Extra safety check
 			if (parent_index == -1 || child_index == -1 ||
-			    parent_index >= 128 || child_index >= 128)
+			    parent_index >= 128 || child_index >= 128) {
 				continue;
+			}
 
 			if (std::isnan(bone_matrix[parent_index][0][3]) ||
 			    std::isnan(bone_matrix[parent_index][1][3]) ||
 			    std::isnan(bone_matrix[parent_index][2][3]) ||
 			    std::isnan(bone_matrix[child_index][0][3]) ||
 			    std::isnan(bone_matrix[child_index][1][3]) ||
-			    std::isnan(bone_matrix[child_index][2][3]))
+			    std::isnan(bone_matrix[child_index][2][3])) {
 				continue;
+			}
 
 			c_vector start, end;
 			c_vector start_screen, end_screen;
@@ -271,8 +321,9 @@ void Visuals::DrawSkeleton(int entityIndex) {
 				bone_matrix[child_index][2][3]
 			);
 
-			if (start.length() > 5000.0f || end.length() > 5000.0f)
+			if (start.length() > 50000.0f || end.length() > 50000.0f) {
 				continue;
+			}
 
 			if (utilities::world_to_screen(start, &start_screen) &&
 			    utilities::world_to_screen(end, &end_screen)) {
@@ -430,7 +481,7 @@ void Visuals::DrawBacktrack(int entityIndex) {
 			ImColor color = Drawing::ToColor(&globals::settings::aimbot::backtrackColor);
 			color.Value.w = alpha;
 
-			if (had_last_pos) {
+			if (had_last_pos && false) {
 				Drawing::Line(
 					last_screen_pos.x, last_screen_pos.y,
 					screen_pos.x, screen_pos.y,

@@ -9,8 +9,15 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 
-include_directories("C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Include")
-link_directories("C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)/Lib/x64")
+set(DIRECTX_SDK_DIR "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)")
+
+include_directories("${DIRECTX_SDK_DIR}/Include")
+
+if (CMAKE_SIZEOF_VOID_P EQUAL 8)
+    link_directories("${DIRECTX_SDK_DIR}/Lib/x64")
+else ()
+    link_directories("${DIRECTX_SDK_DIR}/Lib/x86")
+endif ()
 
 if (MSVC)
     add_definitions(
@@ -18,8 +25,13 @@ if (MSVC)
             -D_WIN64
             -D_CRT_SECURE_NO_WARNINGS
             -DBUILDING_DLL
+            -DUNICODE
+            -D_UNICODE
     )
-    add_compile_options(/wd4244)
+    add_compile_options(
+            /WX-
+            /wd4244
+    )
 
     set(CMAKE_GENERATOR_PLATFORM x64)
 else ()
@@ -126,7 +138,9 @@ set(CHEATS_SOURCES
         include/cheats/misc/misc.h
         include/cheats/misc/misc.cpp
         hooks/handles/d3d9/Reset.h
-        hooks/handles/d3d9/Present.h)
+        hooks/handles/d3d9/Present.h
+        public/d3d9_includes.h
+        hooks/handles/html_panel/load_url.h)
 
 add_library(rmod SHARED
         library.cpp
@@ -149,6 +163,9 @@ add_library(rmod SHARED
         hooks/hooks.h
         gui/gui.cpp
         gui/gui.h
+        gui/helpers/hotkey.cpp
+        gui/helpers/hotkey.h
+        hooks/handles/html_panel/paint.h
 )
 
 

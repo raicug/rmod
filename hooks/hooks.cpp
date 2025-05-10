@@ -27,6 +27,9 @@
 #include "handles/d3d9/present.h"
 #include "handles/d3d9/reset.h"
 
+#include "handles/html_panel/paint.h"
+#include "handles/html_panel/load_url.h"
+
 #if defined(__GNUC__)
 #define GET_RETURN_ADDRESS() __builtin_return_address(0)
 #elif defined(_MSC_VER)
@@ -107,9 +110,25 @@ void raicu::hooks::Setup() {
 			reinterpret_cast<LPVOID>(&handles::send_net_msg),
 			reinterpret_cast<LPVOID*>(&handles::originals::send_net_msg)) != MH_OK)
 			throw std::runtime_error("Unable to hook send_net_msg from engine");
-	}
-	catch (const std::exception& error) {
-		logger::Log(logger::LOGGER_LEVEL_FATAL, error.what());
+
+		// menu paint + load URL
+		if (MH_CreateHook(
+			    reinterpret_cast<LPVOID>(memory::pattern_scanner(
+				    xorstr("menusystem.dll"),
+				    xorstr("40 57 48 83 EC 40 48 8B F9"))),
+			    reinterpret_cast<LPVOID>(&handles::html_panel_paint),
+			    reinterpret_cast<LPVOID *>(&handles::originals::html_panel_paint)) != MH_OK)
+			throw std::runtime_error("Unable to hook menu paint from menusystem");
+
+		if (MH_CreateHook(reinterpret_cast<LPVOID>(
+			                  memory::relative_to_absolute(
+				                  (uintptr_t) memory::pattern_scanner("menusystem.dll",
+				                                                      "E8 ? ? ? ? EB 17 48 8B 0D ? ? ? ?"),
+				                  1, 5
+			                  )), &handles::html_panel_load_url, (LPVOID *) &handles::originals::html_panel_load_url))
+			throw std::runtime_error("Unable to hook menu load url from menusystem");
+    } catch (const std::exception &error) {
+	    logger::Log(logger::LOGGER_LEVEL_FATAL, error.what());
 		MessageBeep(MB_ICONERROR);
 		MessageBoxA(0, error.what(), "FATAL ERROR", MB_OK | MB_ICONEXCLAMATION);
 	}
@@ -130,6 +149,58 @@ void raicu::hooks::Destroy() noexcept {
         interfaces::panel->set_key_board_input_enabled(raicu::globals::settings::overlay_popup_panel, false);
         interfaces::panel->set_mouse_input_enabled(raicu::globals::settings::overlay_popup_panel, false);
     }
+
+    const char *script = xorstr(R"(
+		UpdateNewsList([
+	      {
+	        "Date": "2025-05-09T03:12:00",
+	        "ShortName": "may-2025-patch",
+	        "Title": "May 2025 Patch",
+	        "HeaderImage": "https://files.facepunch.com/rubat/2025/May09-1347-HairyMudpuppy.png",
+	        "SummaryHtml": "Stability/security patch",
+	        "Url": "https://gmod.facepunch.com/blog/may-2025-patch/",
+	        "Tags": "Update"
+	      },
+	      {
+	        "Date": "2025-04-30T03:42:00",
+	        "ShortName": "april-2025-patch",
+	        "Title": "April 2025 Patch",
+	        "HeaderImage": "https://files.facepunch.com/rubat/2025/May02-1336-OutlandishAntelopegroundsquirrel.png",
+	        "SummaryHtml": "A small patch",
+	        "Url": "https://gmod.facepunch.com/blog/april-2025-patch/",
+	        "Tags": "update"
+	      },
+	      {
+	        "Date": "2025-03-26T03:00:00",
+	        "ShortName": "march-2025-update",
+	        "Title": "March 2025 Update",
+	        "HeaderImage": "https://files.facepunch.com/rubat/2025/March26-1211-BlueDuiker.jpg",
+	        "SummaryHtml": "Shaders, new content and many other improvements.",
+	        "Url": "https://gmod.facepunch.com/blog/march-2025-update/",
+	        "Tags": "Update"
+	      },
+	      {
+	        "Date": "2024-10-29T03:00:00",
+	        "ShortName": "october-2024-update",
+	        "Title": "October 2024 Update",
+	        "HeaderImage": "https://files.facepunch.com/rubat/2024/October28-698-PracticalAmericanquarterhorse.jpg",
+	        "SummaryHtml": "Optimizations, Half-Life 2 animation fixes, and more.",
+	        "Url": "https://gmod.facepunch.com/blog/october-2024-update/",
+	        "Tags": "update"
+	      },
+	      {
+	        "Date": "2024-07-31T02:00:00",
+	        "ShortName": "july-2024-update",
+	        "Title": "July 2024 Update",
+	        "HeaderImage": "https://files.facepunch.com/rubat/2024/July29-384-BothQueenconch.jpg",
+	        "SummaryHtml": "Crash fixes, new features and much more.",
+	        "Url": "https://gmod.facepunch.com/blog/july-2024-update/",
+	        "Tags": "update"
+	      }
+	    ], false)
+	)");
+
+    utilities::run_javascript(globals::settings::menu_panel, script);
 
     MH_Uninitialize();
 }

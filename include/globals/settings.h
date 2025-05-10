@@ -5,6 +5,7 @@
 #include <ext/imgui/imgui.h>
 #include <d3d9.h>
 #include <sdk/Interface.h>
+#include "../gui/helpers/hotkey.h"
 
 namespace raicu::globals::settings {
     inline std::string version = "1.0.0a";
@@ -20,9 +21,20 @@ namespace raicu::globals::settings {
     inline v_panel overlay_popup_panel = false;
     inline v_panel focus_overlay_panel = false;
 
+    inline void *menu_panel = nullptr;
+
     inline ImFont *defaultFont = nullptr;
     inline bool consoleOpen = false;
     inline bool loggerNotifications = false;
+
+    inline nlohmann::json target_list;
+    inline nlohmann::json whitelist;
+    inline nlohmann::json friend_list;
+
+    namespace loading_screen {
+        inline bool enabled = false;
+        inline char url[256] = "asset://garrysmod/html/menu.html";
+    }
 
     namespace consoleLogColours {
         inline ImVec4 infoColor = ImVec4(0.4f, 0.7f, 1.0f, 1.0f);
@@ -49,6 +61,7 @@ namespace raicu::globals::settings {
 
     namespace aimbot {
         inline bool enabled = false;
+        inline hotkey_t hotkey;
         inline bool silent = false;
         inline bool automatic_fire = false;
         inline bool penetrate_walls = false;
@@ -64,8 +77,6 @@ namespace raicu::globals::settings {
 
         inline float smooth = 0.f;
         inline float backtrack = 0.f;
-        inline nlohmann::json team_list;
-        inline nlohmann::json friend_list;
     }
 
     namespace espValues {
@@ -123,7 +134,7 @@ namespace raicu::globals::settings {
         inline ImVec4 fovColor = ImVec4(1.0f, 1.f, 0.f, 1.f);
 
         inline bool playerList = false;
-
+        inline bool spectatorList = false;
     }
 
     namespace lua {

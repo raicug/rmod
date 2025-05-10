@@ -1,0 +1,71 @@
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\oleidl.h(1299): error C2061: syntax error: identifier 'LPMSG'
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\oleidl.h(2273): error C2061: syntax error: identifier 'LPMSG'
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\oleidl.h(2495): error C2061: syntax error: identifier 'LPMSG'
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\oleidl.h(4289): error C2061: syntax error: identifier 'LPMSG'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d9.h(448): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d9.h(448): error C2143: syntax error: missing ',' before '*'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d9.h(887): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d9.h(887): error C2143: syntax error: missing ',' before '*'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d9.h(2160): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d9.h(2160): error C2143: syntax error: missing ',' before '*'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d9.h(2264): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d9.h(2264): error C2143: syntax error: missing ',' before '*'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d9.h(2566): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3d9.h(2566): error C2143: syntax error: missing ',' before '*'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3dx9core.h(279): error C2065: 'LF_FACESIZE': undeclared identifier
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3dx9core.h(294): error C2065: 'LF_FACESIZE': undeclared identifier
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3dx9core.h(330): error C2061: syntax error: identifier 'TEXTMETRICA'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3dx9shape.h(196): error C2061: syntax error: identifier 'LPGLYPHMETRICSFLOAT'
+C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\d3dx9shape.h(207): error C2061: syntax error: identifier 'LPGLYPHMETRICSFLOAT'
+C:\Users\prest\Desktop\projects\c++\rmod\include\ext/imgui/custom/imgui_notify.h(510): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\prest\Desktop\projects\c++\rmod\include\ext/imgui/custom/imgui_notify.h(629): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\prest\Desktop\projects\c++\rmod\include\cheats\lua\../../../hooks/hooks.h(30): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\prest\Desktop\projects\c++\rmod\include\cheats\lua\../../../hooks/hooks.h(30): error C2143: syntax error: missing ',' before '*'
+C:\Users\prest\Desktop\projects\c++\rmod\include\cheats\lua\../../../hooks/hooks.h(46): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\prest\Desktop\projects\c++\rmod\include\cheats\lua\../../../hooks/hooks.h(46): error C2143: syntax error: missing ',' before '*'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(56): error C2664: 'LSTATUS RegOpenKeyExW(HKEY,LPCWSTR,DWORD,REGSAM,PHKEY)': cannot convert argument 2 from 'LPCSTR' to 'LPCWSTR'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(56): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\winreg.h(782): note: see declaration of 'RegOpenKeyExW'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(56): note: while trying to match the argument list '(HKEY, LPCSTR, int, long, HKEY *)'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(62): error C2664: 'LSTATUS RegSetValueExW(HKEY,LPCWSTR,DWORD,DWORD,const BYTE *,DWORD)': cannot convert argument 2 from 'LPCSTR' to 'LPCWSTR'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(62): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\winreg.h(1130): note: see declaration of 'RegSetValueExW'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(62): note: while trying to match the argument list '(HKEY, LPCSTR, int, unsigned long, const BYTE *, unsigned __int64)'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(119): error C2664: 'HINTERNET InternetOpenW(LPCWSTR,DWORD,LPCWSTR,LPCWSTR,DWORD)': cannot convert argument 1 from 'const char [20]' to 'LPCWSTR'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(119): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\wininet.h(905): note: see declaration of 'InternetOpenW'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(119): note: while trying to match the argument list '(const char [20], int, int, int, int)'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(136): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(135): warning C4267: 'argument': conversion from 'size_t' to 'DWORD', possible loss of data
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(202): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(244): error C2440: '=': cannot convert from 'char [256]' to 'LPCWSTR'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(244): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(248): error C2664: 'BOOL GetClassInfoExW(HINSTANCE,LPCWSTR,LPWNDCLASSEXW)': cannot convert argument 2 from 'char [256]' to 'LPCWSTR'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(248): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\winuser.h(4391): note: see declaration of 'GetClassInfoExW'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(248): note: while trying to match the argument list '(HINSTANCE, char [256], WNDCLASSEX *)'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(249): error C2664: 'BOOL UnregisterClassW(LPCWSTR,HINSTANCE)': cannot convert argument 1 from 'char [256]' to 'LPCWSTR'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(249): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\winuser.h(4313): note: see declaration of 'UnregisterClassW'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(249): note: while trying to match the argument list '(char [256], HINSTANCE)'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(284): error C2065: 'BLACK_BRUSH': undeclared identifier
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(284): error C3861: 'GetStockObject': identifier not found
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(286): error C2440: '=': cannot convert from 'char [256]' to 'LPCWSTR'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(286): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(290): error C2664: 'BOOL UnregisterClassW(LPCWSTR,HINSTANCE)': cannot convert argument 1 from 'char [256]' to 'LPCWSTR'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(290): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\winuser.h(4313): note: see declaration of 'UnregisterClassW'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(290): note: while trying to match the argument list '(char [256], HINSTANCE)'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(295): warning C4312: 'reinterpret_cast': conversion from 'DWORD' to 'const char *' of greater size
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(309): error C2664: 'HWND CreateWindowExW(DWORD,LPCWSTR,LPCWSTR,DWORD,int,int,int,int,HWND,HMENU,HINSTANCE,LPVOID)': cannot convert argument 2 from 'char [256]' to 'LPCWSTR'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(311): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\winuser.h(4439): note: see declaration of 'CreateWindowExW'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(309): note: while trying to match the argument list '(int, char [256], const char *, long, int, int, int, int, int, int, HINSTANCE, int)'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(325): warning C4312: 'reinterpret_cast': conversion from 'DWORD' to 'const char *' of greater size
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(326): error C2664: 'BOOL UnregisterClassW(LPCWSTR,HINSTANCE)': cannot convert argument 1 from 'char [256]' to 'LPCWSTR'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(326): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um\winuser.h(4313): note: see declaration of 'UnregisterClassW'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(326): note: while trying to match the argument list '(char [256], HINSTANCE)'
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(1051): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(1084): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\prest\Desktop\projects\c++\rmod\gui\gui.cpp(1168): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data

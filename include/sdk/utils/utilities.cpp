@@ -28,6 +28,18 @@ const char* utilities::host_cleanup_con_var_string_value(const char* str)
 	return host_cleanup_con_var_string_value(str);
 }
 
+void utilities::run_javascript(void* html_panel, const char* script)
+{
+	using run_javascript_fn = void(*)(void*, const char*);
+	static run_javascript_fn run_javascript = (run_javascript_fn)memory::pattern_scanner(xorstr("menusystem.dll"), xorstr("48 8B 89 ? ? ? ? 48 8B 01 48 FF 60 68"));
+
+	if (!run_javascript)
+		throw;
+
+	if (html_panel)
+		run_javascript(html_panel, script);
+}
+
 std::vector<std::string> utilities::get_files_from_folder(const std::string& path, const std::string& search, const std::string& search_extension)
 {
 	std::vector<std::string> list;

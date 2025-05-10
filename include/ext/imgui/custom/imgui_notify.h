@@ -49,7 +49,7 @@
 #define NOTIFY_RENDER_LIMIT					5			// Max number of toasts rendered at the same time. Set to 0 for unlimited
 
  // Warning: Requires ImGui docking with multi-viewport enabled
-#define NOTIFY_RENDER_OUTSIDE_MAIN_WINDOW	true		// If true, the notifications will be rendered in the corner of the monitor, otherwise in the corner of the main window
+#define NOTIFY_RENDER_OUTSIDE_MAIN_WINDOW	false		// If true, the notifications will be rendered in the corner of the monitor, otherwise in the corner of the main window
 
 /**
  * CONFIGURATION SECTION End
@@ -550,7 +550,6 @@ namespace ImGui
             ImGuiPlatformIO& platformIO = GetPlatformIO();
             ImGuiPlatformMonitor& monitor = platformIO.Monitors[mainMonitorId];
 
-            // Set notification window position to bottom right corner of the monitor
             SetNextWindowPos(ImVec2(monitor.WorkPos.x + monitor.WorkSize.x - NOTIFY_PADDING_X, monitor.WorkPos.y + monitor.WorkSize.y - NOTIFY_PADDING_Y - height), ImGuiCond_Always, ImVec2(1.0f, 1.0f));
 #else
             // Set notification window position to bottom right corner of the main window, considering the main window size and location in relation to the display

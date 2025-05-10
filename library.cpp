@@ -14,9 +14,9 @@
 
 /**
  * TODO:
-  * Bug fixes
-  * Ignore friends/team
-  * Fix skeleton ESP
+  * Bug fixes | 85%
+  * Ignore friends/whitelisted | Highest priority for targets | DONE
+  * Fix skeleton ESP | ???
  */
 
 HANDLE mainThread = nullptr;

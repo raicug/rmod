@@ -30,6 +30,8 @@ namespace raicu::hooks {
         inline HRESULT APIENTRY	present(IDirect3DDevice9* device, CONST RECT* src, CONST RECT* dest, HWND wnd_override, CONST RGNDATA* dirty_region);
         inline HRESULT APIENTRY	reset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* presentation_parameters);
 
+        inline void __fastcall html_panel_load_url(void* html_panel, const char* url);
+        inline int __fastcall html_panel_paint(void* html_panel);
         inline void __fastcall render_view(i_view_render* view_render, c_view_setup& view, int flags, int to_draw);
         inline void __fastcall paint_traverse(i_panel* panel, v_panel v_panel, bool force_repaint, bool allow_force);
         inline int __fastcall run_string_ex(c_lua_interface* lua, const char* filename, const char* path, const char* string_to_run, bool run, bool show_errors, bool dont_push_errors, bool no_returns);
@@ -46,6 +48,8 @@ namespace raicu::hooks {
             inline HRESULT(APIENTRY* present) (IDirect3DDevice9*, CONST RECT*, CONST RECT*, HWND, CONST RGNDATA*);
 
             inline void(__thiscall* render_view)(i_view_render*, c_view_setup&, int, int);
+            inline void(__thiscall* html_panel_load_url)(void*, const char*);
+            inline int(__thiscall* html_panel_paint)(void*);
             inline void(__thiscall* paint_traverse)(i_panel*, v_panel, bool, bool);
             inline int(__thiscall* run_string_ex)(c_lua_interface*, const char*, const char*, const char*, bool, bool, bool, bool);
             inline void(__thiscall* draw_model_execute)(c_model_render*, void*, model_render_info_t&, matrix3x4*);

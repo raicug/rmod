@@ -158,8 +158,6 @@ public:
 
     void run_string(char const* filename, char const* path, char const* string_to_run, bool run = true, bool show_errors = true)
     {
-        logger::Log(1, ("Executing script " + std::string(string_to_run)).c_str());
-
         return memory::call_v_function<void(__thiscall*)(c_lua_interface*, char const*, char const*, char const*, bool, bool)>(this, 92)(this, filename, path, string_to_run, run, show_errors);
     }
 };

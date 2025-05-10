@@ -21,26 +21,54 @@ This is for [Garry's Mod](https://store.steampowered.com/app/4000/Garrys_Mod/) x
 - **Backtrack**:
   - 1 second backtrack without fakeping ([cl_interp abuse](https://www.unknowncheats.me/forum/garry-s-mod/414371-cl_interp-abuse-1-backtrack-fakeping.html)) (not 100% accuracy)
   - Visualisation in the form of dots and lines
+  - Customizable colors
 
 ### ESP
-- Player name display
-- Origin points
-- Bounding boxes
-- Health indicators
-- Skeletal tracking
-- Distance markers
-- Configurable snaplines (Top, Center, Bottom screen positions)
-- Adjustable render distance (Default: 15000 units)
+- **Player Information**:
+  - Name display
+  - Origin points
+  - Bounding boxes
+  - Health indicators
+  - Weapon display
+  - Distance markers
+- **Visual Elements**:
+  - Skeletal tracking with customizable thickness
+  - Configurable snaplines (Top, Center, Bottom)
+  - Chams with material selection
+  - Wall penetration options
+- **Customization**:
+  - Adjustable render distance (Default: 15000 units)
+  - Individual color settings for all elements
+  - Team ESP toggle
+  - NPC ESP toggle
 
-### Additional Features
-- Custom crosshair system
-- FOV adjustment
-- Undetectable visual enhancements
+### Movement
+- Bunny hop assistance
+- Air strafe optimization
+
+### Interface Features
+- Custom crosshair system with:
+  - Adjustable size and offset
+  - Outline options
+  - Color customization
+- FOV circle visualization
+- Third person view:
+  - Adjustable distance
+  - Hotkey toggle
+- Custom FOV settings:
+  - View model FOV adjustment
+  - World FOV adjustment
+- Player and spectator lists
+- Console with color-coded logging:
+  - Info, Warning, Error, Fatal, Success messages
+  - Customizable colors
+- Loading screen customization
 
 ### LUA Integration
 - Dual-state support:
   - Client state
   - Menu state
+- Custom script input and execution
 
 ## Known Issues
 - Chams system currently disabled
@@ -53,6 +81,7 @@ This is for [Garry's Mod](https://store.steampowered.com/app/4000/Garrys_Mod/) x
 
 ## Notes
 - Some features may require additional configuration
+- Version: 1.0.0a
 
 ## Sources
 - [ImGui](https://github.com/ocornut/imgui)

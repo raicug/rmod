@@ -75,13 +75,12 @@ This is for [Garry's Mod](https://store.steampowered.com/app/4000/Garrys_Mod/) x
 - Skeleton system may experience stability issues
 
 ## Upcoming Features
-- Friend list integration
 - Team recognition system
 - General bug fixes and stability improvements
 
 ## Notes
 - Some features may require additional configuration
-- Version: 1.0.0a
+- Version: 1.0.5a
 
 ## Sources
 - [ImGui](https://github.com/ocornut/imgui)

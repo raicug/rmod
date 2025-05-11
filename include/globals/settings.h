@@ -71,6 +71,21 @@ namespace raicu::globals::settings {
         inline bool air_strafe = false;
     }
 
+    namespace chams {
+        inline bool enabled = false;
+        inline int material_type = 0;
+        inline bool draw_original_model = false;
+        inline bool ignore_walls = false;
+
+        inline ImVec4 playerColor = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
+
+        namespace localplr {
+            inline bool fakeModel = false;
+            inline ImVec4 fakeModelColor = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
+            inline int material_type = 0;
+        }
+    }
+
     namespace aimbot {
         inline bool enabled = false;
         inline hotkey_t hotkey;

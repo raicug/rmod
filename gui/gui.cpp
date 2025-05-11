@@ -603,10 +603,10 @@ const char *executorLuaState[]{
 };
 
 const char *materialList[]{
-	"Normal",
+	"Normal (no color)",
 	"Metal",
 	"Wireframe",
-	"Flag"
+	"Flat"
 };
 
 const char *snaplinePosition[]{
@@ -975,6 +975,35 @@ void raicu::gui::Render() noexcept {
 
 							ImGui::PopID();
 						}
+						if (strcmp(currentTab, "Visuals") == 0 && strcmp(current2Tab, "Chams") == 0) {
+							ImGui::PushID("Chams");
+							ImGui::Checkbox("Enabled", &raicu::globals::settings::chams::enabled);
+							ImGui::Checkbox("Draw original", &raicu::globals::settings::chams::draw_original_model);
+							ImGui::Checkbox("Ignore walls", &raicu::globals::settings::chams::ignore_walls);
+
+							ImGui::Combo("Material", &raicu::globals::settings::chams::material_type, materialList,
+										 IM_ARRAYSIZE(materialList));
+
+							ImGui::ColorEdit4(
+								"Player Color",
+								reinterpret_cast<float *>(&raicu::globals::settings::chams::playerColor),
+								ImGuiColorEditFlags_NoAlpha);
+
+							ImGui::PopID();
+
+							ImGui::SeparatorText("Local Player");
+							ImGui::PushID("LocalPlr_Chams");
+							ImGui::Checkbox("Fake model", &globals::settings::chams::localplr::fakeModel);
+							ImGui::Combo("Material", &raicu::globals::settings::chams::localplr::material_type, materialList,
+										 IM_ARRAYSIZE(materialList));
+
+							ImGui::ColorEdit4(
+								"Model Color",
+								reinterpret_cast<float *>(&raicu::globals::settings::chams::localplr::fakeModelColor),
+								ImGuiColorEditFlags_NoAlpha);
+
+							ImGui::PopID();
+						}
 
 						/* --- APPEARANCE --- */
 						if (strcmp(currentTab, "Appearance") == 0 && strcmp(current2Tab, "Main") == 0) {
@@ -1126,10 +1155,9 @@ void raicu::gui::Render() noexcept {
 							ImGui::Checkbox("Enable", &globals::settings::aimbot::backtrackEnabled);
 							ImGui::SliderFloat("Backtrack", &raicu::globals::settings::aimbot::backtrack, 0.f, 1.f,
 							                   "%.3f ms", ImGuiSliderFlags_NoInput);
-							//ImGui::Combo("Material", &raicu::globals::settings::aimbot::backtrackMaterial, materialList, IM_ARRAYSIZE(materialList));
+							ImGui::Combo("Material", &raicu::globals::settings::aimbot::backtrackMaterial, materialList, IM_ARRAYSIZE(materialList));
 							ImGui::ColorEdit4("Colour", reinterpret_cast<float *>(&raicu::globals::settings::aimbot::backtrackColor),
 								ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoAlpha);
-
 
 							ImGui::PopID();
 						}

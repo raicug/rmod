@@ -11,7 +11,7 @@ enum material_var_flags_t
 	material_var_selfillum = (1 << 6),
 	material_var_additive = (1 << 7),
 	material_var_alphatest = (1 << 8),
-	material_var_multipass = (1 << 9),
+	material_var_pseudo_translucent = (1 << 9),
 	material_var_znearer = (1 << 10),
 	material_var_model = (1 << 11),
 	material_var_flat = (1 << 12),
@@ -20,8 +20,8 @@ enum material_var_flags_t
 	material_var_ignorez = (1 << 15),
 	material_var_decal = (1 << 16),
 	material_var_envmapsphere = (1 << 17),
-	material_var_noalphamod = (1 << 18),
-	material_var_envmapcameraspace = (1 << 19),
+	material_var_envmapcameraspace = (1 << 18),
+	material_var_basetexture = (1 << 19),
 	material_var_basealphaenvmapmask = (1 << 20),
 	material_var_translucent = (1 << 21),
 	material_var_normalmapalphaenvmapmask = (1 << 22),
@@ -32,8 +32,10 @@ enum material_var_flags_t
 	material_var_halflambert = (1 << 27),
 	material_var_wireframe = (1 << 28),
 	material_var_allowalphatocoverage = (1 << 29),
-	material_var_ignore_alpha_modulation = (1 << 30),
+	material_var_alpha_modified_by_proxy = (1 << 30),
+	material_var_vertexfog = (1 << 31)
 };
+
 
 class i_material
 {

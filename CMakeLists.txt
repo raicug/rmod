@@ -142,7 +142,9 @@ set(CHEATS_SOURCES
         public/d3d9_includes.h
         hooks/handles/html_panel/load_url.h
         hooks/handles/client_mode_shared/override_view.h
-        hooks/handles/html_panel/paint.h)
+        hooks/handles/html_panel/paint.h
+        include/cheats/Visuals/Chams.cpp
+        include/cheats/Visuals/Chams.h)
 
 add_library(rmod SHARED
         library.cpp

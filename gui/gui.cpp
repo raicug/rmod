@@ -982,7 +982,7 @@ void raicu::gui::Render() noexcept {
 							ImGui::Checkbox("Ignore walls", &raicu::globals::settings::chams::ignore_walls);
 
 							ImGui::Combo("Material", &raicu::globals::settings::chams::material_type, materialList,
-										 IM_ARRAYSIZE(materialList));
+							             IM_ARRAYSIZE(materialList));
 
 							ImGui::ColorEdit4(
 								"Player Color",
@@ -994,8 +994,9 @@ void raicu::gui::Render() noexcept {
 							ImGui::SeparatorText("Local Player");
 							ImGui::PushID("LocalPlr_Chams");
 							ImGui::Checkbox("Fake model", &globals::settings::chams::localplr::fakeModel);
-							ImGui::Combo("Material", &raicu::globals::settings::chams::localplr::material_type, materialList,
-										 IM_ARRAYSIZE(materialList));
+							ImGui::Combo("Material", &raicu::globals::settings::chams::localplr::material_type,
+							             materialList,
+							             IM_ARRAYSIZE(materialList));
 
 							ImGui::ColorEdit4(
 								"Model Color",

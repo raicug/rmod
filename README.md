@@ -88,7 +88,6 @@ This is for [Garry's Mod](https://store.steampowered.com/app/4000/Garrys_Mod/) x
 
 ## Notes
 - Some features may require additional configuration
-- Version: 1.0.5a
 
 ## Sources
 - [ImGui](https://github.com/ocornut/imgui)

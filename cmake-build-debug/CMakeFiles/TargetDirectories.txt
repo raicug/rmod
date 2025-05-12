@@ -1,3 +1,0 @@
-C:/Users/prest/Desktop/projects/c++/rmod/cmake-build-debug/CMakeFiles/rmod.dir
-C:/Users/prest/Desktop/projects/c++/rmod/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/prest/Desktop/projects/c++/rmod/cmake-build-debug/CMakeFiles/rebuild_cache.dir

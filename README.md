@@ -42,6 +42,15 @@ This is for [Garry's Mod](https://store.steampowered.com/app/4000/Garrys_Mod/) x
   - Team ESP toggle
   - NPC ESP toggle
 
+### Chams
+- Ignore walls
+- Draw original model
+- player colour
+- Material type
+- **False Model**
+  - Colour
+  - Material type
+
 ### Movement
 - Bunny hop assistance
 - Air strafe optimization
@@ -71,7 +80,6 @@ This is for [Garry's Mod](https://store.steampowered.com/app/4000/Garrys_Mod/) x
 - Custom script input and execution
 
 ## Known Issues
-- Chams system currently disabled
 - Skeleton system may experience stability issues
 
 ## Upcoming Features

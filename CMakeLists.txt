@@ -4,10 +4,10 @@ project(rmod)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Set output directories
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
+# Set output directories SDFDSFODSFDSIOHN
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/ass")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/ass")
 
 set(DIRECTX_SDK_DIR "C:/Program Files (x86)/Microsoft DirectX SDK (June 2010)")
 
@@ -31,9 +31,16 @@ if (MSVC)
     add_compile_options(
             /WX-
             /wd4244
+            /MT
     )
 
     set(CMAKE_GENERATOR_PLATFORM x64)
+
+    foreach (flag_var
+            CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
+            CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
+        string(REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
+    endforeach ()
 else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libgcc -static-libstdc++")
 endif ()
@@ -62,26 +69,24 @@ set(IMGUI_SOURCES
         include/ext/imgui/imconfig.h
         include/ext/imgui/imgui.cpp
         include/ext/imgui/imgui.h
-        include/ext/imgui/imgui_demo.cpp
         include/ext/imgui/imgui_draw.cpp
         include/ext/imgui/imgui_internal.h
         include/ext/imgui/imgui_tables.cpp
         include/ext/imgui/imgui_widgets.cpp
-        include/ext/imgui/implot.cpp
-        include/ext/imgui/implot.h
-        include/ext/imgui/implot_demo.cpp
-        include/ext/imgui/implot_internal.h
-        include/ext/imgui/implot_items.cpp
         include/ext/imgui/imstb_rectpack.h
         include/ext/imgui/imstb_textedit.h
         include/ext/imgui/imstb_truetype.h
+
         include/ext/imgui/custom/imgui_notify.h
         include/ext/imgui/custom/TextEditor.cpp
         include/ext/imgui/custom/TextEditor.h
         include/ext/imgui/backends/imgui_impl_dx9.cpp
         include/ext/imgui/backends/imgui_impl_dx9.h
         include/ext/imgui/backends/imgui_impl_win32.cpp
-        include/ext/imgui/backends/imgui_impl_win32.h)
+        include/ext/imgui/backends/imgui_impl_win32.h
+        gui/framework/draw_gui.cpp
+        gui/framework/draw_gui.h
+)
 
 set(ENCODING_SOURCES
         include/encoding/randstr.cpp
@@ -144,7 +149,13 @@ set(CHEATS_SOURCES
         hooks/handles/client_mode_shared/override_view.h
         hooks/handles/html_panel/paint.h
         include/cheats/Visuals/Chams.cpp
-        include/cheats/Visuals/Chams.h)
+        include/cheats/Visuals/Chams.h
+        include/cheats/obs_bypass/obs_bypass.cpp
+        include/cheats/obs_bypass/obs_bypass.h
+        hooks/handles/prediction/run_command.h
+        gui/framework/helpers/custom.cpp
+        gui/framework/helpers/custom.h
+        gui/framework/helpers/icons_bytes.h)
 
 add_library(rmod SHARED
         library.cpp

@@ -74,14 +74,22 @@ public:
 		return memory::call_v_function<bool(__thiscall *)(void *)>(this, 172)(this);
 	}
 
+	int observer_mode() {
+		return ((uintptr_t)this + 0x2cc4);
+	}
+
+	int observer_target() {
+		return ((uintptr_t)this + 0x2cc8);
+	}
+
 	uintptr_t get_hands()
 	{
-		return ((uintptr_t)this + 0x40); // DT_GMOD_Player, Prop: m_Hands
+		return ((uintptr_t)this + 0x3918); // DT_GMOD_Player, Prop: m_Hands
 	}
 
 	uintptr_t get_view_model()
 	{
-		return ((uintptr_t)this + 0x2da0); // DT_GMOD_Player, Prop: m_hViewModel[0]
+		return ((uintptr_t)this + 0x2dd8); // DT_GMOD_Player, Prop: m_hViewModel[0]
 	}
 
 	int get_flags()
@@ -101,17 +109,21 @@ public:
 
 	int get_tick_base()
 	{
-		return *(int *)((uintptr_t)this + 0x110); // DT_BasePlayer, Prop: m_nTickBase
+		return *(int *)((uintptr_t)this + 0x2d90); // DT_BasePlayer, Prop: m_nTickBase
 	}
 
 	int hitbox_set()
 	{
-		return *(int *)((uintptr_t)this + 0x16D8); // DT_GMOD_Player 0x16d8
+		return *(int *)((uintptr_t)this + 0x16D8); // DT_GMOD_Player, Prop: m_nHitboxSet
 	}
 
 	int get_move_type()
 	{
 		return *(int*)((uintptr_t)this + 0x1F4);
+	}
+
+	int get_ping() {
+		return *(int*)((uintptr_t)this + 0x1ad0); // DT_PlayerResource, Prop: m_nPing
 	}
 
 	bool &client_side_animation()
@@ -121,7 +133,7 @@ public:
 
 	q_angle &get_punch_angle()
 	{
-		return *(q_angle *)((uintptr_t)this + 0x110); // DT_GMOD_Player, Prop: m_vecPunchAngle,
+		return *(q_angle *)((uintptr_t)this + 0x2a20); // DT_GMOD_Player, Prop: m_vecPunchAngle,
 	}
 
 	// https://s10.gifyu.com/images/Sr48V.png

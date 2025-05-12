@@ -3,13 +3,19 @@
 #include <globals/settings.h>
 #include <cheats/misc/misc.h>
 
+#include "cheats/obs_bypass/obs_bypass.h"
+
 void __fastcall raicu::hooks::handles::render_view(i_view_render* view_render, c_view_setup& view, int flags, int to_draw){
 
     if (globals::settings::other::custom_view_model_fov)
         view.fov_view_model = globals::settings::other::custom_view_model_fov_value;
 
+    if (globals::settings::other::freecam || globals::settings::other::freecam_hotkey.check())
+        misc_cheats::free_cam(view, view.origin);
+
     misc_cheats::third_person(view);
     raicu::globals::settings::view_origin = view.origin;
 
     originals::render_view(view_render, view, flags, to_draw);
+    obs_bypass::render_view(view_render, view, flags, to_draw);
 }

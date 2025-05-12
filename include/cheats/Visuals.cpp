@@ -92,7 +92,7 @@ void Visuals::Render() {
 				Visuals::DrawSnapline(static_cast<int>(i),
 				                      Drawing::ToColor(&espValues::snapLineColor));
 			if (espValues::origin) Visuals::DrawOrigin(static_cast<int>(i), Drawing::ToColor(&espValues::originColor));
-			//if (espValues::weapon) Visuals::DrawWeapon(static_cast<int>(i), offset);
+			if (espValues::showTeam) Visuals::DrawTeam(static_cast<int>(i), offset);
 			if (espValues::name) Visuals::DrawName(static_cast<int>(i), offset);
 			if (espValues::distance) Visuals::DrawDistance(static_cast<int>(i), offset, distance);
 			if (espValues::box) Visuals::Drawbox(static_cast<int>(i));
@@ -184,6 +184,34 @@ void Visuals::DrawName(int CurrentEnt, float &offset) {
     		Drawing::Text(display_name, worldtoscreenent.x - (width / 2.f), worldtoscreenent.y,
 						 Drawing::ToColor(&raicu::globals::settings::espValues::nameColor), offset);
     	}
+    }
+}
+
+void Visuals::DrawTeam(int CurrentEnt, float &offset) {
+	c_vector out;
+    player_info_t pinfo;
+    c_vector worldtoscreenent, currentOrg;
+
+    c_base_entity *current = interfaces::entity_list->get_entity(CurrentEnt);
+    currentOrg = current->get_abs_origin();
+
+    if (utilities::world_to_screen(currentOrg, &worldtoscreenent)) {
+        interfaces::engine->get_player_info(CurrentEnt, &pinfo);
+
+        if (strlen(pinfo.name) == 0) {
+            return;
+        }
+    	const char* TeamName = lua_utilities::get_team_name(current);
+    	int length = strlen(TeamName);
+        float width = (length * 13) / 2.f;
+
+    	char* modifiable = new char[strlen(TeamName) + 1];
+    	strcpy(modifiable, TeamName);
+
+    	Drawing::Text(modifiable, worldtoscreenent.x - (width / 2.f), worldtoscreenent.y,
+						 Drawing::ToColor(&raicu::globals::settings::espValues::nameColor), offset);
+
+		delete[] modifiable;
     }
 }
 
@@ -444,63 +472,7 @@ void Visuals::DrawOrigin(int CurrentEnt, ImU32 color) {
 	Drawing::Circle(screen_pos.x, screen_pos.y, 5.f, color, 5, 2.f);
 }
 
-void Visuals::DrawBacktrack(int entityIndex) {
-	c_base_entity *entity = interfaces::entity_list->get_entity(entityIndex);
-	if (!entity || !entity->is_player() || !entity->is_alive())
-		return;
-
-	void *model = entity->get_client_renderable()->get_model();
-	if (!model)
-		return;
-
-	studiohdr_t *studio_hdr = interfaces::model_info->get_studio_model(model);
-	if (!studio_hdr)
-		return;
-
-	auto &track = history::records[entityIndex];
-	if (track.empty()) {
-		return;
-	}
-
-	float current_time = utilities::ticks_to_time(interfaces::global_vars->tick_count);
-
-	for (const auto &record: track) {
-		float time_difference = current_time - record.arrive_time;
-		if (time_difference > globals::settings::aimbot::backtrack)
-			continue;
-
-		if (!history::can_restore_to_simulation_time(record.simulation_time))
-			continue;
-
-		c_vector screen_pos;
-		static c_vector last_screen_pos;
-		static bool had_last_pos = false;
-
-		if (utilities::world_to_screen(record.origin, &screen_pos)) {
-			float alpha = 1.0f - (time_difference / globals::settings::aimbot::backtrack);
-			alpha = std::clamp(alpha, 0.2f, 1.0f);
-
-			ImColor color = Drawing::ToColor(&globals::settings::aimbot::backtrackColor);
-			color.Value.w = alpha;
-
-			if (had_last_pos && false) {
-				Drawing::Line(
-					last_screen_pos.x, last_screen_pos.y,
-					screen_pos.x, screen_pos.y,
-					color,
-					1.0f
-				);
-			}
-
-			Drawing::Circle(screen_pos.x, screen_pos.y, 3.0f, color, 100, 1.0f);
-
-			last_screen_pos = screen_pos;
-			had_last_pos = true;
-		} else {
-			had_last_pos = false;
-		}
-	}
-}
+void Visuals::DrawBacktrack(int entityIndex) {}
 
 void Visuals::DrawAimbotFOV(float fovSize) {
 	ImGuiIO &io = ImGui::GetIO();

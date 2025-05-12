@@ -35,4 +35,34 @@ namespace lua {
 
         lua->run_string("", "", scriptCopy.c_str());
     }
+
+    void dumper(const std::string& filename, const std::string& string_to_run) {
+        if (!globals::settings::other::dumper)
+            return;
+
+        c_net_channel* net_c = interfaces::engine->get_net_channel();
+        if (!net_c)
+            return;
+
+        std::string address = net_c->get_address();
+        std::replace(address.begin(), address.end(), ':', '_');
+        std::replace(address.begin(), address.end(), '.', '-');
+
+        std::regex forbidden(xorstr("[^a-zA-Z0-9_\\-]"));
+        std::regex_replace(filename, forbidden, "");
+
+        std::filesystem::path path = xorstr("C:/R-GMOD/lua-dumps/") + address + xorstr("/");
+        path /= filename;
+
+        if (!std::filesystem::exists(path.parent_path()) || !std::filesystem::is_directory(path.parent_path()))
+            std::filesystem::create_directories(path.parent_path());
+
+        std::ofstream file(path);
+
+        if (!file.is_open())
+            return;
+
+        file << string_to_run << std::endl;
+        file.close();
+    }
 }

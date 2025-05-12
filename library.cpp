@@ -33,6 +33,9 @@ void UninjectSelf(HMODULE instance) {
         mainThread = nullptr;
     }
 
+    // Small delay to allow any pending operations to complete
+    Sleep(100);  // 100ms delay
+
     FreeLibraryAndExitThread(instance, 0);
 }
 

@@ -21,6 +21,11 @@ void __fastcall raicu::hooks::handles::create_move(c_hl_client* client, int sequ
 
 	c_user_cmd old_cmd = *cmd;
 
+	raicu::globals::settings::last_cmd = *cmd;
+
+	if (settings::other::freecam)
+		cmd->buttons = 0, cmd->forward_move = cmd->side_move = cmd->up_move = 0.f, cmd->view_angles = old_cmd.view_angles;
+
 	engine_prediction::start(cmd);
 	aimbot::run(cmd);
 	engine_prediction::end(cmd);

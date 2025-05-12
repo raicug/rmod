@@ -35,6 +35,10 @@
 #include <cheats/lua/lua.h>
 
 #include "cheats/aimbot/backtrack/history.h"
+#include "fonts/fa-solid-900.h"
+#include "framework/draw_gui.h"
+#include "framework/helpers/icons_bytes.h"
+#include "framework/helpers/custom.h"
 #include "helpers/hotkey.h"
 
 #pragma comment(lib, "wininet.lib")
@@ -202,7 +206,7 @@ struct ConsoleLog {
 		bool clear = ImGui::Button("Clear");
 		ImGui::Separator();
 
-		if (ImGui::BeginChild("scrolling", ImVec2(0, 0), ImGuiChildFlags_None, ImGuiWindowFlags_HorizontalScrollbar)) {
+		if (ImGui::BeginChild("scrolling", ImVec2(0, 0), ImGuiWindowFlags_HorizontalScrollbar)) {
 			if (clear) Clear();
 
 			ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
@@ -268,6 +272,7 @@ bool raicu::gui::SetupWindowClass(const char *windowClassName) noexcept {
 
 void raicu::gui::DestroyWindowClass() noexcept {
 	UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
+	logger::Log(logger::LOGGER_LEVEL_SUCCESS, "Destroyed Window Class");
 }
 
 bool raicu::gui::SetupWindow(const char *windowName) noexcept {
@@ -342,6 +347,7 @@ bool raicu::gui::SetupWindow(const char *windowName) noexcept {
 
 void raicu::gui::DestroyWindow() noexcept {
 	if (window) DestroyWindow(window);
+	logger::Log(logger::LOGGER_LEVEL_SUCCESS, "Destroyed Window");
 }
 
 bool raicu::gui::SetupDirectX() noexcept {
@@ -424,15 +430,23 @@ bool raicu::gui::SetupDirectX() noexcept {
 
 void raicu::gui::DestroyDirectX() noexcept {
 	if (device) {
+		device->EndScene();
+
+		device->Present(nullptr, nullptr, nullptr, nullptr);
+
 		device->Release();
 		device = nullptr;
 	}
+
 
 	if (d3d9) {
 		d3d9->Release();
 		d3d9 = nullptr;
 	}
+
+	logger::Log(logger::LOGGER_LEVEL_SUCCESS, "Destroyed DirectX");
 }
+
 
 void raicu::gui::Setup() {
 	logger::Log(1, "Doing setup");
@@ -478,9 +492,14 @@ void raicu::gui::SetupMenu(LPDIRECT3DDEVICE9 device) noexcept {
 	io.Fonts->AddFontDefault();
 
 	ImFontConfig cfg;
+	cfg.PixelSnapH = false;
 	cfg.FontDataOwnedByAtlas = false;
+	cfg.OversampleV = 5;
+	cfg.OversampleH = 5;
+	cfg.RasterizerMultiply = 1.f;
+
 	if (ImFont *newDefault = io.Fonts->AddFontFromMemoryTTF(
-		(void *) inter,
+		(void *)inter,
 		inter_len,
 		16.0f,
 		&cfg
@@ -490,6 +509,15 @@ void raicu::gui::SetupMenu(LPDIRECT3DDEVICE9 device) noexcept {
 	} else {
 		logger::Log(logger::LOGGER_LEVEL_WARNING, "Failed to load custom font, using default");
 	}
+
+	static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+	ImFontConfig icons_config;
+	icons_config.MergeMode = true;
+	icons_config.PixelSnapH = true;
+	icons_config.FontDataOwnedByAtlas = false;
+
+	io.Fonts->AddFontFromMemoryCompressedTTF(fa_solid_900_compressed_data, fa_solid_900_compressed_size, 16.0f, &icons_config, icons_ranges);
+	io.Fonts->Build();
 
 	if (!ImGui_ImplWin32_Init(window)) {
 		logger::Log(logger::LOGGER_LEVEL_ERROR, "Failed to initialize ImGui Win32 backend");
@@ -508,18 +536,42 @@ void raicu::gui::SetupMenu(LPDIRECT3DDEVICE9 device) noexcept {
 }
 
 void raicu::gui::Destroy() noexcept {
+	logger::Log(logger::LOGGER_LEVEL_INFO, "Destroying GUI");
+
+	custom.cleanup();
+
+	if (device) {
+		device->SetRenderState(D3DRS_ZENABLE, FALSE);
+		device->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+		device->SetRenderState(D3DRS_SCISSORTESTENABLE, FALSE);
+	}
+
 	if (imguiInitialized) {
+		if (ImGui::GetCurrentContext() && ImGui::GetCurrentContext()->WithinFrameScope) {
+			ImGui::EndFrame();
+			ImGui::Render();
+		}
+
 		ImGui_ImplDX9_Shutdown();
 		ImGui_ImplWin32_Shutdown();
+		logger::Log(logger::LOGGER_LEVEL_SUCCESS, "ImGui shutdown");
+
 		ImGui::DestroyContext();
+		logger::Log(logger::LOGGER_LEVEL_SUCCESS, "ImGui context destroyed");
 		imguiInitialized = false;
 	}
 
-	if (window && originalWindowProcess)
+	if (window && originalWindowProcess) {
 		SetWindowLongPtr(window, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(originalWindowProcess));
+		window = nullptr;
+		originalWindowProcess = nullptr;
+	}
 
+	logger::Log(logger::LOGGER_LEVEL_SUCCESS, "Window reset");
 
 	DestroyDirectX();
+
+	logger::Log(logger::LOGGER_LEVEL_SUCCESS, "Destroyed GUI fully");
 }
 
 void ShowLog() {
@@ -533,7 +585,7 @@ void ShowLog() {
 	gConsoleLog.Draw("Console");
 }
 
-bool g_needsLogin = true;
+bool g_needsLogin = false;
 
 void ShowLogin() {
 	std::wstring regKey;
@@ -638,7 +690,7 @@ const char *topTabsAppearance[] = {"Main", "Console Colours"};
 const char *topTabsLua[] = {"Main"};
 const char *topTabsWorld[] = {"Aimbot", "Movement", "Players", "Misc"};
 const char *topTabsConfig[] = {"Loading", "Saving"};
-const char *topTabsGame[] = {"Loading Screen"};
+const char *topTabsGame[] = {"Loading Screen", "LUA"};
 
 const char **topTabsArray[] = {topTabsVisuals, topTabsAppearance, topTabsLua, topTabsConfig, topTabsWorld, topTabsGame};
 int topTabSizes[] = {
@@ -732,18 +784,15 @@ void ShowSpectators() {
 		std::string names = "";
 		for (int i = 0; i < interfaces::engine->get_max_clients(); i++) {
 			c_base_entity *currentEntity = interfaces::entity_list->get_entity(i);
-			if (currentEntity == nullptr || !currentEntity->is_player() || currentEntity == interfaces::entity_list->
-			    get_entity(interfaces::engine->get_local_player()))
+			if (currentEntity == nullptr || !currentEntity->is_player() || currentEntity == interfaces::entity_list->get_entity(interfaces::engine->get_local_player()))
+				continue;
+			if (currentEntity->observer_target() != interfaces::engine->get_local_player())
 				continue;
 
-			if (currentEntity->GetObserverTarget() == interfaces::entity_list->get_entity(
-				    interfaces::engine->get_local_player()))
-				continue;
+			player_info_s info;
+			interfaces::engine->get_player_info(i, &info);
 
-			player_info_s pinfo;
-			interfaces::engine->get_player_info(i, &pinfo);
-
-			names += std::to_string(*pinfo.name) + "\n";
+			names += std::string(info.name) + "\n";
 		}
 		ImGui::GetStyle().ItemSpacing = ImVec2(4, 2);
 		ImGui::GetStyle().WindowPadding = ImVec2(4, 4);
@@ -801,6 +850,8 @@ void render_keybinds_window() {
 }
 
 void raicu::gui::Render() noexcept {
+	if (!device) return;
+
 	IDirect3DStateBlock9 *stateBlock = nullptr;
 
 	if (SUCCEEDED(device->CreateStateBlock(D3DSBT_ALL, &stateBlock)))
@@ -818,11 +869,13 @@ void raicu::gui::Render() noexcept {
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
-	raicu::gui::themes::setFluentUITheme();
+	ImGui::StyleColorsDark();
+	//raicu::gui::themes::setFluentUITheme();
 
 	if (g_needsLogin) {
 		ShowLogin();
 	} else {
+
 		ShowLog();
 		render_keybinds_window();
 
@@ -841,657 +894,33 @@ void raicu::gui::Render() noexcept {
 			configLoading = false;
 		}
 
-		if (raicu::globals::settings::open) {
-			ImGui::SetNextWindowSize(ImVec2(650, 450));
-
-			ImGui::Begin("RMOD", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse); {
-				static int selectedSidebar = 0;
-				static int selectedTopTabs[IM_ARRAYSIZE(sidebarTabs)] = {0};
-
-				ImGui::BeginChild("Sidebar##mainui", ImVec2(150, 0), true); {
-					for (int i = 0; i < IM_ARRAYSIZE(sidebarTabs); i++) {
-						if (ImGui::Selectable(sidebarTabs[i], selectedSidebar == i)) {
-							selectedSidebar = i;
-						}
-					}
-					ImGui::SetCursorPosY(ImGui::GetWindowSize().y - ImGui::GetTextLineHeightWithSpacing() - 5);
-					ImGui::Text(raicu::globals::settings::version.c_str());
-				}
-				ImGui::EndChild();
-
-				ImGui::SameLine();
-
-				ImGui::BeginGroup(); {
-					const char **currentTopTabs = topTabsArray[selectedSidebar];
-					int currentTopTabCount = topTabSizes[selectedSidebar];
-					int &currentTopTab = selectedTopTabs[selectedSidebar];
-
-					ImGui::BeginChild("Topbar", ImVec2(0, 40), true); {
-						for (int i = 0; i < currentTopTabCount; i++) {
-							if (i > 0) ImGui::SameLine(); // Add space between buttons
-							if (ImGui::Button(currentTopTabs[i])) {
-								currentTopTab = i;
-							}
-						}
-					}
-					ImGui::EndChild();
-
-					const char *currentTab = sidebarTabs[selectedSidebar];
-					const char *current2Tab = currentTopTabs[currentTopTab];
-
-					ImGui::Separator();
-
-					ImGui::BeginChild("VisualsSection", ImVec2(0, 360), true); {
-						// ImGui::Text("Welcome to %s | %s", currentTab, current2Tab); // DEBUGGING
-						ImGui::PushItemWidth(350);
-
-						/* --- VISUALS --- */
-						if (strcmp(currentTab, "Visuals") == 0 && strcmp(current2Tab, "FOV") == 0) {
-							ImGui::PushID("FOV");
-
-							ImGui::Checkbox("Enabled", &raicu::globals::settings::other::enableFov);
-							ImGui::SliderFloat("Size", &raicu::globals::settings::other::fovSize, 0.f, 180.f, "%.1f");
-							ImGui::ColorEdit4(
-								"Color", reinterpret_cast<float *>(&raicu::globals::settings::other::fovColor));
-
-							ImGui::PopID();
-						}
-						if (strcmp(currentTab, "Visuals") == 0 && strcmp(current2Tab, "Crosshair") == 0) {
-							ImGui::PushID("Crosshair");
-
-							ImGui::Checkbox("Enabled", &raicu::globals::settings::crosshairValues::enabled);
-							ImGui::Checkbox("Outline Enabled",
-							                &raicu::globals::settings::crosshairValues::outlineEnabled);
-
-							ImGui::SliderFloat("Outline Thickness",
-							                   &raicu::globals::settings::crosshairValues::outlineThickness, 0.0f,
-							                   10.0f,
-							                   "%.2f");
-							ImGui::SliderFloat("Rounding", &raicu::globals::settings::crosshairValues::rounding, 0.0f,
-							                   10.0f, "%.2f");
-
-							ImGui::SliderFloat("Width", &raicu::globals::settings::crosshairValues::width, 0.1f, 100.0f,
-							                   "%.1f");
-							ImGui::SliderFloat("Height", &raicu::globals::settings::crosshairValues::height, 0.1f,
-							                   100.0f,
-							                   "%.1f");
-							ImGui::SliderFloat("Offset", &raicu::globals::settings::crosshairValues::offset, -100.0f,
-							                   100.0f, "%.1f");
-
-							ImGui::ColorEdit4(
-								"Color", reinterpret_cast<float *>(&raicu::globals::settings::crosshairValues::color),
-								ImGuiColorEditFlags_NoAlpha);
-							ImGui::ColorEdit4("Outline Color",
-							                  reinterpret_cast<float *>(&
-								                  raicu::globals::settings::crosshairValues::outlineColor),
-							                  ImGuiColorEditFlags_NoAlpha);
-
-							ImGui::PopID();
-						}
-						if (strcmp(currentTab, "Visuals") == 0 && strcmp(current2Tab, "ESP") == 0) {
-							ImGui::PushID("ESP");
-
-							ImGui::Checkbox("Enabled", &raicu::globals::settings::espValues::enabled);
-							ImGui::Columns(2, "GeneralESPGrid", false);
-
-							ImGui::Checkbox("Health", &raicu::globals::settings::espValues::health);
-							ImGui::Checkbox("Distance", &raicu::globals::settings::espValues::distance);
-							ImGui::Checkbox("Box", &raicu::globals::settings::espValues::box);
-							ImGui::Checkbox("Weapon", &raicu::globals::settings::espValues::weapon);
-							ImGui::NextColumn();
-							ImGui::Checkbox("Origin", &raicu::globals::settings::espValues::origin);
-							ImGui::Checkbox("Name", &raicu::globals::settings::espValues::name);
-							ImGui::Checkbox("Snapline", &raicu::globals::settings::espValues::snapline);
-							ImGui::Checkbox("Skeleton", &globals::settings::espValues::skeleton);
-							if (ImGui::IsItemHovered()) {
-								ImGui::SetTooltip("PRONE TO CRASHING ON LARGE SERVERS");
-							}
-
-							ImGui::Columns(1);
-
-							ImGui::Combo("Snapline Position", &raicu::globals::settings::espValues::snaplinePosition,
-							             snaplinePosition, IM_ARRAYSIZE(snaplinePosition));
-							ImGui::SliderInt("Render Distance", &raicu::globals::settings::espValues::render_distance,
-							                 1000,
-							                 30000);
-
-							ImGui::ColorEdit4(
-								"Snapline",
-								reinterpret_cast<float *>(&raicu::globals::settings::espValues::snapLineColor),
-								ImGuiColorEditFlags_NoAlpha);
-							ImGui::ColorEdit4(
-								"Origin", reinterpret_cast<float *>(&raicu::globals::settings::espValues::originColor),
-								ImGuiColorEditFlags_NoAlpha);
-							ImGui::ColorEdit4(
-								"Name", reinterpret_cast<float *>(&raicu::globals::settings::espValues::nameColor),
-								ImGuiColorEditFlags_NoAlpha);
-							ImGui::ColorEdit4(
-								"Box", reinterpret_cast<float *>(&raicu::globals::settings::espValues::boxColor),
-								ImGuiColorEditFlags_NoAlpha);
-							ImGui::ColorEdit4(
-								"Skeleton",
-								reinterpret_cast<float *>(&raicu::globals::settings::espValues::skeletonColor),
-								ImGuiColorEditFlags_NoAlpha);
-
-							ImGui::PopID();
-						}
-						if (strcmp(currentTab, "Visuals") == 0 && strcmp(current2Tab, "Chams") == 0) {
-							ImGui::PushID("Chams");
-							ImGui::Checkbox("Enabled", &raicu::globals::settings::chams::enabled);
-							ImGui::Checkbox("Draw original", &raicu::globals::settings::chams::draw_original_model);
-							ImGui::Checkbox("Ignore walls", &raicu::globals::settings::chams::ignore_walls);
-
-							ImGui::Combo("Material", &raicu::globals::settings::chams::material_type, materialList,
-							             IM_ARRAYSIZE(materialList));
-
-							ImGui::ColorEdit4(
-								"Player Color",
-								reinterpret_cast<float *>(&raicu::globals::settings::chams::playerColor),
-								ImGuiColorEditFlags_NoAlpha);
-
-							ImGui::PopID();
-
-							ImGui::SeparatorText("Local Player");
-							ImGui::PushID("LocalPlr_Chams");
-							ImGui::Checkbox("Fake model", &globals::settings::chams::localplr::fakeModel);
-							ImGui::Combo("Material", &raicu::globals::settings::chams::localplr::material_type,
-							             materialList,
-							             IM_ARRAYSIZE(materialList));
-
-							ImGui::ColorEdit4(
-								"Model Color",
-								reinterpret_cast<float *>(&raicu::globals::settings::chams::localplr::fakeModelColor),
-								ImGuiColorEditFlags_NoAlpha);
-
-							ImGui::PopID();
-						}
-
-						/* --- APPEARANCE --- */
-						if (strcmp(currentTab, "Appearance") == 0 && strcmp(current2Tab, "Main") == 0) {
-							ImGui::Checkbox("Enable console", &raicu::globals::settings::consoleOpen);
-							ImGui::Checkbox("Enable logging notifications",
-							                &raicu::globals::settings::loggerNotifications);
-						}
-						if (strcmp(currentTab, "Appearance") == 0 && strcmp(current2Tab, "Console Colours") == 0) {
-							ImGui::ColorEdit4("INFO Color",
-							                  reinterpret_cast<float *>(&
-								                  raicu::globals::settings::consoleLogColours::infoColor),
-							                  ImGuiColorEditFlags_NoAlpha);
-							ImGui::ColorEdit4("WARNING Color",
-							                  reinterpret_cast<float *>(&
-								                  raicu::globals::settings::consoleLogColours::warningColor),
-							                  ImGuiColorEditFlags_NoAlpha);
-							ImGui::ColorEdit4("ERROR Color",
-							                  reinterpret_cast<float *>(&
-								                  raicu::globals::settings::consoleLogColours::errorColor),
-							                  ImGuiColorEditFlags_NoAlpha);
-							ImGui::ColorEdit4("FATAL Color",
-							                  reinterpret_cast<float *>(&
-								                  raicu::globals::settings::consoleLogColours::fatalColor),
-							                  ImGuiColorEditFlags_NoAlpha);
-							ImGui::ColorEdit4("SUCCESS Color",
-							                  reinterpret_cast<float *>(&
-								                  raicu::globals::settings::consoleLogColours::successColor),
-							                  ImGuiColorEditFlags_NoAlpha);
-							ImGui::ColorEdit4("UNKNOWN Color",
-							                  reinterpret_cast<float *>(&
-								                  raicu::globals::settings::consoleLogColours::unknownColor),
-							                  ImGuiColorEditFlags_NoAlpha);
-						}
-
-						/* --- LUA --- */
-						if (strcmp(currentTab, "Lua") == 0 && strcmp(current2Tab, "Main") == 0) {
-							ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4, 2));
-
-							editor.Render("##Source", ImVec2(460, 310)); {
-								raicu::globals::settings::lua::ScriptInput = editor.GetText();
-							}
-
-							bool executePressed = false;
-
-							float inputWidth = 460.0f;
-							float buttonWidth = inputWidth * 0.45f;
-							float comboWidth = inputWidth * 0.85f;
-
-							ImGui::PushItemWidth(buttonWidth);
-							if (ImGui::Button("Execute")) executePressed = true;
-							ImGui::SameLine();
-
-							ImGui::PushItemWidth(comboWidth);
-							ImGui::Combo("##State", &raicu::globals::settings::lua::executeState, executorLuaState,
-							             IM_ARRAYSIZE(executorLuaState));
-
-							if (executePressed) {
-								std::lock_guard<std::mutex> lock(lua::executionData.mutex);
-								lua::executionData.script = globals::settings::lua::ScriptInput;
-								lua::executionData.waiting.store(true);
-								ImGui::InsertNotification({
-									ImGuiToastType::Success, 3000, "Executed script successfully!"
-								});
-							}
-
-							ImGui::PopItemWidth();
-							ImGui::PopItemWidth();
-
-							ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 5.f);
-
-							ImGui::PopStyleVar();
-						}
-
-						/* --- CONFIG --- */
-						if (strcmp(currentTab, "Config") == 0 && strcmp(current2Tab, "Loading") == 0) {
-							ImGui::PushID("Config - Loading");
-
-							configs = ConfigManager::GetAllConfigs();
-
-							if (!configs.empty()) {
-								if (ImGui::BeginCombo("Select Config",
-								                      selectedConfig[0] ? selectedConfig : "Select...")) {
-									for (const auto &config: configs) {
-										bool isSelected = (strcmp(selectedConfig, config.c_str()) == 0);
-										if (ImGui::Selectable(config.c_str(), isSelected)) {
-											strcpy_s(selectedConfig, config.c_str());
-										}
-										if (isSelected) {
-											ImGui::SetItemDefaultFocus();
-										}
-									}
-									ImGui::EndCombo();
-								}
-
-								if (ImGui::Button("Load Config")) {
-									if (selectedConfig[0] != '\0') {
-										configLoading = true;
-										ConfigManager::Load(selectedConfig);
-									}
-								}
-							} else {
-								ImGui::TextDisabled("You have no configs! Go onto the \"Saving\" tab first!");
-							}
-
-							ImGui::PopID();
-						}
-						if (strcmp(currentTab, "Config") == 0 && strcmp(current2Tab, "Saving") == 0) {
-							ImGui::PushID("Config - Saving");
-							ImGui::InputText("Config name", newConfigName, IM_ARRAYSIZE(newConfigName));
-
-							if (ImGui::Button("Save Config")) {
-								if (newConfigName[0] != '\0') {
-									ConfigManager::Save(std::string(newConfigName) + ".json");
-									configs = ConfigManager::GetAllConfigs();
-									strcpy_s(selectedConfig, newConfigName);
-								}
-							}
-							ImGui::PopID();
-						}
-
-						/* --- WORLD --- */
-						if (strcmp(currentTab, "World") == 0 && strcmp(current2Tab, "Aimbot") == 0) {
-							ImGui::PushID("Aimbot");
-
-							ImGui::Checkbox("Enabled", &raicu::globals::settings::aimbot::enabled);
-							raicu::gui::other::hotkey("Aimbot", &raicu::globals::settings::aimbot::hotkey);
-
-							ImGui::Columns(2, "AimbotGrid", false);
-
-							ImGui::Checkbox("Silent", &raicu::globals::settings::aimbot::silent);
-							ImGui::Checkbox("Line to target", &raicu::globals::settings::aimbot::visualise_target_line);
-							ImGui::NextColumn();
-							ImGui::Checkbox("Trigger Fire", &raicu::globals::settings::aimbot::automatic_fire);
-							ImGui::Checkbox("Penetrate walls", &raicu::globals::settings::aimbot::penetrate_walls);
-
-							ImGui::Columns(1);
-
-							ImGui::Combo("Hitbox", &raicu::globals::settings::aimbot::hitbox, aimbot_hitboxes,
-							             IM_ARRAYSIZE(aimbot_hitboxes));
-							ImGui::Combo("Priority", &raicu::globals::settings::aimbot::priority, aimbot_priorities,
-							             IM_ARRAYSIZE(aimbot_priorities));
-
-							ImGui::SeparatorText("Accuracy");
-							ImGui::Checkbox("Predict spread", &raicu::globals::settings::aimbot::predict_spread);
-							ImGui::SliderFloat("Smooth", &raicu::globals::settings::aimbot::smooth, 0.f, 20.f, "%.1f",
-							                   ImGuiSliderFlags_NoInput);
-
-							ImGui::SeparatorText("Backtrack");
-							ImGui::Checkbox("Enable", &globals::settings::aimbot::backtrackEnabled);
-							ImGui::SliderFloat("Backtrack", &raicu::globals::settings::aimbot::backtrack, 0.f, 1.f,
-							                   "%.3f ms", ImGuiSliderFlags_NoInput);
-							ImGui::Combo("Material", &raicu::globals::settings::aimbot::backtrackMaterial, materialList, IM_ARRAYSIZE(materialList));
-							ImGui::ColorEdit4("Colour", reinterpret_cast<float *>(&raicu::globals::settings::aimbot::backtrackColor),
-								ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoAlpha);
-
-							ImGui::PopID();
-						}
-						if (strcmp(currentTab, "World") == 0 && strcmp(current2Tab, "Movement") == 0) {
-							ImGui::PushID("Movement");
-
-							ImGui::Checkbox("Bunny Hop", &raicu::globals::settings::movement::bhop);
-							ImGui::Checkbox("Air Strafe", &raicu::globals::settings::movement::air_strafe);
-
-							ImGui::PopID();
-						}
-						if (strcmp(currentTab, "World") == 0 && strcmp(current2Tab, "Players") == 0) {
-							ImGui::PushID("Player List");
-							static int selected_player = -1;
-							static char search_buffer[128] = "";
-
-							int player_count = 0;
-							for (size_t i = 0; i <= interfaces::engine->get_max_clients(); i++) {
-								c_base_entity *entity = interfaces::entity_list->get_entity(static_cast<int>(i));
-								if (entity && entity->is_player()) {
-									player_info_t temp_info;
-									if (interfaces::engine->get_player_info(i, &temp_info) && strlen(temp_info.name) >
-									    0) {
-										player_count++;
-									}
-								}
-							}
-
-							ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "Players Online (%d)", player_count - 1);
-							static bool show_friends_only = false;
-							static bool show_whitelisted_only = false;
-							static bool show_targets_only = false;
-
-							ImGui::Checkbox("Show Friends Only", &show_friends_only);
-							ImGui::SameLine();
-							ImGui::Checkbox("Show Whitelisted Only", &show_whitelisted_only);
-							ImGui::SameLine();
-							ImGui::Checkbox("Show Targets Only", &show_targets_only);
-
-							if (ImGui::Button("Clear friends")) {
-								globals::settings::friend_list = {};
-							}
-							ImGui::SameLine();
-							if (ImGui::Button("Clear whitelist")) {
-								globals::settings::whitelist = {};
-							}
-							ImGui::SameLine();
-							if (ImGui::Button("Clear targets")) {
-								globals::settings::target_list = {};
-							}
-
-							// ImGui::Checkbox("Spectator list", &raicu::globals::settings::other::spectatorList);
-
-							ImGui::InputTextWithHint("##SearchPlayer", "Search by name...", search_buffer,
-							                         IM_ARRAYSIZE(search_buffer));
-							ImGui::Separator();
-
-							player_info_t pinfo;
-
-							if (ImGui::BeginChild("##PlayerList", ImVec2(0, 200), true)) {
-								for (size_t i = 0; i <= interfaces::engine->get_max_clients(); i++) {
-									c_base_entity *entity = interfaces::entity_list->get_entity(static_cast<int>(i));
-									if (!entity) {
-										continue;
-									}
-
-									if (entity->is_player()) {
-										if (entity == interfaces::entity_list->get_entity(
-											    interfaces::engine->get_local_player()))
-											continue;
-
-										if (interfaces::engine->get_player_info(i, &pinfo)) {
-											if (strlen(pinfo.name) > 0) {
-												std::string name_lower = pinfo.name;
-												std::string search_lower = search_buffer;
-												std::transform(name_lower.begin(), name_lower.end(), name_lower.begin(),
-												               ::tolower);
-												std::transform(search_lower.begin(), search_lower.end(),
-												               search_lower.begin(), ::tolower);
-												if (!search_lower.empty() && name_lower.find(search_lower) ==
-												    std::string::npos) {
-													continue;
-												}
-
-												bool is_whitelisted = false;
-												if (raicu::globals::settings::whitelist.contains("players")) {
-													const auto &players = raicu::globals::settings::whitelist[
-														"players"];
-													is_whitelisted = std::any_of(players.begin(), players.end(),
-														[&pinfo](const nlohmann::json &player) {
-															return player["name"] == pinfo.name;
-														});
-												}
-
-												bool is_friend = false;
-												if (raicu::globals::settings::friend_list.contains("players")) {
-													const auto &players = raicu::globals::settings::friend_list[
-														"players"];
-													is_friend = std::any_of(players.begin(), players.end(),
-													                        [&pinfo](const nlohmann::json &player) {
-														                        return player["name"] == pinfo.name;
-													                        });
-												}
-												bool is_target = false;
-												if (raicu::globals::settings::target_list.contains("players")) {
-													const auto &players = raicu::globals::settings::target_list[
-														"players"];
-													is_target = std::any_of(players.begin(), players.end(),
-													                        [&pinfo](const nlohmann::json &player) {
-														                        return player["name"] == pinfo.name;
-													                        });
-												}
-
-												bool should_display = true;
-												if (show_friends_only && show_whitelisted_only) {
-													should_display =
-															is_friend || is_whitelisted || (
-																is_friend && is_whitelisted);
-												} else if (show_friends_only) {
-													should_display = is_friend;
-												} else if (show_whitelisted_only) {
-													should_display = is_whitelisted;
-												} else if (show_targets_only) {
-													should_display = is_target;
-												}
-
-												if (!should_display) {
-													continue;
-												}
-
-												ImGui::PushID(static_cast<int>(i));
-
-												std::string display_name = pinfo.name;
-
-												if (is_target) {
-													display_name += " [TARGET]";
-												}
-												if (is_whitelisted) {
-													display_name += " [WHITELISTED]";
-												}
-												if (is_friend) {
-													display_name += " [FRIEND]";
-												}
-
-												if (is_whitelisted && is_friend) {
-													ImGui::PushStyleColor(
-														ImGuiCol_Text, ImVec4(1.0f, 1.0f, 0.0f, 1.0f));
-												} else if (is_whitelisted) {
-													ImGui::PushStyleColor(
-														ImGuiCol_Text, ImVec4(0.0f, 1.0f, 0.0f, 1.0f));
-												} else if (is_friend) {
-													ImGui::PushStyleColor(
-														ImGuiCol_Text, ImVec4(0.0f, 1.0f, 1.0f, 1.0f));
-												} else if (is_target) {
-													ImGui::PushStyleColor(
-														ImGuiCol_Text, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
-												}
-
-												if (player_count % 2 == 0) {
-													ImGui::PushStyleColor(
-														ImGuiCol_Header, ImVec4(0.2f, 0.2f, 0.2f, 0.55f));
-													ImGui::PushStyleColor(
-														ImGuiCol_HeaderHovered, ImVec4(0.3f, 0.3f, 0.3f, 0.55f));
-												} else {
-													ImGui::PushStyleColor(
-														ImGuiCol_Header, ImVec4(0.15f, 0.15f, 0.15f, 0.55f));
-													ImGui::PushStyleColor(
-														ImGuiCol_HeaderHovered, ImVec4(0.25f, 0.25f, 0.25f, 0.55f));
-												}
-
-												if (ImGui::Selectable(display_name.c_str(), selected_player == i)) {
-													selected_player = i;
-													ImGui::OpenPopup("PlayerOptions");
-												}
-
-												if (ImGui::BeginPopup("PlayerOptions")) {
-													ImGui::Text("Player: %s", pinfo.name);
-													ImGui::Separator();
-
-													if (ImGui::MenuItem("Whitelist player", nullptr, is_whitelisted)) {
-														if (is_whitelisted) {
-															if (raicu::globals::settings::whitelist.
-																contains("players")) {
-																auto &players = raicu::globals::settings::whitelist[
-																	"players"];
-																players.erase(
-																	std::remove_if(players.begin(), players.end(),
-																		[&pinfo](const nlohmann::json &player) {
-																			return player["name"] == pinfo.name;
-																		}
-																	),
-																	players.end()
-																);
-															}
-														} else {
-															if (!raicu::globals::settings::whitelist.
-																contains("players")) {
-																raicu::globals::settings::whitelist["players"] =
-																		nlohmann::json::array();
-															}
-
-															nlohmann::json player_entry;
-															player_entry["name"] = pinfo.name;
-															player_entry["index"] = i;
-
-															raicu::globals::settings::whitelist["players"].push_back(
-																player_entry);
-														}
-													}
-
-													if (ImGui::MenuItem("Mark player as friend", nullptr, is_friend)) {
-														if (is_friend) {
-															if (raicu::globals::settings::friend_list.contains(
-																"players")) {
-																auto &friends = raicu::globals::settings::friend_list[
-																	"players"];
-																friends.erase(
-																	std::remove_if(friends.begin(), friends.end(),
-																		[&pinfo](const nlohmann::json &player) {
-																			return player["name"] == pinfo.name;
-																		}
-																	),
-																	friends.end()
-																);
-															}
-														} else {
-															if (!raicu::globals::settings::friend_list.contains(
-																"players")) {
-																raicu::globals::settings::friend_list["players"] =
-																		nlohmann::json::array();
-															}
-
-															nlohmann::json player_entry;
-															player_entry["name"] = pinfo.name;
-															player_entry["index"] = i;
-
-															raicu::globals::settings::friend_list["players"].push_back(
-																player_entry);
-														}
-													}
-
-													if (ImGui::MenuItem("Mark player as target", nullptr, is_target)) {
-														if (is_target) {
-															if (raicu::globals::settings::target_list.contains(
-																"players")) {
-																auto &friends = raicu::globals::settings::target_list[
-																	"players"];
-																friends.erase(
-																	std::remove_if(friends.begin(), friends.end(),
-																		[&pinfo](const nlohmann::json &player) {
-																			return player["name"] == pinfo.name;
-																		}
-																	),
-																	friends.end()
-																);
-															}
-														} else {
-															if (!raicu::globals::settings::target_list.contains(
-																"players")) {
-																raicu::globals::settings::target_list["players"] =
-																		nlohmann::json::array();
-															}
-
-															nlohmann::json player_entry;
-															player_entry["name"] = pinfo.name;
-															player_entry["index"] = i;
-
-															raicu::globals::settings::target_list["players"].push_back(
-																player_entry);
-														}
-													}
-
-													ImGui::EndPopup();
-												}
-
-												if (ImGui::IsItemHovered()) {
-													ImGui::BeginTooltip();
-													ImGui::Text("Player Index: %d", i);
-													ImGui::EndTooltip();
-												}
-
-												ImGui::PopStyleColor(2);
-												if (is_whitelisted || is_friend || is_target) {
-													ImGui::PopStyleColor();
-												}
-												ImGui::PopID();
-											}
-										}
-									}
-								}
-							}
-
-							ImGui::EndChild();
-							ImGui::PopID();
-						}
-						if (strcmp(currentTab, "World") == 0 && strcmp(current2Tab, "Misc") == 0) {
-							ImGui::PushID("Misc");
-
-							ImGui::Checkbox("Third Person", &globals::settings::other::third_person);
-							other::hotkey("3rd Person", &globals::settings::other::third_person_hotkey);
-							ImGui::SliderInt("Distance", &globals::settings::other::third_person_distance, 10, 200);
-							ImGui::Separator();
-
-							ImGui::Checkbox("FOV", &globals::settings::other::custom_fov);
-							ImGui::SliderFloat("Value##1", &globals::settings::other::custom_fov_value, 50, 179, "%.1f", ImGuiSliderFlags_NoInput);
-							ImGui::Separator();
-
-							ImGui::Checkbox("Model FOV", &globals::settings::other::custom_view_model_fov);
-							ImGui::SliderFloat("Value##2", &globals::settings::other::custom_view_model_fov_value, 30, 150, "%.1f", ImGuiSliderFlags_NoInput);
-
-							ImGui::PopID();
-						}
-
-						/* --- GAME --- */
-						if (strcmp(currentTab, "Game") == 0 && strcmp(current2Tab, "Loading Screen") == 0) {
-							ImGui::PushID("Loading Screen");
-							ImGui::TextDisabled("NOT TESTED, MAY OR MAY NOT WORK");
-							ImGui::Checkbox("Enable", &globals::settings::loading_screen::enabled);
-							ImGui::InputTextWithHint("Loading Screen", "asset://garrysmod/html/menu.html",
-							                         reinterpret_cast<char *>(&globals::settings::loading_screen::url),
-							                         IM_ARRAYSIZE(globals::settings::loading_screen::url));
-
-							ImGui::PopID();
-						}
-
-
-						ImGui::PopItemWidth();
-					}
-					ImGui::EndChild();
-				}
-				ImGui::EndGroup();
+		float fps = ImGui::GetIO().Framerate;
+
+		int ping = 0;
+		if (interfaces::engine->is_in_game() && interfaces::engine->is_connected()) {
+			c_base_entity* local_player = interfaces::entity_list->get_entity(interfaces::engine->get_local_player());
+			if (local_player) {
+				ping = local_player->get_ping();
 			}
-			ImGui::End();
+		}
+
+		ImGui::SetNextWindowSize(ImVec2(200, 30));
+		ImGui::Begin("##StatsOverlay", nullptr,
+			ImGuiWindowFlags_NoTitleBar |
+			ImGuiWindowFlags_NoResize |
+			ImGuiWindowFlags_NoScrollbar
+		);
+
+		char stats[64];
+		char title[32];
+		snprintf(stats, sizeof(stats), "RMOD [%dms] | [%.0f fps]", ping, fps);
+		snprintf(title, sizeof(title), "RMOD [%dms]", ping);
+		ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), "%s", stats);
+
+		ImGui::End();
+
+		if (raicu::globals::settings::open) {
+			framework::gui::draw(); // NEW GUI TESTING
 		}
 	}
 
@@ -1574,7 +1003,6 @@ void raicu::gui::other::hotkey(const char *label, hotkey_t *hotkey) {
 		globals::settings::hotkeys::registered_hotkeys.push_back({label, hotkey});  // Just pass the pointer directly
 	}
 
-
 	ImGuiWindow *window = ImGui::GetCurrentWindow();
 	/*if (window->SkipItems)
 		return;*/
@@ -1607,7 +1035,7 @@ void raicu::gui::other::hotkey(const char *label, hotkey_t *hotkey) {
 	if (!ImGui::ItemAdd(total_bb, id))
 		return;
 
-	const bool hovered = ImGui::ItemHoverable(total_bb, id, 0);
+	const bool hovered = ImGui::ItemHoverable(total_bb, id);
 	if (hovered)
 		ImGui::SetHoveredID(id);
 

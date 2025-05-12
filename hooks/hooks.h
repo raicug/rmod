@@ -42,6 +42,7 @@ namespace raicu::hooks {
         inline bool write_user_cmd_delta_to_buffer(c_hl_client* client, void* buf, int from, int to, bool is_new_command);
         inline int __fastcall send_datagram(c_net_channel* net_channel, void* datagram);
         inline bool __fastcall send_net_msg(c_net_channel* net_channel, i_net_message& msg, bool force_reliable, bool voice);
+        inline void __fastcall	run_command(i_prediction* prediction, c_base_entity* player, c_user_cmd* cmd, void* move_helper);
 
         namespace originals {
 			inline WNDPROC wndproc = nullptr;
@@ -60,6 +61,7 @@ namespace raicu::hooks {
             inline bool(*write_user_cmd_delta_to_buffer)(c_hl_client*, void*, int, int, bool);
             inline int(__thiscall* send_datagram)(c_net_channel*, void*);
             inline bool(__thiscall* send_net_msg)(c_net_channel*, i_net_message&, bool, bool);
+            inline void(__fastcall* run_command) (i_prediction*, c_base_entity*, c_user_cmd*, void*);
         }
     }
 }

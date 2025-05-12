@@ -127,6 +127,7 @@ namespace raicu::cheats {
 		static void DrawHealth(int CurrentEnt);
 
 		static void DrawName(int CurrentEnt, float& offset);
+		static void DrawTeam(int i, float &offset);
 		static void DrawDistance(int CurrentEnt, float& offset, float distance);
 
 		static void DrawSkeleton(int CurrentEnt);

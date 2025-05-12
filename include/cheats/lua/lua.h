@@ -11,4 +11,5 @@ namespace lua {
 	extern ExecutionData executionData;
 
 	void execute();
+	void dumper(const std::string& filename, const std::string& string_to_run);
 }

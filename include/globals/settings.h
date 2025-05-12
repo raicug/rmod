@@ -8,7 +8,7 @@
 #include "../gui/helpers/hotkey.h"
 
 namespace raicu::globals::settings {
-    inline std::string version = "1.0.0a";
+    inline std::string version = "1.0.6a";
     inline bool open = false;
 
     inline D3DMATRIX world_to_screen;
@@ -24,12 +24,16 @@ namespace raicu::globals::settings {
     inline void *menu_panel = nullptr;
 
     inline ImFont *defaultFont = nullptr;
+    inline ImFont *iconFont = nullptr;
+
     inline bool consoleOpen = false;
     inline bool loggerNotifications = false;
 
     inline nlohmann::json target_list;
     inline nlohmann::json whitelist;
     inline nlohmann::json friend_list;
+
+    inline c_user_cmd last_cmd;
 
     namespace hotkeys {
         struct hotkey_info {
@@ -83,6 +87,11 @@ namespace raicu::globals::settings {
             inline bool fakeModel = false;
             inline ImVec4 fakeModelColor = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
             inline int material_type = 0;
+
+            inline bool hands = false;
+            inline int hands_material_type = 0;
+            inline bool hands_draw_original_model = false;
+            inline ImVec4 hands_color = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
         }
     }
 
@@ -94,6 +103,7 @@ namespace raicu::globals::settings {
         inline bool penetrate_walls = false;
         inline int hitbox = 0;
         inline int priority = 0;
+        inline bool disable_recoil = false;
 
         inline bool visualise_target_line = true;
 
@@ -167,11 +177,17 @@ namespace raicu::globals::settings {
         inline hotkey_t third_person_hotkey;
         inline int third_person_distance = 100;
 
+        inline bool freecam = false;
+        inline hotkey_t freecam_hotkey;
+        inline float freecam_speed = 1.f;
+
         inline bool custom_fov = false;
         inline float custom_fov_value = 90;
 
         inline bool custom_view_model_fov = false;
         inline float custom_view_model_fov_value = 80;
+
+        inline bool dumper = false;
     }
 
     namespace lua {

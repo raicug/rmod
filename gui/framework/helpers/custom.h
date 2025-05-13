@@ -25,19 +25,19 @@ public:
     std::vector < const char* > visuals_subtabs = { "FOV", "Crosshair", "ESP", "Chams" };
 
     int m_apperance_subtab = 0;
-    std::vector < const char* > appearance_subtabs = { "Main", "Console Colors" };
+    std::vector<const char *> appearance_subtabs = {"Main"};
 
     int m_lua_subtab = 0;
     std::vector < const char* > lua_subtabs = { "Main" };
 
     int m_config_subtab = 0;
-    std::vector < const char* > config_subtabs = { "Loading", "Saving" };
+    std::vector<const char *> config_subtabs = {"Main"};
 
     int m_world_subtab = 0;
     std::vector < const char* > world_subtabs = { "Aimbot", "Movement", "Players", "Misc" };
 
     int m_game_subtab = 0;
-    std::vector < const char* > game_subtabs = { "Loading Screen", "LUA" };
+    std::vector<const char *> game_subtabs = {"Main"};
 
     const char *executorLuaState[3]{ "Client", "Server", "Menu"};
 
@@ -48,6 +48,8 @@ public:
     const char *aimbot_hitboxes[4]{ "Head", "Chest", "Stomach", "Hitscan" };
 
     const char *aimbot_priorities[3]{ "Fov", "Distance", "Health" };
+
+    void topbar_setup(std::vector<const char *> a, int &b);
 
     float col_buf[4] = { 1.f, 1.f, 1.f, 1.f };
 

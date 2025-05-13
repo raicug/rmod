@@ -198,7 +198,7 @@ struct ConsoleLog {
 	void Draw(const char *title) {
 		if (!raicu::globals::settings::consoleOpen) return;
 
-		if (!ImGui::Begin(title, nullptr)) {
+		if (!ImGui::Begin(title, nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse)) {
 			ImGui::End();
 			return;
 		}
@@ -578,7 +578,7 @@ void ShowLog() {
 	ImGui::SetNextWindowSize(ImVec2(425, 300), ImGuiCond_Once);
 
 	if (raicu::globals::settings::consoleOpen) {
-		ImGui::Begin("Console", nullptr, ImGuiWindowFlags_NoResize);
+		ImGui::Begin("Console", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
 		ImGui::End();
 	}
 
@@ -643,10 +643,6 @@ void ShowLogin() {
 
 	ImGui::End();
 }
-
-std::vector<std::string> configs;
-static char selectedConfig[256] = "";
-static char newConfigName[256] = "";
 
 const char *executorLuaState[]{
 	"Client",
@@ -883,7 +879,7 @@ void raicu::gui::Render() noexcept {
 		ShowPlayers();
 		ShowSpectators();
 
-		if (!editorInited) {
+			if (!editorInited) {
 			editor.SetLanguageDefinition(TextEditor::LanguageDefinition::Lua());
 			editor.SetText(raicu::globals::settings::lua::ScriptInput);
 			editorInited = true;
@@ -920,7 +916,7 @@ void raicu::gui::Render() noexcept {
 		ImGui::End();
 
 		if (raicu::globals::settings::open) {
-			framework::gui::draw(); // NEW GUI TESTING
+			framework::gui::draw(editor); // NEW GUI TESTING
 		}
 	}
 
@@ -1007,7 +1003,7 @@ void raicu::gui::other::hotkey(const char *label, hotkey_t *hotkey) {
 	/*if (window->SkipItems)
 		return;*/
 
-	ImGui::SameLine();
+	ImGui::SameLine(ImGui::GetWindowWidth() - 33);
 
 	ImGuiContext &g = *GImGui;
 	const ImGuiStyle &style = g.Style;
@@ -1028,8 +1024,7 @@ void raicu::gui::other::hotkey(const char *label, hotkey_t *hotkey) {
 
 	const ImVec2 text_size = ImGui::CalcTextSize(text, NULL, true);
 
-	const ImRect total_bb(ImVec2(pos.x + 120.f - (text_size.x + 10.f), pos.y - style.FramePadding.y + 8.f),
-	                      ImVec2(pos.x + width, pos.y + text_size.y));
+	const ImRect total_bb(ImVec2(pos.x + width - (text_size.x + 10.f), pos.y - style.FramePadding.y), ImVec2(pos.x + width, pos.y + text_size.y));
 
 	ImGui::ItemSize(total_bb);
 	if (!ImGui::ItemAdd(total_bb, id))

@@ -176,7 +176,7 @@ void c_custom::begin_child( const char* name, ImVec2 size ) {
 
     BeginChild( std::string( name ).append( ".main" ).c_str( ), size, false, ImGuiWindowFlags_NoScrollbar );
 
-    GetWindowDrawList( )->AddRectFilled( pos, pos + size, to_vec4( 28, 30, 36, custom.m_anim ), 4 );
+    GetWindowDrawList( )->AddRectFilled( pos, pos + size, IM_COL32(28, 30, 36, (int)(custom.m_anim * 255)), 4 );
     GetWindowDrawList( )->AddText( pos + ImVec2( 10, 8 ), custom.get_accent_color( custom.m_anim ), name, FindRenderedTextEnd( name ) );
 
     SetCursorPosY( 30 );
@@ -195,4 +195,19 @@ void c_custom::end_child( ) {
     EndGroup( );
     EndChild( );
     EndChild( );
+}
+
+void c_custom::topbar_setup(std::vector<const char*> a, int& b) {
+    SetCursorPos(ImVec2(70, 13));
+    BeginGroup();
+
+    for (int i = 0; i < a.size(); ++i) {
+        if (custom.sub_tab(a.at(i), b == i) && b != i)
+            b = i, custom.m_anim = 0.f;
+
+        if (i != a.size() - 1)
+            SameLine();
+    }
+
+    EndGroup();
 }

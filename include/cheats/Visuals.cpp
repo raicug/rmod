@@ -38,9 +38,9 @@ void Visuals::Render() {
 		DrawAimbotFOV(other::fovSize);
 	if (crosshairValues::enabled)
 		DrawCrosshair(
-			crosshairValues::width, // Width
-			crosshairValues::height, // Height
-			crosshairValues::offset, // Offset
+			(int)crosshairValues::width, // Width
+			(int)crosshairValues::height, // Height
+			(int)crosshairValues::offset, // Offset
 			Drawing::ToColor(&crosshairValues::color), // Main Color
 			crosshairValues::rounding, // Rounding
 			crosshairValues::outlineEnabled, // Outline?
@@ -106,28 +106,38 @@ void Visuals::Render() {
 	}
 }
 
-void Visuals::DrawCrosshair(float width, float length, float offset, ImU32 color, float rounding, bool outline,
+void Visuals::DrawCrosshair(int width, int length, int offset, ImU32 color, float rounding, bool outline,
                             ImU32 outlineColor, float outlineThickness) {
-	ImGuiIO &io = ImGui::GetIO();
-	float w = io.DisplaySize.x;
-	float h = io.DisplaySize.y;
+	int w, h;
+	interfaces::engine->get_screen_size(w, h);
 
 	float x = w / 2.f, y = h / 2.f;
 
 	if (crosshairValues::outlineEnabled) {
-		Drawing::OutlineFilledBox(x - width / 2.f, y - offset - length, width, length, color, outlineColor,
-		                          outlineThickness, rounding);
-		Drawing::OutlineFilledBox(x + offset, y - width / 2.f, length, width, color, outlineColor, outlineThickness,
-		                          rounding);
-		Drawing::OutlineFilledBox(x - width / 2.f, y + offset, width, length, color, outlineColor, outlineThickness,
-		                          rounding);
-		Drawing::OutlineFilledBox(x - offset - length, y - width / 2.f, length, width, color, outlineColor,
-		                          outlineThickness, rounding);
+		Drawing::OutlineFilledBox(
+				x - width / 2.f, y - offset - length, // X, Y
+				(float)width, (float)length, color, outlineColor, outlineThickness, rounding);
+		Drawing::OutlineFilledBox(
+			x + offset, y - width / 2.f,
+			(float)length, (float)width, color, outlineColor, outlineThickness, rounding);
+		Drawing::OutlineFilledBox(
+			x - width / 2.f, y + offset,
+			(float)width, (float)length, color, outlineColor, outlineThickness, rounding);
+		Drawing::OutlineFilledBox(x - offset - length, y - width / 2.f,
+			(float)length, (float)width, color, outlineColor, outlineThickness, rounding);
 	} else {
-		Drawing::BoxFilled(x - width / 2.f, y - offset - length, width, length, color, rounding);
-		Drawing::BoxFilled(x + offset, y - width / 2.f, length, width, color, rounding);
-		Drawing::BoxFilled(x - width / 2.f, y + offset, width, length, color, rounding);
-		Drawing::BoxFilled(x - offset - length, y - width / 2.f, length, width, color, rounding);
+		Drawing::BoxFilled(
+				x - width / 2.f, y - offset - length, // X, Y
+				(float)width, (float)length, color, rounding);
+		Drawing::BoxFilled(
+			x + offset, y - width / 2.f,
+			(float)length, (float)width, color, rounding);
+		Drawing::BoxFilled(
+			x - width / 2.f, y + offset,
+			(float)width, (float)length, color, rounding);
+		Drawing::BoxFilled(
+			x - offset - length, y - width / 2.f,
+			(float)length, (float)width, color, rounding);
 	}
 }
 

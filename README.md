@@ -96,3 +96,30 @@ This is for [Garry's Mod](https://store.steampowered.com/app/4000/Garrys_Mod/) x
 - [xorstr](https://github.com/JustasMasiulis/xorstr)
 - [CLion](https://www.jetbrains.com/clion/)
 - [UnknownCheats](https://www.unknowncheats.me/forum/garry-s-mod/)
+
+## Showcase
+
+### Visuals
+<p float="left">
+  <img src="https://github.com/raicug/rmod/blob/master/images/Visuals%20-%20FOV.png?raw=true" width="200" />
+  <img src="https://github.com/raicug/rmod/blob/master/images/Visuals%20-%20Crosshair.png?raw=true" width="200" />
+  <img src="https://github.com/raicug/rmod/blob/master/images/Visuals%20-%20ESP.png?raw=true" width="200" />
+  <img src="https://github.com/raicug/rmod/blob/master/images/Visuals%20-%20Chams.png?raw=true" width="200" />
+</p>
+
+### Appearance
+<img src="https://github.com/raicug/rmod/blob/master/images/Appearance.png?raw=true" width="400" />
+
+### LUA
+<img src="https://github.com/raicug/rmod/blob/master/images/LUA.png?raw=true" width="400" />
+
+### World
+<p float="left">
+  <img src="https://github.com/raicug/rmod/blob/master/images/World%20-%20Aimbot.png?raw=true" width="200" />
+  <img src="https://github.com/raicug/rmod/blob/master/images/World%20-%20Movement.png?raw=true" width="200" />
+  <img src="https://github.com/raicug/rmod/blob/master/images/World%20-%20Players.png?raw=true" width="200" />
+  <img src="https://github.com/raicug/rmod/blob/master/images/World%20-%20Misc.png?raw=true" width="200" />
+</p>
+
+### Game
+<img src="https://github.com/raicug/rmod/blob/master/images/Game.png?raw=true" width="400" />

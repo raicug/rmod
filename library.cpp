@@ -24,8 +24,10 @@ bool running = true;
 
 void UninjectSelf(HMODULE instance) {
     running = false;
+
     raicu::hooks::Destroy();
     raicu::gui::Destroy();
+
     logger::Log(1, "DLL Uninjected");
 
     if (mainThread) {

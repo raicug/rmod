@@ -188,6 +188,7 @@ namespace raicu::globals::settings {
         inline float custom_view_model_fov_value = 80;
 
         inline bool dumper = false;
+        inline bool obs_bypass = false;
     }
 
     namespace lua {

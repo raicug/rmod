@@ -3,6 +3,8 @@
 #include "logging/logger.h"
 #include <SDK/Interface.h>
 
+#include "cheats/obs_bypass/obs_bypass.h"
+
 void ImU32ToFloat4(ImU32 color, float out[4]) {
 	out[0] = ((color >> 0) & 0xFF) / 255.0f; // R
 	out[1] = ((color >> 8) & 0xFF) / 255.0f; // G

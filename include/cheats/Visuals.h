@@ -119,7 +119,9 @@ namespace raicu::cheats {
 		};
 
 	private:
-		static void DrawCrosshair(int width, int length, int offset, ImU32 color, float rounding, bool outline, ImU32 outlineColor, float outlineThickness);
+		static void DrawCrosshair(int width, int length, int offset, ImU32 color, float rounding, bool outline,
+		                          ImU32 outlineColor, float outlineThickness);
+
 		static void DrawAimbotFOV(float FOV);
 
 		static void Drawbox(int CurrentEnt);

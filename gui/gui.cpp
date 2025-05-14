@@ -198,7 +198,8 @@ struct ConsoleLog {
 	void Draw(const char *title) {
 		if (!raicu::globals::settings::consoleOpen) return;
 
-		if (!ImGui::Begin(title, nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse)) {
+		if (!ImGui::Begin(title, nullptr,
+		                  ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse)) {
 			ImGui::End();
 			return;
 		}
@@ -473,6 +474,8 @@ void raicu::gui::SetupMenu(LPDIRECT3DDEVICE9 device) noexcept {
 	}
 	window = parms.hFocusWindow;
 
+	// SetWindowDisplayAffinity(window, WDA_MONITOR);
+
 	originalWindowProcess = reinterpret_cast<WNDPROC>(
 		SetWindowLongPtrA(window, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(WindowProcess))
 	);
@@ -483,6 +486,7 @@ void raicu::gui::SetupMenu(LPDIRECT3DDEVICE9 device) noexcept {
 
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
+
 	ImGui::StyleColorsDark();
 
 	ImGuiIO &io = ImGui::GetIO();
@@ -576,13 +580,17 @@ void raicu::gui::Destroy() noexcept {
 
 void ShowLog() {
 	ImGui::SetNextWindowSize(ImVec2(425, 300), ImGuiCond_Once);
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1f, 0.1f, 0.1f, 0.7f));
 
 	if (raicu::globals::settings::consoleOpen) {
-		ImGui::Begin("Console", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+		ImGui::Begin("Console", nullptr,
+		             ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse |
+		             ImGuiWindowFlags_NoResize);
 		ImGui::End();
 	}
 
 	gConsoleLog.Draw("Console");
+	ImGui::PopStyleColor();
 }
 
 bool g_needsLogin = false;
@@ -602,7 +610,8 @@ void ShowLogin() {
 
 	ImGui::SetNextWindowSize(ImVec2(300, 200));
 
-	ImGui::Begin("Raicu GMOD - Login", nullptr, ImGuiWindowFlags_NoResize);
+	ImGui::Begin("Raicu GMOD - Login", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse |
+					 ImGuiWindowFlags_NoResize);
 
 	ImGui::InputText("Email", email, IM_ARRAYSIZE(email));
 	ImGui::InputText("Password", password, IM_ARRAYSIZE(password), ImGuiInputTextFlags_Password);
@@ -644,139 +653,20 @@ void ShowLogin() {
 	ImGui::End();
 }
 
-const char *executorLuaState[]{
-	"Client",
-	"Server",
-	"Menu",
-};
-
-const char *materialList[]{
-	"Normal (no color)",
-	"Metal",
-	"Wireframe",
-	"Flat"
-};
-
-const char *snaplinePosition[]{
-	"Bottom",
-	"Middle",
-	"Top"
-};
-
-const char *aimbot_hitboxes[]{
-	"Head",
-	"Chest",
-	"Stomach",
-	"Hitscan"
-};
-
-const char *aimbot_priorities[]{
-	"Fov",
-	"Distance",
-	"Health"
-};
-
 static bool editorInited = false;
 static TextEditor editor;
 static bool configLoading = false;
 
-const char *sidebarTabs[] = {"Visuals", "Appearance", "Lua", "Config", "World", "Game"};
-const char *topTabsVisuals[] = {"FOV", "Crosshair", "ESP", "Chams"};
-const char *topTabsAppearance[] = {"Main", "Console Colours"};
-const char *topTabsLua[] = {"Main"};
-const char *topTabsWorld[] = {"Aimbot", "Movement", "Players", "Misc"};
-const char *topTabsConfig[] = {"Loading", "Saving"};
-const char *topTabsGame[] = {"Loading Screen", "LUA"};
-
-const char **topTabsArray[] = {topTabsVisuals, topTabsAppearance, topTabsLua, topTabsConfig, topTabsWorld, topTabsGame};
-int topTabSizes[] = {
-	IM_ARRAYSIZE(topTabsVisuals),
-	IM_ARRAYSIZE(topTabsAppearance),
-	IM_ARRAYSIZE(topTabsLua),
-	IM_ARRAYSIZE(topTabsConfig),
-	IM_ARRAYSIZE(topTabsWorld),
-	IM_ARRAYSIZE(topTabsGame)
-};
-
-void ShowPlayers() {
-    if (raicu::globals::settings::other::playerList) {
-        if (!interfaces::engine->is_in_game() || !interfaces::engine->is_connected()) {
-            return;
-        }
-    	ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_FirstUseEver);
-
-        ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoDecoration |
-                                        ImGuiWindowFlags_NoSavedSettings |
-                                        ImGuiWindowFlags_NoFocusOnAppearing |
-                                        ImGuiWindowFlags_NoNav |
-                                      ImGuiWindowFlags_NoMove;
-
-        if (ImGui::Begin("Players", nullptr, window_flags)) {
-            // Get the available content region width to match the window width
-            float windowWidth = ImGui::GetContentRegionAvail().x;
-
-            const float TEXT_BASE_HEIGHT = ImGui::GetTextLineHeightWithSpacing();
-            const float ROW_HEIGHT = TEXT_BASE_HEIGHT + 4;
-            const float TABLE_HEIGHT = ROW_HEIGHT * 6; // 5 rows + header
-
-            if (ImGui::BeginTable("tPlayers", 3,
-                                  ImGuiTableFlags_Borders |
-                                  ImGuiTableFlags_RowBg |
-                                  ImGuiTableFlags_ScrollY,
-                                  ImVec2(windowWidth, TABLE_HEIGHT))) {
-	            ImGui::TableSetupScrollFreeze(0, 1);
-
-	            // Adjust column widths to fill the window
-	            float nameWidth = windowWidth * 0.4f; // 40% of width
-	            float healthWidth = windowWidth * 0.2f; // 20% of width
-	            float posWidth = windowWidth * 0.4f; // 40% of width
-
-	            ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch, nameWidth);
-	            ImGui::TableSetupColumn("Health", ImGuiTableColumnFlags_WidthFixed, healthWidth);
-	            ImGui::TableSetupColumn("Position", ImGuiTableColumnFlags_WidthFixed, posWidth);
-	            ImGui::TableHeadersRow();
-
-	            for (int i = 0; i <= interfaces::engine->get_max_clients(); i++) {
-		            c_base_entity *currentEntity = interfaces::entity_list->get_entity(i);
-
-		            if (!currentEntity) {
-			            continue;
-		            }
-
-		            if (!currentEntity->is_player()) {
-			            continue;
-		            }
-
-		            player_info_t pinfo;
-		            if (!interfaces::engine->get_player_info(i, &pinfo)) {
-			            continue;
-		            }
-
-		            c_vector pos = currentEntity->get_abs_origin();
-
-		            ImGui::TableNextRow();
-		            ImGui::TableNextColumn();
-		            ImGui::Text("%s", pinfo.name);
-		            ImGui::TableNextColumn();
-		            ImGui::Text("%d", currentEntity->get_health());
-		            ImGui::TableNextColumn();
-		            ImGui::Text("%.1f, %.1f, %.1f", pos.x, pos.y, pos.z);
-	            }
-	            ImGui::EndTable();
-            }
-        }
-        ImGui::End();
-    }
-}
-
 void ShowSpectators() {
-	// retarded way of doing this, idc
+    if (ImGui::GetCurrentContext() == nullptr) return;
 	if (!raicu::globals::settings::other::spectatorList) return;
 
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1f, 0.1f, 0.1f, 0.7f));
 	ImGui::SetNextWindowSize(ImVec2(200.f, 200.f));
 	ImGui::Begin("Spectators window", nullptr,
-	             ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar |
-	             ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoTitleBar); {
+			ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize |
+			ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse |
+			ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_AlwaysAutoResize); {
 		std::string names = "";
 		for (int i = 0; i < interfaces::engine->get_max_clients(); i++) {
 			c_base_entity *currentEntity = interfaces::entity_list->get_entity(i);
@@ -790,21 +680,22 @@ void ShowSpectators() {
 
 			names += std::string(info.name) + "\n";
 		}
-		ImGui::GetStyle().ItemSpacing = ImVec2(4, 2);
-		ImGui::GetStyle().WindowPadding = ImVec2(4, 4);
-		ImGui::SameLine(15.f);
-		ImGui::Text(names.c_str());
+
+    	if (names.empty())
+    		ImGui::TextDisabled("Nobody is spectating you");
+    	else
+    		ImGui::Text(names.c_str());
 	}
 
-	ImGui::GetStyle().ItemSpacing = ImVec2(8, 4);
-	ImGui::GetStyle().WindowPadding = ImVec2(8, 8);
-
 	ImGui::End();
+	ImGui::PopStyleColor();
 }
 
 void render_keybinds_window() {
+    if (ImGui::GetCurrentContext() == nullptr) return;
 	ImGui::SetNextWindowSize(ImVec2(200.f, 200.f));
 	ImGui::SetNextWindowSize(ImVec2(200.f, 200.f));
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1f, 0.1f, 0.1f, 0.7f));
 	ImGui::Begin("Keybinds window", nullptr,
 				 ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize |
 				 ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse |
@@ -842,7 +733,7 @@ void render_keybinds_window() {
 		}
 				 }
 	ImGui::End();
-
+	ImGui::PopStyleColor();
 }
 
 void raicu::gui::Render() noexcept {
@@ -868,61 +759,53 @@ void raicu::gui::Render() noexcept {
 	ImGui::StyleColorsDark();
 	//raicu::gui::themes::setFluentUITheme();
 
-	if (g_needsLogin) {
-		ShowLogin();
-	} else {
+	ShowLog();
+	render_keybinds_window();
+	raicu::cheats::Visuals::Render();
+	ShowSpectators();
 
-		ShowLog();
-		render_keybinds_window();
+	if (!editorInited) {
+		editor.SetLanguageDefinition(TextEditor::LanguageDefinition::Lua());
+		editor.SetText(raicu::globals::settings::lua::ScriptInput);
+		editorInited = true;
+	}
 
-		raicu::cheats::Visuals::Render();
-		ShowPlayers();
-		ShowSpectators();
+	if (configLoading) {
+		editor.SetText(raicu::globals::settings::lua::ScriptInput);
+		configLoading = false;
+	}
 
-			if (!editorInited) {
-			editor.SetLanguageDefinition(TextEditor::LanguageDefinition::Lua());
-			editor.SetText(raicu::globals::settings::lua::ScriptInput);
-			editorInited = true;
+	float fps = ImGui::GetIO().Framerate;
+
+	int ping = 0;
+	if (interfaces::engine->is_in_game() && interfaces::engine->is_connected()) {
+		c_base_entity* local_player = interfaces::entity_list->get_entity(interfaces::engine->get_local_player());
+		if (local_player) {
+			ping = local_player->get_ping();
 		}
+	}
 
-		if (configLoading) {
-			editor.SetText(raicu::globals::settings::lua::ScriptInput);
-			configLoading = false;
-		}
+	ImGui::SetNextWindowSize(ImVec2(200, 30));
+	ImGui::Begin("##StatsOverlay", nullptr,
+		ImGuiWindowFlags_NoTitleBar |
+		ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoScrollbar
+	);
 
-		float fps = ImGui::GetIO().Framerate;
+	char stats[64];
+	char title[32];
+	snprintf(stats, sizeof(stats), "RMOD [%dms] | [%.0f fps]", ping, fps);
+	snprintf(title, sizeof(title), "RMOD [%dms]", ping);
+	ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), "%s", stats);
 
-		int ping = 0;
-		if (interfaces::engine->is_in_game() && interfaces::engine->is_connected()) {
-			c_base_entity* local_player = interfaces::entity_list->get_entity(interfaces::engine->get_local_player());
-			if (local_player) {
-				ping = local_player->get_ping();
-			}
-		}
+	ImGui::End();
 
-		ImGui::SetNextWindowSize(ImVec2(200, 30));
-		ImGui::Begin("##StatsOverlay", nullptr,
-			ImGuiWindowFlags_NoTitleBar |
-			ImGuiWindowFlags_NoResize |
-			ImGuiWindowFlags_NoScrollbar
-		);
-
-		char stats[64];
-		char title[32];
-		snprintf(stats, sizeof(stats), "RMOD [%dms] | [%.0f fps]", ping, fps);
-		snprintf(title, sizeof(title), "RMOD [%dms]", ping);
-		ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), "%s", stats);
-
-		ImGui::End();
-
-		if (raicu::globals::settings::open) {
-			framework::gui::draw(editor); // NEW GUI TESTING
-		}
+	if (raicu::globals::settings::open) {
+		framework::gui::draw(editor, configLoading); // NEW GUI TESTING
 	}
 
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.f);
-
 	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.10f, 0.10f, 0.10f, 1.00f));
 
 	ImGui::RenderNotifications();
@@ -1116,13 +999,15 @@ void raicu::gui::other::hotkey(const char *label, hotkey_t *hotkey) {
 }
 
 LRESULT CALLBACK WindowProcess(HWND window, UINT message, WPARAM wideParam, LPARAM longParam) {
+	if (!raicu::gui::originalWindowProcess || !window) {
+		return DefWindowProc(window, message, wideParam, longParam);
+	}
+
 	if (GetAsyncKeyState(VK_HOME) & 1)
 		raicu::globals::settings::open = !raicu::globals::settings::open;
 
-	if (raicu::globals::settings::open)
-		if (ImGui_ImplWin32_WndProcHandler(window, message, wideParam, longParam))
-			return 1L;
-
+	if (raicu::globals::settings::open && ImGui_ImplWin32_WndProcHandler(window, message, wideParam, longParam))
+		return 1L;
 
 	return CallWindowProc(raicu::gui::originalWindowProcess, window, message, wideParam, longParam);
 }

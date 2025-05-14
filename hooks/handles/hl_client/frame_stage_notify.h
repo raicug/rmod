@@ -12,6 +12,8 @@ void __fastcall raicu::hooks::handles::frame_stage_notify(c_hl_client* client, c
 	}
 
 	originals::frame_stage_notify(client, stage);
+	obs_bypass::frame_stage_notify(stage);
+
 
 	if (stage == frame_net_update_end)
 		history::update();

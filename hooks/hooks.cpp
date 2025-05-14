@@ -89,7 +89,7 @@ void raicu::hooks::Setup() {
 			throw std::runtime_error("Unable to hook paint_traverse");
 
 		// run_string_ex
-    	/*if (MH_CreateHook(
+		/*if (MH_CreateHook(
 			reinterpret_cast<LPVOID>(memory::pattern_scanner(
 				xorstr("lua_shared.dll"),
 				xorstr("40 55 53 56 57 41 54 41 56 41 57 48 8D AC 24 ? ? ? ? 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 49 8B F1"))),

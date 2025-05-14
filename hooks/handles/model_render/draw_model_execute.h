@@ -12,8 +12,7 @@ using namespace raicu::cheats;
 using namespace raicu::globals;
 
 void __fastcall raicu::hooks::handles::draw_model_execute(c_model_render* model_render, void* state, model_render_info_t& info, matrix3x4* bone_to_world) {
-
-	if (obs_bypass::in_streamproof_view)
+	if (!obs_bypass::in_streamproof_view && raicu::globals::settings::other::obs_bypass)
 		return originals::draw_model_execute(model_render, state, info, bone_to_world);
 
 	c_base_entity* local_player = interfaces::entity_list->get_entity(interfaces::engine->get_local_player());
@@ -90,5 +89,5 @@ void __fastcall raicu::hooks::handles::draw_model_execute(c_model_render* model_
 		}
 	}
 
-	originals::draw_model_execute(model_render, state, info, bone_to_world);
+	return originals::draw_model_execute(model_render, state, info, bone_to_world);
 }

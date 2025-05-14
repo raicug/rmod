@@ -66,8 +66,6 @@ void Visuals::Render() {
 			if (alpha <= 0.0f)
 				continue;
 
-			ImGui::PushStyleVar(ImGuiStyleVar_Alpha, alpha);
-
 			player_info_t pinfo;
 			interfaces::engine->get_player_info(i, &pinfo);
 
@@ -87,6 +85,8 @@ void Visuals::Render() {
 			if (is_whitelisted) {
 				return;
 			}
+			if (alpha <= 0.0f)
+				continue;
 
 			if (espValues::snapline)
 				Visuals::DrawSnapline(static_cast<int>(i),
@@ -100,8 +100,6 @@ void Visuals::Render() {
 			if (globals::settings::aimbot::visualise_target_line) Visuals::DrawLineToTarget();
 			if (espValues::skeleton) Visuals::DrawSkeleton(static_cast<int>(i));
 			if (globals::settings::aimbot::backtrackEnabled) Visuals::DrawBacktrack(static_cast<int>(i));
-
-			ImGui::PopStyleVar();
 		}
 	}
 }

@@ -27,8 +27,7 @@ void obs_bypass::frame_stage_notify(client_frame_stage_t stage) {
     if (!raicu::globals::settings::other::obs_bypass) return;
     static bool did_init = false;
 
-    if (!did_init && stage == frame_start)
-    {
+    if (!did_init && stage == frame_start) {
         init();
         did_init = true;
         return;
@@ -44,9 +43,8 @@ void obs_bypass::frame_stage_notify(client_frame_stage_t stage) {
     if (is_discord_capture || !render_texture || !interfaces::engine->is_in_game())
         return;
 
-    if (stage == frame_render_start)
-    {
-        c_mat_render_context* render_context = interfaces::material_system->get_render_context();
+    if (stage == frame_render_start) {
+        c_mat_render_context *render_context = interfaces::material_system->get_render_context();
         if (!render_context)
             return;
 
@@ -54,8 +52,7 @@ void obs_bypass::frame_stage_notify(client_frame_stage_t stage) {
     }
 }
 
-void obs_bypass::render_view(i_view_render* view_render, c_view_setup& view, int flags, int to_draw)
-{
+void obs_bypass::render_view(i_view_render *view_render, c_view_setup &view, int flags, int to_draw) {
     if (!render_texture)
         return;
 

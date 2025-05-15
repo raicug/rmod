@@ -39,6 +39,11 @@ public:
 		return memory::call_v_function<int(__thiscall *)(void *)>(this, 77)(this);
 	}
 
+	bool is_dormant()
+	{
+		return *(bool*)((uintptr_t)this + 0x1FA);
+	}
+
 	int get_health()
 	{
 		return memory::call_v_function<int(__thiscall *)(void *)>(this, 108)(this);

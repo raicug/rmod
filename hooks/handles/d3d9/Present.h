@@ -56,48 +56,48 @@ HRESULT APIENTRY raicu::hooks::handles::present(IDirect3DDevice9* device, CONST 
     LPDIRECT3DSURFACE9 backbuffer;
     device->GetRenderTarget(0, &backbuffer);
 
-    if (!g_pRenderTarget) {
-        D3DSURFACE_DESC desc;
-        backbuffer->GetDesc(&desc);
+    device->SetRenderState(D3DRS_COLORWRITEENABLE, 0xF);
+    device->SetRenderState(D3DRS_SRGBWRITEENABLE, FALSE);
+    device->SetRenderState(D3DRS_MULTISAMPLEANTIALIAS, FALSE);
+    device->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+    device->SetRenderState(D3DRS_LIGHTING, FALSE);
+    device->SetRenderState(D3DRS_ZENABLE, FALSE);
+    device->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+    device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+    device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
-        device->CreateTexture(
-            desc.Width,
-            desc.Height,
-            1,
-            D3DUSAGE_RENDERTARGET,
-            D3DFMT_A2R10G10B10,
-            D3DPOOL_DEFAULT,
-            &g_pRenderTarget,
-            nullptr
-        );
-
-        if (g_pRenderTarget)
-            g_pRenderTarget->GetSurfaceLevel(0, &g_pRenderSurface);
-    }
-
-    if (g_pRenderSurface) {
-        device->SetRenderTarget(0, g_pRenderSurface);
-
-        device->SetRenderState(D3DRS_COLORWRITEENABLE, 0xF);
-        device->SetRenderState(D3DRS_SRGBWRITEENABLE, FALSE);
-        device->SetRenderState(D3DRS_MULTISAMPLEANTIALIAS, FALSE);
-        device->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-        device->SetRenderState(D3DRS_LIGHTING, FALSE);
-        device->SetRenderState(D3DRS_ZENABLE, FALSE);
-        device->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-        device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-        device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-
-        raicu::gui::Render();
-
+    if (settings::other::obs_bypass) {
         device->SetRenderTarget(0, backbuffer);
+        raicu::gui::Render();
+    } else {
+        if (!g_pRenderTarget) {
+            D3DSURFACE_DESC desc;
+            backbuffer->GetDesc(&desc);
 
-        device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-        device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-        device->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
-        device->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
+            device->CreateTexture(
+                desc.Width,
+                desc.Height,
+                1,
+                D3DUSAGE_RENDERTARGET,
+                D3DFMT_A2R10G10B10,
+                D3DPOOL_DEFAULT,
+                &g_pRenderTarget,
+                nullptr
+            );
 
-        device->SetTexture(0, g_pRenderTarget);
+            if (g_pRenderTarget)
+                g_pRenderTarget->GetSurfaceLevel(0, &g_pRenderSurface);
+        }
+
+        if (g_pRenderSurface) {
+            device->SetRenderTarget(0, g_pRenderSurface);
+            raicu::gui::Render();
+            device->SetRenderTarget(0, backbuffer);
+
+            device->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
+            device->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
+            device->SetTexture(0, g_pRenderTarget);
+        }
     }
 
     if (stateBlock) {

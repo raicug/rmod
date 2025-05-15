@@ -1,3 +1,4 @@
+#include <set>
 #include <SDK/Interface.h>
 #include "../../hooks.h"
 #include <globals/settings.h>
@@ -86,6 +87,25 @@ void __fastcall raicu::hooks::handles::draw_model_execute(c_model_render* model_
 			Chams::pop_material_override();
 
 			return;
+		}
+	} else {
+		if (settings::chams::entities::enabled) {
+			std::string name = entity->get_class_name();
+
+			if (!name.empty() && settings::chams::entities::list.contains(name) && settings::chams::entities::list[name].get<bool>()) {
+				Chams::push_ignore_z(settings::chams::entities::ignore_walls);
+				Chams::push_material_override(Drawing::ToColor(&settings::chams::entities::entity_color), settings::chams::entities::material_type);
+
+				if (settings::chams::entities::draw_original_model)
+					hooks::handles::originals::draw_model_execute(model_render, state, info, bone_to_world);
+				hooks::handles::originals::draw_model_execute(model_render, state, info, bone_to_world);
+
+				Chams::pop_material_override();
+				Chams::pop_ignore_z();
+
+				return;
+			}
+			
 		}
 	}
 

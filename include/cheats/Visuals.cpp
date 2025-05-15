@@ -47,8 +47,7 @@ void Visuals::Render() {
 			Drawing::ToColor(&crosshairValues::outlineColor), // Outline Color
 			crosshairValues::outlineThickness); // Outline Thickness
 
-	if (!espValues::enabled) return;
-	for (size_t i = 0; i <= interfaces::engine->get_max_clients(); i++) {
+	for (size_t i = 0; i <= interfaces::entity_list->get_highest_entity_index(); i++) {
 		c_base_entity *entity = interfaces::entity_list->get_entity(static_cast<int>(i));
 		if (!entity) {
 			continue;
@@ -57,6 +56,7 @@ void Visuals::Render() {
 		if (entity->is_player()) {
 			if (!entity->is_alive()) continue;
 			if (entity == local_player) continue;
+			if (!espValues::enabled) return;
 
 			float offset = 0;
 			float distance = origin.distance_to(entity->get_abs_origin());
@@ -100,6 +100,52 @@ void Visuals::Render() {
 			if (globals::settings::aimbot::visualise_target_line) Visuals::DrawLineToTarget();
 			if (espValues::skeleton) Visuals::DrawSkeleton(static_cast<int>(i));
 			if (globals::settings::aimbot::backtrackEnabled) Visuals::DrawBacktrack(static_cast<int>(i));
+		}
+		else if (globals::settings::espValues::entities::enabled) {
+			if (!espValues::entities::dormant && entity->is_dormant())
+				continue;
+			std::string name = entity->get_class_name();
+			if (name.empty())
+				continue;
+
+			box_t box;
+			if (!utilities::get_entity_box(entity, box))
+				continue;
+
+			float offset = 0;
+			float distance = origin.distance_to(entity->get_abs_origin());
+
+			float alpha = std::clamp((raicu::globals::settings::espValues::entities::render_distance - distance) / 100.f, 0.f,
+									 1.f);
+			if (alpha <= 0.0f)
+				continue;
+
+			if (raicu::globals::settings::espValues::entities::box) {
+				Drawing::Box(box.left, box.top, box.right, box.bottom, Drawing::ToColor(&raicu::globals::settings::espValues::entities::boxColor), 1.f);
+			}
+			if (raicu::globals::settings::espValues::entities::distance) {
+				c_vector wtse, co;
+				co = entity->get_abs_origin();
+				if (utilities::world_to_screen(co, &wtse)) {
+					std::string str = std::to_string((int) distance) + "m";
+					int length = strlen(str.c_str());
+					float width = (length * 13) / 2.f;
+
+					char *newStr = new char[str.size() + 1];
+					std::strcpy(newStr, str.c_str());
+					Drawing::Text(newStr, wtse.x - (width / 2.f), wtse.y, Drawing::ToColor(&raicu::globals::settings::espValues::entities::nameColor), offset);
+					delete[] newStr;
+				}
+			}
+			if (raicu::globals::settings::espValues::entities::name) {
+				c_vector wtse, co;
+				co = entity->get_abs_origin();
+				if (utilities::world_to_screen(co, &wtse)) {
+					int length = strlen(name.c_str());
+					float width = (length * 13) / 2.f;
+					Drawing::Text(name.data(), wtse.x - (width / 2.f), wtse.y, Drawing::ToColor(&raicu::globals::settings::espValues::entities::nameColor), offset);
+				}
+			}
 		}
 	}
 }
@@ -184,12 +230,16 @@ void Visuals::DrawName(int CurrentEnt, float &offset) {
 
         int length = strlen(display_name);
         float width = (length * 13) / 2.f;
+
+    	box_t box;
+    	if (!utilities::get_entity_box(current, box)) return;
+
     	if (is_target) {
     		ImVec4 redColor = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);
-    		Drawing::Text(display_name, worldtoscreenent.x - (width / 2.f), worldtoscreenent.y,
+    		Drawing::Text(display_name, box.left + (box.right - box.left / 2.f), box.bottom,
 						 Drawing::ToColor(&redColor), offset);
     	} else {
-    		Drawing::Text(display_name, worldtoscreenent.x - (width / 2.f), worldtoscreenent.y,
+    		Drawing::Text(display_name, box.left + (box.right - box.left / 2.f), box.bottom,
 						 Drawing::ToColor(&raicu::globals::settings::espValues::nameColor), offset);
     	}
     }
@@ -264,7 +314,10 @@ void Visuals::DrawDistance(int CurrentEnt, float &offset, float distance) {
 		char *newStr = new char[str.size() + 1];
 		std::strcpy(newStr, str.c_str());
 
-		Drawing::Text(newStr, screen_pos.x - (width / 2.f), screen_pos.y,
+		box_t box;
+		if (!utilities::get_entity_box(entity, box)) return;
+
+		Drawing::Text(newStr, box.left + (box.right - box.left) / 2.f, box.bottom,
 		              Drawing::ToColor(&raicu::globals::settings::espValues::nameColor), offset);
 
 		delete[] newStr;

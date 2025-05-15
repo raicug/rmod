@@ -37,7 +37,7 @@ void Drawing::Text(char* text, float x, float y, ImU32 color, float& text_offset
 	ImFont* font = ImGui::GetFont();
 
 	ImVec2 size = ImGui::CalcTextSize(text);
-	draw->AddText(font, 0, ImVec2(x, y - text_offset), color, text);
+	draw->AddText(font, 0, ImVec2(x - (size.x / 2.f), y - size.y - text_offset), color, text);
 	text_offset += size.y + 1;
 }
 

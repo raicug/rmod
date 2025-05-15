@@ -93,6 +93,16 @@ namespace raicu::globals::settings {
             inline bool hands_draw_original_model = false;
             inline ImVec4 hands_color = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
         }
+
+        namespace entities {
+            inline bool enabled = false;
+            inline bool ignore_walls = false;
+            inline int material_type = 0;
+            inline bool draw_original_model = false;
+            inline ImVec4 entity_color = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
+
+            inline nlohmann::json list;
+        }
     }
 
     namespace aimbot {
@@ -148,6 +158,18 @@ namespace raicu::globals::settings {
         inline ImVec4 nameColor = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
         inline ImVec4 chamsColour = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
         inline ImVec4 boxColor = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
+
+        namespace entities {
+            inline bool enabled = false;
+            inline bool box = false;
+            inline bool name = false;
+            inline bool distance = false;
+            inline bool dormant = false;
+
+            inline ImVec4 nameColor = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
+            inline ImVec4 boxColor = ImVec4(1.0f, 1.0f, 0.0f, 1.0f);
+            inline int render_distance = 15000;
+        }
     }
 
     namespace crosshairValues {

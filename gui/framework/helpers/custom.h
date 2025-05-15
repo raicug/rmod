@@ -34,7 +34,7 @@ public:
     std::vector<const char *> config_subtabs = {"Main"};
 
     int m_world_subtab = 0;
-    std::vector < const char* > world_subtabs = { "Aimbot", "Movement", "Players", "Misc" };
+    std::vector < const char* > world_subtabs = { "Aimbot", "Movement", "Players", "Entities", "Misc" };
 
     int m_game_subtab = 0;
     std::vector<const char *> game_subtabs = {"Main"};

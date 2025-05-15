@@ -88,11 +88,11 @@ void raicu::hooks::Setup() {
 			reinterpret_cast<LPVOID*>(&handles::originals::paint_traverse)) != MH_OK)
 			throw std::runtime_error("Unable to hook paint_traverse");
 
-		// run_string_ex
-		/*if (MH_CreateHook(
+    	// run_string_ex
+    	/*if (MH_CreateHook(
 			reinterpret_cast<LPVOID>(memory::pattern_scanner(
 				xorstr("lua_shared.dll"),
-				xorstr("40 55 53 56 57 41 54 41 56 41 57 48 8D AC 24 ? ? ? ? 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 49 8B F1"))),
+				xorstr("81 EC ? ? ? ? A1 ? ? ? ? 33 C4 89 84 24 ? ? ? ? 56 8B B4 24 ? ? ? ? 6A 02"))),
 			reinterpret_cast<LPVOID>(&handles::run_string_ex),
 			reinterpret_cast<LPVOID*>(&handles::originals::run_string_ex)) != MH_OK)
 			throw std::runtime_error("Unable to hook run_string_ex from lua_shared");*/

@@ -13,6 +13,7 @@
 #include "globals/configManager.h"
 #include "globals/settings.h"
 #include "helpers/custom.h"
+#include "sdk/utils/utilities.h"
 
 #define ALPHA    ( ImGuiColorEditFlags_AlphaPreview | ImGuiColorEditFlags_NoTooltip | ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_InputRGB | ImGuiColorEditFlags_Float | ImGuiColorEditFlags_NoDragDrop | ImGuiColorEditFlags_PickerHueBar | ImGuiColorEditFlags_NoBorder )
 #define NO_ALPHA ( ImGuiColorEditFlags_NoTooltip    | ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel | ImGuiColorEditFlags_NoAlpha | ImGuiColorEditFlags_InputRGB | ImGuiColorEditFlags_Float | ImGuiColorEditFlags_NoDragDrop | ImGuiColorEditFlags_PickerHueBar | ImGuiColorEditFlags_NoBorder )
@@ -103,7 +104,7 @@ void framework::gui::draw(TextEditor &editor, bool &configLoading) {
 
                             break;
                         case 2: // ESP
-                            custom.begin_child("General##3", ImVec2(GetWindowWidth() / 2 - GetStyle().ItemSpacing.x / 2,
+                            custom.begin_child("Players##3", ImVec2(GetWindowWidth() / 2 - GetStyle().ItemSpacing.x / 2,
                                                                     GetWindowHeight())); {
                                 Checkbox("Enable", &raicu::globals::settings::espValues::enabled);
                                 Checkbox("Health", &raicu::globals::settings::espValues::health);
@@ -134,11 +135,31 @@ void framework::gui::draw(TextEditor &editor, bool &configLoading) {
                                           1000, 30000);
                             }
                             custom.end_child();
-
+                            SameLine();
+                            custom.begin_child("Entities", ImVec2(GetWindowWidth() / 2 - GetStyle().ItemSpacing.x / 2,
+                                                                  GetWindowHeight())); {
+                                Checkbox("Enabled", &raicu::globals::settings::espValues::entities::enabled);
+                                Checkbox("Dormant", &raicu::globals::settings::espValues::entities::dormant);
+                                Checkbox("Name", &raicu::globals::settings::espValues::entities::name);
+                                SameLine(GetWindowWidth() - 33);
+                                ColorEdit4("##nameColor##2",
+                                           reinterpret_cast<float *>(&
+                                               raicu::globals::settings::espValues::entities::nameColor), ALPHA);
+                                Checkbox("Box", &raicu::globals::settings::espValues::entities::box);
+                                SameLine(GetWindowWidth() - 33);
+                                ColorEdit4("##boxColor##2",
+                                           reinterpret_cast<float *>(&
+                                               raicu::globals::settings::espValues::entities::boxColor), ALPHA);
+                                Checkbox("Distance", &raicu::globals::settings::espValues::entities::distance);
+                                SliderInt("Render Distance",
+                                          &raicu::globals::settings::espValues::entities::render_distance,
+                                          1000, 30000);
+                            }
+                            custom.end_child();
                             break;
 
                         case 3: // CHAMS
-                            custom.begin_child("General##4",
+                            custom.begin_child("Players##4",
                                                ImVec2(GetWindowWidth() / 2 - GetStyle().ItemSpacing.x / 2,
                                                       GetWindowHeight())); {
                                 Checkbox("Enable", &raicu::globals::settings::chams::enabled);
@@ -165,6 +186,25 @@ void framework::gui::draw(TextEditor &editor, bool &configLoading) {
                                            reinterpret_cast<float *>(&
                                                raicu::globals::settings::chams::localplr::hands_color), ALPHA);
                                 Combo("Material##3", &raicu::globals::settings::chams::localplr::hands_material_type,
+                                      custom.materialList, IM_ARRAYSIZE(custom.materialList));
+                            }
+                            custom.end_child();
+
+                            custom.begin_child("Entities##1",
+                                               ImVec2(GetWindowWidth() / 2 - GetStyle().ItemSpacing.x / 2,
+                                                      GetWindowHeight())); {
+                                TextDisabled("Look at world tab for \"Entities\" list");
+                                Checkbox("Enable", &raicu::globals::settings::chams::entities::enabled);
+                                SameLine(GetWindowWidth() - 33);
+                                ColorEdit4("##EntityColor",
+                                           reinterpret_cast<float *>(&
+                                               raicu::globals::settings::chams::entities::entity_color),
+                                           ALPHA);
+                                Checkbox("Draw original model",
+                                         &raicu::globals::settings::chams::entities::draw_original_model);
+                                Checkbox("Ignore walls", &raicu::globals::settings::chams::entities::ignore_walls);
+
+                                Combo("Material##1", &raicu::globals::settings::chams::entities::material_type,
                                       custom.materialList, IM_ARRAYSIZE(custom.materialList));
                             }
                             custom.end_child();
@@ -624,12 +664,49 @@ void framework::gui::draw(TextEditor &editor, bool &configLoading) {
                                         }
                                     }
                                 }
-                        		EndChild();
+                                EndChild();
                             }
                             custom.end_child();
 
                             break;
-                    	case 3: //Misc
+                        case 3: // Entities
+                            custom.begin_child("Main##5", ImVec2(GetWindowWidth() / 2 - GetStyle().ItemSpacing.x / 2,
+                                                                 GetWindowHeight())); {
+                                if (Button("Clear list")) {
+                                    raicu::globals::settings::chams::entities::list = {};
+                                }
+                            }
+                            custom.end_child();
+                            SameLine();
+                            custom.begin_child("Entities##4",
+                                               ImVec2(GetWindowWidth() / 2 - GetStyle().ItemSpacing.x / 2,
+                                                      GetWindowHeight())); {
+                                utilities::update_entity_list(raicu::globals::settings::chams::entities::list);
+
+                                static int id_counter = 0;
+                                for (auto item: raicu::globals::settings::chams::entities::list.items()) {
+                                    ImGui::PushID((item.key() + std::to_string(id_counter++)).c_str());
+
+                                    if (ImGui::Selectable((item.key() + std::to_string(id_counter++)).c_str(),
+                                                          item.value())) {
+                                        ImGui::OpenPopup((item.key() + std::to_string(id_counter++)).c_str());
+                                    }
+
+                                    if (ImGui::BeginPopupContextItem(
+                                        (item.key() + std::to_string(id_counter++)).c_str())) {
+                                        if (ImGui::Selectable("Apply chams", item.value())) {
+                                            item.value() = !item.value();
+                                        }
+                                        ImGui::EndPopup();
+                                    }
+
+                                    ImGui::PopID();
+                                }
+                                id_counter = 0;
+                            }
+                            custom.end_child();
+                            break;
+                    	case 4: //Misc
                     		custom.begin_child("Camera##1", ImVec2(GetWindowWidth() / 2 - GetStyle().ItemSpacing.x / 2, GetWindowHeight()));
 	                        {
 		                        Checkbox("Third Person", &raicu::globals::settings::other::third_person);

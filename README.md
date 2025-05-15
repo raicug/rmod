@@ -73,6 +73,10 @@ This is for [Garry's Mod](https://store.steampowered.com/app/4000/Garrys_Mod/) x
   - Customizable colors
 - Loading screen customization
 
+### Stream Protection
+  - Anti-OBS capabilities
+  - Clean model rendering for streaming
+
 ### LUA Integration
 - Dual-state support:
   - Client state
